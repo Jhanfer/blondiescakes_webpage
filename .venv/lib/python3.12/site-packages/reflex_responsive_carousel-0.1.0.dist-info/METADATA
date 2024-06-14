@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: reflex_responsive_carousel
+Version: 0.1.0
+Summary: Reflex custom component carousel
+Home-page: https://github.com/Jhanfer/reflex_responsive_carousel
+License: MIT
+Keywords: reflex,reflex-custom-components
+Author: Jhanfer
+Author-email: jhafer73@gmail.com
+Requires-Python: >=3.11,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Dist: reflex (>=0.5.0.post1,<0.6.0)
+Project-URL: Repository, https://github.com/Jhanfer/reflex_responsive_carousel
+Description-Content-Type: text/markdown
+
+A reflex wrapping react component: react-responsive-carousel
+
