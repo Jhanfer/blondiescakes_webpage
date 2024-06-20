@@ -1,5 +1,6 @@
 *.db
 *.py[cod]
-.web
+.env
 .venv
+.web
 __pycache__/

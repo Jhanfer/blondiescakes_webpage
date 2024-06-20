@@ -1,0 +1,8 @@
+reflex==0.5.4
+httptools==0.6.1
+python-dotenv==1.0.1
+PyYAML==6.0.1
+reflex-motion==0.0.1
+reflex_responsive_carousel==0.1.0
+supabase==2.5.0
+uvloop==0.19.0
