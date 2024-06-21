@@ -1,5 +1,6 @@
 import reflex as rx
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.Updater import BackendUpdater
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_database import SupabaseAPI
 
 
 def updater():
@@ -10,6 +11,7 @@ def updater():
                     rx.heading("Creación de artículo"),
                 align="center",
                 padding_bottom="3em"),
+        
 
             rx.vstack(
                     rx.flex(
@@ -30,13 +32,14 @@ def updater():
                         width="100%",
                         justify="between"),
 
-                    rx.button("SUBIR",on_click=BackendUpdater.update_data),
+                    rx.button("SUBIR",on_click=lambda:[BackendUpdater.update_data,BackendUpdater.refresh_page]),
 
                 align="start",
                 spacing="5",
                 justify="center",
                 width="100%",
-                padding_bottom="3em"),
+                padding_bottom="3em",
+                on_mount=BackendUpdater.refresh_state_refresh),
                 
                 rx.vstack(
                         rx.dialog.close(
@@ -44,3 +47,4 @@ def updater():
                     align="center"),
                 )
         )
+

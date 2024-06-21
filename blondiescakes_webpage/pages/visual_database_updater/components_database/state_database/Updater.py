@@ -1,6 +1,7 @@
 import reflex as rx
 import uuid
-from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.api import upload_supabase
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.api import upload_supabase,delete_content
+import time
 
 class BackendUpdater(rx.State):
     id:str
@@ -8,9 +9,18 @@ class BackendUpdater(rx.State):
     url_purchase:str
     title:str
 
+    state:bool
+    refresh:bool=False
+
+    returns:dict
+    
+
+    selected_items:list
+    items:list
+    checked:bool=True
+    #loading = show_progress:bool = True 
 
     def set_id(self,):
-
         _uuid=uuid.uuid4()
         _id=_uuid.bytes[0]
         _id=int(bin(_id)[2:], 2)
@@ -31,14 +41,57 @@ class BackendUpdater(rx.State):
 
 
     def reset_data(self):
-        self.id=str
-        self.image_url=str
-        self.url_purchase=str
-        self.title=str
-
-
+        self.id=None
+        self.image_url=None
+        self.url_purchase=None
+        self.title=None
 
     def update_data(self):
-        self.set_id()
-        upload_supabase(self.id,self.image_url,self.url_purchase,self.title)
+        if self.id and self.url_purchase and self.title:
+            upload_supabase(self.id,self.image_url,self.url_purchase,self.title)
+            self.refresh=True
+        else:
+            self.refresh=False
+        
+
+    def refresh_page(self):
+        if self.refresh == True:
+            return rx.redirect("/database_updater/redirect")
+
+
+    def refresh_state(self):
+        self.state=True
+
+    def refresh_state_refresh(self):
+        self.state=False
+    
+
+
+
+    
+    def select(self,featured_id:str,checked:bool):
+
+        if checked == True:
+
+            featured_id=[featured_id]
+            self.selected_items=[]
+
+            for i in featured_id:
+                self.items.append(i)
+        
+            self.checked=False
+            self.selected_items=self.items
+            
+        else:
+            self.items.remove(featured_id)
+            self.checked=True
+
+
+    
+    def delete_database_items(self):
+        delete_content(self.selected_items)
+        self.refresh=True
+        self.checked=True
+
+
 

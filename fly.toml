@@ -4,12 +4,7 @@
 #
 
 app = 'blondiescakes-webpage'
-primary_region = 'mad'
-
-[build]
-  builder = 'paketobuildpacks/builder:base'
-  ignorefile = '/.dockerignore'
-  dockerfile = "Dockerfile"
+primary_region = 'bog'
 
 [env]
   PORT = '8000'

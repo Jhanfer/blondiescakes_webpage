@@ -20,6 +20,9 @@ class SupabaseAPI():
     key: str = os.environ.get("SUPABASE_KEY")
     supabase:Client
 
+    errors:str=""
+    success:dict={}
+
     def act_data(self):
         dotenv.load_dotenv()
         if self.url and self.key:
@@ -52,7 +55,9 @@ class SupabaseAPI():
         return datos
     
 
-    def insert_data(self,id:str,image_url:str,url_purchase:str,title:str):
+
+
+    def insert_data(self,id:str,image_url:str,url_purchase:str,title:str) -> bool:
         
         self.act_data()
 
@@ -60,12 +65,27 @@ class SupabaseAPI():
         times=time.localtime(timestamp)
         format=f"{datetime.date.today()} {times.tm_hour}:{times.tm_min}:{times.tm_sec}"
         
-        data, count = self.supabase.table("Images_database").insert({"id":id, "image_url":image_url,"url_purchase":url_purchase,"title":title,"upload_time":f"{format}"}).execute()
+        if image_url and url_purchase and title != None:
+            self.supabase.table("Images_database").insert({"id":id, "image_url":image_url,"url_purchase":url_purchase,"title":title,"upload_time":f"{format}"}).execute()
         
-        print(data,count)
-        return True
+        else:
+            self.errors="No se pudo subir"
+            print(self.errors)
+        self.success="Subido con éxito"
 
 
+
+    def delete_data(self,id:list):
+
+        self.act_data()
+
+        if not id == None:
+            for i in id:    
+                id_int = int(i)
+                self.supabase.table("Images_database").delete().eq("id", id_int).execute()
+            print("eliminado con éxito")
+        else:
+            print("No eliminado")        
 
 
 class Featured(rx.Base):

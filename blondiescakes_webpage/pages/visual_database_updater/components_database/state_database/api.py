@@ -6,5 +6,8 @@ supabase_api=SupabaseAPI()
 async def get_data()-> Featured:
     return supabase_api.get_data()
 
-def upload_supabase(id:str,image_url:str,url_purchase:str,title:str):
+def upload_supabase(id:str,image_url:str,url_purchase:str,title:str) -> bool:
     supabase_api.insert_data(id,image_url,url_purchase,title)
+
+def delete_content(id_list:list):
+    supabase_api.delete_data(id_list)
