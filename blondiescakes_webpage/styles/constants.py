@@ -22,3 +22,11 @@ ITEM17="product_item_images/item17.jpeg"
 ITEM18="product_item_images/item18.jpeg"
 ITEM19="product_item_images/item19.jpeg"
 ITEM20="product_item_images/item20.jpeg"
+
+
+
+### Element updater constants ###
+AL="HS256"
+AC_DURATION=50
+SEED="76429262be88ff4cf4153a40a1e4b5b54b90c1079fa36cf7cc"
+#################################

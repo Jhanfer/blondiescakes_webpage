@@ -57,7 +57,7 @@ class SupabaseAPI():
 
 
 
-    def insert_data(self,id:str,image_url:str,url_purchase:str,title:str) -> bool:
+    def insert_data(self,id:str,image_url:str,url_purchase:str,title:str):
         
         self.act_data()
 
@@ -67,12 +67,12 @@ class SupabaseAPI():
         
         if image_url and url_purchase and title != None:
             self.supabase.table("Images_database").insert({"id":id, "image_url":image_url,"url_purchase":url_purchase,"title":title,"upload_time":f"{format}"}).execute()
-        
+            self.success="Subido con éxito"
+            print(self.success)
+            
         else:
             self.errors="No se pudo subir"
             print(self.errors)
-        self.success="Subido con éxito"
-
 
 
     def delete_data(self,id:list):
@@ -84,6 +84,7 @@ class SupabaseAPI():
                 id_int = int(i)
                 self.supabase.table("Images_database").delete().eq("id", id_int).execute()
             print("eliminado con éxito")
+            
         else:
             print("No eliminado")        
 

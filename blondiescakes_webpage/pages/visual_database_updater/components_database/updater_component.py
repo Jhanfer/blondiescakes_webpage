@@ -1,6 +1,6 @@
 import reflex as rx
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.Updater import BackendUpdater
-from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_database import SupabaseAPI
+#from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_database import SupabaseAPI
 
 
 def updater():
@@ -32,8 +32,7 @@ def updater():
                         width="100%",
                         justify="between"),
 
-                    rx.button("SUBIR",on_click=lambda:[BackendUpdater.update_data,BackendUpdater.refresh_page]),
-
+                    rx.button("SUBIR",color_scheme="grass",on_click=lambda:[BackendUpdater.update_data,BackendUpdater.refresh_page]),
                 align="start",
                 spacing="5",
                 justify="center",
@@ -43,8 +42,7 @@ def updater():
                 
                 rx.vstack(
                         rx.dialog.close(
-                            rx.button("cerrar", size="3",on_click=BackendUpdater.reset_data)),
+                            rx.button("cerrar",size="3",color_scheme="tomato",on_click=BackendUpdater.reset_data)),
                     align="center"),
                 )
         )
-

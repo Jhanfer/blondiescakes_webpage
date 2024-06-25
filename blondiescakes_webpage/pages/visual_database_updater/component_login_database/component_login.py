@@ -1,4 +1,7 @@
 import reflex as rx
+from blondiescakes_webpage.pages.visual_database_updater.component_login_database.login_state.LoginState import LoginState
+
+
 
 def login_component() -> rx.Component:
     return rx.card(
@@ -29,6 +32,9 @@ def login_component() -> rx.Component:
                         type="email",
                         size="3",
                         width="100%",
+                        on_blur=LoginState.get_username,
+                        on_focus=LoginState.get_username,
+                        on_change=LoginState.get_username
                     ),
                     spacing="2",
                     width="100%",
@@ -49,11 +55,14 @@ def login_component() -> rx.Component:
                         type="password",
                         size="3",
                         width="100%",
+                        on_blur=LoginState.get_password,
+                        on_focus=LoginState.get_password,
+                        on_change=LoginState.get_password
                     ),
                     spacing="2",
                     width="100%",
                 ),
-                rx.button("Sign in", size="3", width="100%"),
+                rx.button("Sign in", size="3", width="100%",on_click=[LoginState.auth_user]),
                 
                 spacing="6",
                 width="100%",

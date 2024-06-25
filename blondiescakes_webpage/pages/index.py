@@ -17,6 +17,7 @@ from blondiescakes_webpage.pages.visual_database_updater.components_database.sta
 )
 
 def index() -> rx.Component:
+    """Main page"""
     return rx.box(
         rx.vstack(
             navbar(),
