@@ -20,7 +20,7 @@ def login_component() -> rx.Component:
                 ),
                 rx.vstack(
                     rx.text(
-                        "DIRECCIÓN EMAIL",
+                        "usuario",
                         size="3",
                         weight="medium",
                         text_align="left",
@@ -28,7 +28,7 @@ def login_component() -> rx.Component:
                     ),
                     rx.input(
                         rx.input.slot(rx.icon("user")),
-                        placeholder="user@email.com",
+                        placeholder="ponga su usuario",
                         type="email",
                         size="3",
                         width="100%",

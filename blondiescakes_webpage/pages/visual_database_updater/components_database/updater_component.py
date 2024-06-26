@@ -3,9 +3,9 @@ from blondiescakes_webpage.pages.visual_database_updater.components_database.sta
 #from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_database import SupabaseAPI
 
 
-def updater():
+def updater(button_text:str):
     return rx.dialog.root(
-        rx.dialog.trigger(rx.button("crear nuevo artículo",background_color="#75D516",color="#000000")),
+        rx.dialog.trigger(rx.button(button_text,background_color="#75D516",color="#000000")),
         rx.dialog.content(
             rx.vstack(
                     rx.heading("Creación de artículo"),

@@ -71,11 +71,11 @@ class BackendUpdater(rx.State):
     def refresh_page(self):
         """"Refresh page"""
         if self.refresh == True:
-            ui=str(uuid.uuid4())
-            time.sleep(2)
-            return Refresh.redirect_system(ui)
+            return Refresh.redirect_system()
         
-        
+
+
+
     def refresh_state_refresh(self):
         """Refresh states"""
         self.state=False

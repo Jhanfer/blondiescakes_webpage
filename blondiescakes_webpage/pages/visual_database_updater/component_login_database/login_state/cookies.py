@@ -4,9 +4,13 @@ import reflex as rx
 class CookieState(rx.State):
     sesion_token:str=rx.Cookie("")
     show:str=rx.Cookie("False")
+    current_url:str=rx.Cookie("")
 
     def update_cookie(self,coso:dict):
         self.sesion_token=coso
+
+    def update_current_url(self,url:str):
+        self.current_url=url
 
     def show_page(self,show:bool):
         self.show=show

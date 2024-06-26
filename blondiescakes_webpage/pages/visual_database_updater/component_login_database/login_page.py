@@ -9,7 +9,31 @@ from blondiescakes_webpage.pages.visual_database_updater.component_login_databas
 )
 
 def login_page() -> rx.Component:
-    return rx.center(
-        login_component(),
-        padding="18em"
+    return rx.flex(
+
+        rx.vstack(
+            rx.flex(
+                    login_component(),
+                align="center",
+                justify="center"
+                ),
+            display=["none","flex","flex","flex"],
+            padding_top="10em",
+            align="center",
+            justify="center",
+            width="100%"
+        ),
+
+        rx.vstack(
+            rx.flex(
+                login_component(),
+            align="center",
+            justify="center"
+            ),
+        display=["flex","none","none","none"],
+        padding_top="5em",
+        align="center",
+        justify="center",
+        width="100%"
+        )   
     )

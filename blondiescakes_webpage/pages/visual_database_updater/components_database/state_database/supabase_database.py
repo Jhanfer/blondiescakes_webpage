@@ -13,6 +13,7 @@ import os
 from supabase import create_client, Client
 import dotenv
 
+
 class SupabaseAPI():
 
     dotenv.load_dotenv()
@@ -29,7 +30,6 @@ class SupabaseAPI():
             self.supabase: Client = create_client(self.url, self.key)
         else:
             pass
-
 
     def get_data(self):
         
