@@ -8,12 +8,24 @@ def body() -> rx.Component:
             badge(),
             products_container(),
             review(),
-            rx.vstack(
-                    rx.heading("Quienes somos",style={"font_family":"pertili"}),
-                    rx.text("Blondiescake's ofrece una porción de la cultura venezolana y deliciosos postres. El uso de ingredientes frescos y de primera calidad en cada postre se basa en recetas antiguas, pero con un toque creativo que los hace irresistibles."),
-                width="60%",
-                padding="3em"
+            rx.flex(
+                    rx.vstack(
+                            rx.heading("Quienes somos",color=st.ColorPalette.ENFASIS.value,style={"font_family":"pertili"}),
+                            rx.text("""Blondiescake's ofrece una porción de la cultura venezolana y deliciosos postres. 
+                                    El uso de ingredientes frescos y de primera calidad en cada postre se basa en recetas 
+                                    antiguas, pero con un toque creativo que los hace irresistibles.""",color=st.ColorPalette.ENFASIS.value),
+                        width="80%",
+                        padding="3em",
+                        align="center",
+                        justify="center",
+                        spacing="4"
+                    ),
+                align="center",
+                justify="center",
+                padding_top=st.Size.MEDIUM,
+                padding_bottom=st.Size.MEDIUM.value
             ),
+
         width="100%",
         align="center"
-)
+    )

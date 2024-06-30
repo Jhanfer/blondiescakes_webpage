@@ -8,11 +8,15 @@ from blondiescakes_webpage.pages.visual_database_updater.component_login_databas
 ###
 
 from blondiescakes_webpage.styles import styles as st
-from fastapi import FastAPI
+
 
 app = rx.App(
     stylesheets=st.STYLESHEETS,
-    style=st.STYLE_SHEET
+    style=st.STYLE_SHEET,
+    theme=rx.theme(
+        appearance="light",
+        has_background=True
+    )
 )
 
 

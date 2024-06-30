@@ -26,9 +26,9 @@ def navbar() -> rx.Component:
         bg=st.ColorPalette.MAIN.value,
         padding=st.Size.SMALL.value,
         class_name="gradient-element",
-        position="fixed",
+        position="relative",
         width="100%",
-        z_index = "999"
+        z_index = "5000"
 )
 
 
@@ -57,7 +57,7 @@ def navbar_content() -> rx.Component:
                 direction="row"
                 ),
 
-            rx.separator(decorative=True,color_scheme="gold")),
+            rx.chakra.divider(decorative=True,color=st.ColorPalette.LINES.value,border_color=st.ColorPalette.LINES.value)),
 
         rx.image(src="/navbar/navbar.png",
                 width="6.9em",
@@ -72,7 +72,7 @@ def navbar_content() -> rx.Component:
                 display=["none", "none", "flex", "flex", "flex"],
                 direction="row"
                 ),
-            rx.separator(decorative=True,color_scheme="gold")),
+            rx.chakra.divider(decorative=True,color=st.ColorPalette.LINES.value,border_color=st.ColorPalette.LINES.value)),
 
         width="100%",
         align="center",

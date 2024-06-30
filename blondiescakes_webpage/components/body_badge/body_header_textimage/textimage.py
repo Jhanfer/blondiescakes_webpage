@@ -9,14 +9,35 @@ def textimage(image:str,text:str,color:Optional[str]=st.ColorPalette.ENFASIS.val
                         color=color,
                         align="center",
                         justify="center",
-                        position="relative"),
+                        position="absolute"),
 
                 rx.image(
                     src=image,
                     width="18em",
                     height="auto",
-                    position="static",
+                    position="relative",
                     object_fit="cover"),
                     
                 align="center",
-                justify="center")
+                justify="center"
+        )
+
+def textimage_header(image:str,text:str,color:Optional[str]=st.ColorPalette.ENFASIS.value,size:Optional[str]="6") -> rx.Component:
+    return rx.box(
+                rx.text(text,
+                        size=size,
+                        color=color,
+                        align="center",
+                        justify="center",
+                        position="absolute"),
+
+                rx.image(
+                    src=image,
+                    width="18em",
+                    height="auto",
+                    position="relative",
+                    object_fit="cover"),
+                    
+                align="center",
+                justify="center"
+        )

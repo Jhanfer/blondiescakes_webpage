@@ -55,12 +55,12 @@ def review() -> rx.Component:
             z_index="5"
 )
 
-def card(name:str,review:str) -> rx.Component:
+def card(name:str,review:str,src:str) -> rx.Component:
     return rx.card(
             rx.vstack(
-                        rx.chakra.avatar(name="RE",size="xl"),
-                        rx.text(review),
-                        rx.text(name),
+                        rx.chakra.avatar(name="I",size="xl",src=src),
+                        rx.text(review,color=st.ColorPalette.ENFASIS.value),
+                        rx.text(name,color=st.ColorPalette.ENFASIS.value),
                         rx.hstack(
                                 rx.icon(tag="star",color="gold"),
                                 rx.icon(tag="star",color="gold"),
@@ -75,6 +75,6 @@ def card(name:str,review:str) -> rx.Component:
             bg="white")
 
 def stack() -> rx.Component:
-    return (card("Ana María","Me encanta!"),
-            card("Juan Alberto","Excelente sabor"),
-            card("Teressa Gomez","No existe mejor sabor!"))
+    return (card("Lisue","Me encanta!","/body/lisue.jpeg"),
+            card("Juan","Excelente sabor","/body/juan.jpeg"),
+            card("Teressa","No existe mejor sabor!","/body/teressa.jpeg"))

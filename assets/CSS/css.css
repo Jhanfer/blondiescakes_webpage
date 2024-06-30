@@ -28,3 +28,8 @@
     transform: rotate(0deg);
 }
 
+
+
+.vertical-text {
+    transform: rotate(-90deg);
+}

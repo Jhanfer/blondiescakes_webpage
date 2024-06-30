@@ -25,6 +25,7 @@ def index() -> rx.Component:
             body(),
             footer(),
             width="100%",
-            spacing="5"
+            spacing="5",
+            align="center"
         )
     )
