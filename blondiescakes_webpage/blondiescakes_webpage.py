@@ -18,5 +18,3 @@ app = rx.App(
         has_background=True
     )
 )
-
-

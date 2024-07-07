@@ -23,10 +23,10 @@ def navbar() -> rx.Component:
 
         justify="center",
         align="center",
-        bg=st.ColorPalette.MAIN.value,
+        #bg=st.ColorPalette.MAIN.value,
         padding=st.Size.SMALL.value,
         class_name="gradient-element",
-        position="relative",
+        position="fixed",
         width="100%",
         z_index = "5000"
 )

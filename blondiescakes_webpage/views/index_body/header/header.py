@@ -1,15 +1,23 @@
 import reflex as rx
 from blondiescakes_webpage.styles import styles as st
 from blondiescakes_webpage.components.body_badge.body_header_textimage.textimage import textimage_header
+from blondiescakes_webpage.components.wrapping_react.framer_motion import motion,motion_line,motion_svg
+
 
 def header() -> rx.Component:
     return rx.flex(
+            
 
             rx.hstack(
                     rx.spacer(),
-                    rx.text("PASTELERÍA A LA CARTA",
-                            color=st.ColorPalette.ENFASIS.value,
-                            padding_right="3em"
+                    rx.flex(
+                        rx.image(src="/header/back.svg",width="15em",height="auto"),
+                        rx.text("PASTELERÍA A LA CARTA",
+                                color=st.ColorPalette.ENFASIS.value,
+                                padding_left="1.7em",
+                                padding_top="2em",
+                                position="absolute"
+                        ),
                     ),
                 justify="between",
                 spacing="9",
@@ -17,7 +25,8 @@ def header() -> rx.Component:
                 position="relative",
                 z_index="5",
                 width="100%",
-                align="center"
+                align="center",
+                
             ),
 
             rx.hstack( 
@@ -33,7 +42,8 @@ def header() -> rx.Component:
                             rx.icon(tag="instagram",
                                         position="relative",
                                         width="1.09em",
-                                        height="auto"
+                                        height="auto",
+                                        color="black"
                                     ),
                             #rx.chakra.divider(decorative=True,color=st.ColorPalette.LINES.value,border_color=st.ColorPalette.LINES.value),
                             
@@ -43,7 +53,7 @@ def header() -> rx.Component:
 
                         top="13em",
                         #right="auto",
-                        left="1em",
+                        left="-4em",
                         bottom="auto",
 
                         justify="start",
@@ -53,7 +63,7 @@ def header() -> rx.Component:
                         display="flex",
                         class_name="vertical-text",
                     ),
-                    textimage_header("header/header_image_example.png","Regala amor, regala dulce"),
+                    textimage_header("header/header.jpeg","Regala amor, regala dulce",size="9"),
                 spacing="9",
                 width="100%",
                 align="center",
@@ -62,13 +72,17 @@ def header() -> rx.Component:
                 justify="center",
                 z_index="5"
             ),
+
+        
         align="center",
         justify="between",
         #height="25em",
+        padding_top="10em",
         width="100%",
         spacing="5",
         direction="column",
-        padding_bottom="5em"
+        padding_bottom="10em",
+        
 
     )
 

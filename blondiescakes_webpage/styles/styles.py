@@ -42,6 +42,9 @@ STYLE_SHEET={
     "background_color":ColorPalette.BACKGROUND.value,
     "::selection": { #SELECCION DE TEXTO E IMAGENES
         "background_color":ColorPalette.LINES.value},
+    rx.heading:{
+        "font_family":"pertili"
+    },
     rx.text: {
         "font_family": "pertili",
         "white_space":"normal"
