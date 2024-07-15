@@ -8,13 +8,13 @@ from blondiescakes_webpage.components.wrapping_react.framer_motion import motion
 def items() -> rx.Component:
     return rx.flex(
                 rx.cond(
-                    PageState.database_data,
+                    PageState.class_saludables,
                             rx.vstack(
-                                rx.text("NUESTROS PRODUCTOS"),
+                                rx.text("NUESTROS PRODUCTOS",color=st.ColorPalette.ENFASIS.value,size="4",padding_bottom="2em"),
                                 rx.hstack(
                                     rx.flex(
                                         rx.foreach( #iterar
-                                            PageState.database_data, #elemento iterado (lista)
+                                            PageState.class_saludables, #elemento iterado (lista)
                                             featured_link), #llama a la función y le pasa como argumento cada elemento iterado
                                         spacing="7",
                                         wrap="wrap",
@@ -31,7 +31,9 @@ def items() -> rx.Component:
                             )
                         ),
                     wrap="wrap",
-                    spacing="8")
+                    spacing="8",
+                    on_mount=[PageState.get_database_data_alter("saludables")]
+                    )
             
 
 def featured_link(featured:Featured) -> rx.Component:
@@ -82,7 +84,7 @@ def featured_link(featured:Featured) -> rx.Component:
                         initial={"opacity": 0, "scale": 0.5},
                         #animate={"opacity":1,"scale":1},
                         while_in_view={"opacity": 1, "scale": 1},
-                        #while_focus={"opacity": 1, "scale": 1}
+                        while_focus={"opacity": 1, "scale": 1},
                         transition={"duration": 0.2,"ease":"easeOut"},#"repeatType":"reverse","repeat":"Infinity"},
                         style={"display":"inline-block"}
                     ),
@@ -94,16 +96,18 @@ def featured_link(featured:Featured) -> rx.Component:
 
 
 
-def backend_items() -> rx.Component:
+def backend_items(categorie:str,database_content:list[Featured]) -> rx.Component:
     return rx.flex(
+        rx.separator(size="4"),
+        rx.heading(categorie),
         rx.cond(
-            PageState.database_data,
+            PageState.general_database_data,
                     rx.vstack(
                         
                         rx.hstack(
                             rx.flex(
                                 rx.foreach( #iteradir
-                                    PageState.database_data, #elemento iterado (lista)
+                                    database_content, #elemento iterado (lista)
                                     backend_featured_link), #llama a la función y le pasa como argumento cada elemento iterado
                                 spacing="7",
                                 wrap="wrap",
@@ -125,7 +129,6 @@ def backend_items() -> rx.Component:
 
 def backend_featured_link(featured:Featured) -> rx.Component:
     return rx.vstack(
-
                 rx.card(
                     rx.checkbox(value=featured.id,on_change=BackendUpdater.select(featured.id)),
                         rx.image(

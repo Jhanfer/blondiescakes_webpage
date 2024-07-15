@@ -7,61 +7,76 @@ from blondiescakes_webpage.components.wrapping_react.framer_motion import motion
 def header() -> rx.Component:
     return rx.flex(
             
-
-            rx.hstack(
-                    rx.spacer(),
-                    rx.flex(
-                        rx.image(src="/header/back.svg",width="15em",height="auto"),
-                        rx.text("PASTELERÍA A LA CARTA",
-                                color=st.ColorPalette.ENFASIS.value,
-                                padding_left="1.7em",
-                                padding_top="2em",
-                                position="absolute"
-                        ),
+            
+                    rx.hstack(
+                            rx.spacer(),
+                            motion(
+                                    rx.flex(
+                                        rx.image(src="/header/back.svg",width="15em",height="auto"),
+                                        rx.text("PASTELERÍA A LA CARTA",
+                                                color=st.ColorPalette.ENFASIS.value,
+                                                padding_left="1.7em",
+                                                padding_top="2em",
+                                                position="absolute"
+                                        ),
+                                    ),
+                                initial={"opacity":0,"x":-50},
+                                animate={"opacity":1,"x":0},
+                                transition={"delay":0.1,"type":"keyframes","duration":1,"stiffness": 260, "damping": 0}
+                            ),
+                        padding_bottom="5em",
+                        justify="between",
+                        spacing="9",
+                        display="flex",
+                        position="relative",
+                        z_index="5",
+                        width="100%",
+                        align="center",  
                     ),
-                justify="between",
-                spacing="9",
-                display="flex",
-                position="relative",
-                z_index="5",
-                width="100%",
-                align="center",
-                
-            ),
 
             rx.hstack( 
-                    rx.flex(
-                            rx.link(
-                                    rx.text("@BLONDIES_CAKE",
-                                        color=st.ColorPalette.ENFASIS.value,
-                                        position="relative",
-                                        size="2",
-                                        align="center"
+                    motion(        
+                            rx.flex(
+                                    rx.link(
+                                            rx.text("@BLONDIES_CAKE",
+                                                color=st.ColorPalette.ENFASIS.value,
+                                                position="relative",
+                                                size="3",
+                                                align="center",
+                                                
+                                            ),
+                                        href="https://www.instagram.com/blondies_cake/"
                                     ),
+                                    rx.icon(tag="instagram",
+                                                position="relative",
+                                                width="1.09em",
+                                                height="auto",
+                                                color=st.ColorPalette.ENFASIS.value
+                                            ),
+                                    #rx.chakra.divider(decorative=True,color=st.ColorPalette.LINES.value,border_color=st.ColorPalette.LINES.value),
+                                    
+                                    
+                                #width="100%",
+                                #top="19em",
+                                #right="auto",
+                                #left="-4em",
+                                #bottom="auto",
+                                justify="start",
+                                align_items="center",
+                                spacing="4",
+                                display="flex",
+                                #class_name="vertical-text",
+                                z_index="101"
                             ),
-                            rx.icon(tag="instagram",
-                                        position="relative",
-                                        width="1.09em",
-                                        height="auto",
-                                        color="black"
-                                    ),
-                            #rx.chakra.divider(decorative=True,color=st.ColorPalette.LINES.value,border_color=st.ColorPalette.LINES.value),
-                            
-                            
-                        #width="100%",
+                        z_index="101",
                         position="absolute",
-
-                        top="13em",
-                        #right="auto",
-                        left="-4em",
-                        bottom="auto",
-
-                        justify="start",
-                        align_items="center",
-
-                        spacing="4",
-                        display="flex",
-                        class_name="vertical-text",
+                        #top="25em",
+                        top="30em",
+                        #left="-3em",
+                        left="1em",
+                        initial={"opacity":0,"y":-50},
+                        animate={"opacity":1,"y":0},
+                        transition={"delay":0.1,"type":"keyframes","duration":1,"stiffness": 260, "damping": 0}
                     ),
                     textimage_header("header/header.jpeg","Regala amor, regala dulce",size="9"),
                 spacing="9",
@@ -77,7 +92,7 @@ def header() -> rx.Component:
         align="center",
         justify="between",
         #height="25em",
-        padding_top="10em",
+        padding_top="8em",
         width="100%",
         spacing="5",
         direction="column",

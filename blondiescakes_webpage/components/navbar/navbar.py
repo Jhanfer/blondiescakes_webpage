@@ -1,35 +1,47 @@
 import reflex as rx
 from blondiescakes_webpage.styles import styles as st
 from blondiescakes_webpage.components.navbar.drawer import drawer
-
+from blondiescakes_webpage.components.wrapping_react.framer_motion import motion
 
 def navbar() -> rx.Component:
-    return rx.hstack(
-        
-            rx.box(
-                    navbar_content(),
-                display=["none", "none", "flex", "flex", "flex"],
-                height="100%",
-                width="100%"),
+    return  motion(
+                    rx.hstack(
+                        rx.box(
+                                navbar_content(),
+                            display=["none", "none", "flex", "flex", "flex"],
+                            height="100%",
+                            width="100%"),
+                            
+
+                        rx.box(
+                                navbar_content_mobile(),
+                            display=["flex", "flex", "none", "none", "none"],
+                            height="100%",
+                            width="100%",
+                            justify="center",
+                            align="center"),
+
+                        rx.script("""
+                        """),
+                        
+                    class_name="gradient-element",
+                    justify="center",
+                    width="100%",
+                    z_index = "5000",
+                    id="navbar",
+                    ),
+                    
                 
-
-            rx.box(
-                    navbar_content_mobile(),
-                display=["flex", "flex", "none", "none", "none"],
-                height="100%",
+                z_index = "5000",
                 width="100%",
-                justify="center",
-                align="center"),
+                position="fixed",
+                align="center",
+                initial={"y":-100},
+                animate={"y":0},
+                transition={"type":"keyframes","ease":"easeIn","diration":1}
+                ),
+            
 
-        justify="center",
-        align="center",
-        #bg=st.ColorPalette.MAIN.value,
-        padding=st.Size.SMALL.value,
-        class_name="gradient-element",
-        position="fixed",
-        width="100%",
-        z_index = "5000"
-)
 
 
 

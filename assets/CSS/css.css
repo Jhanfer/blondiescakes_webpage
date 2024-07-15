@@ -4,7 +4,34 @@
     background-color: transparent;
     background-image: linear-gradient(#F7E6DB 50%, transparent);
     overflow-y: auto;
+    transform: translateY(0); 
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; 
 }
+
+
+* {
+    scroll-behavior: smooth !important;
+}
+
+::-webkit-scrollbar {
+    width: 5px; /* Ancho de la barra de desplazamiento */
+    background-color: #F7E6DB; /* Color de fondo de la barra de desplazamiento */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Color de la flecha de desplazamiento */
+}
+
+/*
+.gradient-element.visible {
+    opacity: 1;
+    transform: translateY(0); 
+}
+
+.gradient-element.hidden {
+    opacity: 0;
+    transform: translateY(-100px); 
+}*/
 
 /*Header*/
 

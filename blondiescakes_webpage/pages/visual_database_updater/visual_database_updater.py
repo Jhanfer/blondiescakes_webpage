@@ -56,7 +56,7 @@ class VerifyID(rx.State):
             else:
                 return [rx.toast.error("Error 2")]
         else:
-            return [rx.toast.error("Error 1")]
+            return [rx.toast.error("Error 1: ""generated_uid and user_id or generated_pid and page_id are not the same"" ")]
 
     def get_data(self,token:dict,pid:str,uid:str):
         self.token_stored=token
@@ -72,7 +72,7 @@ class VerifyID(rx.State):
 @rx.page(
     route="/database_updater/[user_id]/[page_id]",
     title="Database",
-    on_load=[PageState.get_database_data,VerifyID.verify_token]
+    on_load=[VerifyID.verify_token]
 )
 
 
@@ -87,23 +87,10 @@ def image_updater_page() -> rx.Component:
                                 rx.link(rx.button("Cerrar sesión",on_click=CookieState.logout),href="/backend_login",is_external=False)
                             ),
                         rx.hstack(
+                                
+                                #Desktop
                                 rx.flex(
-                                        updater("crear artículo"),
-                                        rx.spacer(),
-                                        rx.button("eliminar artículo",
-                                                    background_color="#ec1c1c",
-                                                    color="#000000",
-                                                    disabled=BackendUpdater.checked,
-                                                    on_click=lambda:[BackendUpdater.delete_database_items,BackendUpdater.refresh_page],
-                                                    padding_left="1em"
-                                                ),
-                                    display=["none", "none", "flex", "flex", "flex"],
-                                    justify="between",
-                                    spacing="6",
-                                    wrap="wrap"
-                                ),
-                                rx.flex(
-                                        updater("nuevo"),
+                                        updater("crear"),
                                         rx.spacer(),
                                         rx.button("eliminar",
                                                     background_color="#ec1c1c",
@@ -112,11 +99,11 @@ def image_updater_page() -> rx.Component:
                                                     on_click=lambda:[BackendUpdater.delete_database_items,BackendUpdater.refresh_page],
                                                     padding_left="1em"
                                                 ),
-                                    display=["flex", "flex", "none", "none", "none"],
                                     justify="between",
                                     spacing="6",
                                     wrap="wrap"
                                 ),
+                                
                             width="100%",
                             bg="grey",
                             height="5em",
@@ -128,7 +115,14 @@ def image_updater_page() -> rx.Component:
 
                         rx.vstack(
                                 rx.text("ITEMS DE LA TIENDA"),
-                                backend_items(),
+                                rx.box(
+                                    backend_items("Pagina principal",PageState.general_database_data),
+                                    on_mount=PageState.get_database_data("Images_database"),
+                                ),
+                                rx.box(
+                                    backend_items("Buttercream",PageState.class_buttercream),
+                                    #on_mount=PageState.get_class_buttercream_data("class_buttercream"),
+                                ),
                             align="center",
                             justify="center",
                             width="100%"

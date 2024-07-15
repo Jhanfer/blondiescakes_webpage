@@ -11,6 +11,7 @@ class BackendUpdater(rx.State):
     image_id:str
     image_url:str
     url_purchase:str
+    categorie:str
     title:str
 
     #refresh states
@@ -45,6 +46,9 @@ class BackendUpdater(rx.State):
         """Set url purchase function"""
         self.url_purchase=url_purchase
 
+    def set_categorie(self,categorie:str):
+        """Set categorie for upload"""
+        self.categorie = categorie
 
     
     def reset_data(self):
@@ -57,8 +61,8 @@ class BackendUpdater(rx.State):
     
     def update_data(self):
         """Upload data function"""
-        if self.image_id and self.url_purchase and self.title:
-            upload_supabase(self.image_id,self.image_url,self.url_purchase,self.title)
+        if self.image_id and self.url_purchase and self.title and self.categorie:
+            upload_supabase(self.image_id,self.image_url,self.url_purchase,self.title,self.categorie)
             self.refresh=True
             if self.refresh==True:
                 return rx.toast.success("Subido con éxito")
@@ -109,3 +113,4 @@ class BackendUpdater(rx.State):
         else:
             return rx.toast.error("Error: no eliminado")
 
+#debo hacer que el eliminar elementos detecte la categoria

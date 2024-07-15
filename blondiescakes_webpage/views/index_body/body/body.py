@@ -4,7 +4,7 @@ from blondiescakes_webpage.components.body_badge.body_badge_component.badge impo
 from blondiescakes_webpage.components.body_products_items.products_container import products_container
 
 def body() -> rx.Component:
-    return rx.vstack(
+    return rx.box(
             badge(),
             products_container(),
             review(),
@@ -25,7 +25,8 @@ def body() -> rx.Component:
                 padding_top=st.Size.MEDIUM,
                 padding_bottom=st.Size.MEDIUM.value
             ),
-
+        
+        direction="column",
         width="100%",
         align="center"
     )

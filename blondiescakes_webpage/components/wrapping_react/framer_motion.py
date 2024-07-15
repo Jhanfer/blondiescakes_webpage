@@ -1,30 +1,39 @@
 from reflex.components.component import Component
 from typing import Any, Dict, List, Union, Callable, Literal
 from reflex.vars import Var
-
+import reflex as rx
 
 
 class FramerMotion(Component):
     library="framer-motion@12.0.0-alpha.0"
     tag="motion.div"
-    
+    custom_import="scroll"
     
     animate:Var[dict[str,Union[float,str,list[float]]]]
     initial:Var[dict[str,Union[float,str,list[float]]]]
     transition:Var[dict[str,Union[float,str,list[float]]]]
 
     drag:Var[Union[str,list[str]]]
-    while_hover:Var[dict[str,Union[float,str,list[float]]]]
-    while_tap:Var[dict[str,Union[float,str,list[float]]]]
-    while_in_view:Var[dict[str,Union[float,str,list[float]]]]
-    while_focus:Var[dict[str,Union[float,str,list[float]]]]
-    viewport:Var[Union[str,list[str]]]
-    exit:Var[dict[str,Union[float,str,list[float]]]]
+    while_hover:Var[Union[str,dict[str,Union[float,str,list[float]]]]]
+    while_tap:Var[Union[str,dict[str,Union[float,str,list[float]]]]]
+    while_in_view:Var[Union[str,dict[str,Union[float,str,list[float]]]]]
 
+    while_focus:Var[Union[str,dict[str,Union[float,str,list[float]]]]]
+    
+    viewport:Var[Union[bool,list[str],str,dict[str,Union[float,str,list[float]]]]]
+    exit:Var[dict[str,Union[float,str,list[float]]]]
 
 motion = FramerMotion.create
 
 
+
+class useScroll(Component):
+    library="framer-motion@12.0.0-alpha.0"
+    tag="useScroll"
+
+    
+
+usescroll = useScroll.create
 
 
 
@@ -33,8 +42,8 @@ class FramerMotionSVG(Component):
     tag="motion.svg"
     
     
-    animate:Var[Union[str,dict[str,Union[float,str,list[float]]]]]
-    initial:Var[Union[str,dict[str,Union[float,str,list[float]]]]]
+    animate:Var[str,Union[str,dict[str,Union[float,str,list[float]]]]]
+    initial:Var[str,Union[str,dict[str,Union[float,str,list[float]]]]]
     viewbox:Var[list[int]]
 
     transition:Var[dict[str,Union[float,str,list[float]]]]
@@ -45,6 +54,7 @@ class FramerMotionSVG(Component):
     while_focus:Var[dict[str,Union[float,str,list[float]]]]
     viewport:Var[Union[str,list[str]]]
     exit:Var[dict[str,Union[float,str,list[float]]]]
+
 
 
 motion_svg = FramerMotionSVG.create
@@ -106,3 +116,8 @@ class FramerMotion3D(Component):
 
 
 motion_3D = FramerMotion3D.create
+
+
+
+
+

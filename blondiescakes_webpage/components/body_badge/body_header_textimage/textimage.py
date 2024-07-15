@@ -32,11 +32,12 @@ def textimage_header(image:str,text:str,color:Optional[str]=st.ColorPalette.ENFA
                                                 rx.text("Regala",
                                                         size=size,
                                                         color=color,
+                                                        position="relative",
                                                 ),
                                         ),
                                 initial={"opacity":0.5,"x":100},
                                 animate={"opacity":1,"x":0},
-                                tansition={"delay":0.3,"type":"keyframes","duration":1,"stiffness": 260, "damping": 0}
+                                tansition={"delay":10,"type":"spring","duration":3,"stiffness": 260, "damping": 0,"ease":"linear"}
                         ),
                         
                         motion(
@@ -72,7 +73,7 @@ def textimage_header(image:str,text:str,color:Optional[str]=st.ColorPalette.ENFA
                                         ),
                                 initial={"opacity":0.5,"x":100},
                                 animate={"opacity":1,"x":0},
-                                tansition={"delay":0.3,"type":"keyframes","duration":1,"stiffness": 260, "damping": 0}
+                                tansition={"delay":1,"type":"keyframes","duration":1,"stiffness": 260, "damping": 0}
                         ),
                 align="center",
                 justify="center",
@@ -85,7 +86,8 @@ def textimage_header(image:str,text:str,color:Optional[str]=st.ColorPalette.ENFA
                                 rx.flex(
                                         rx.image(
                                                 src=image,
-                                                width="28em",
+                                                width="22em",
+                                                max_width="28em",
                                                 height="auto",
                                                 position="relative",
                                                 border_radius="15px 50px",
@@ -101,4 +103,6 @@ def textimage_header(image:str,text:str,color:Optional[str]=st.ColorPalette.ENFA
                 align="center",
                 justify="center"
         )
+
+
 

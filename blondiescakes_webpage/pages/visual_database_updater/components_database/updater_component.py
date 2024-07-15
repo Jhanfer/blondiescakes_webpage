@@ -32,6 +32,15 @@ def updater(button_text:str):
                         width="100%",
                         justify="between"),
 
+                    rx.flex(
+                        rx.text("Categoría"),
+                        rx.select(["Pagina principal","Buttercream","Frios","Saludables","Tradicionales"],
+                                placeholder="seleccione categoría",
+                                on_change=BackendUpdater.set_categorie
+                        ),
+                        width="100%",
+                        justify="between"),
+
                     rx.button("SUBIR",color_scheme="grass",on_click=lambda:[BackendUpdater.update_data,BackendUpdater.refresh_page]),
                 align="start",
                 spacing="5",

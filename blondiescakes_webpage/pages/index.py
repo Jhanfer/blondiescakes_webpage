@@ -6,6 +6,7 @@ from blondiescakes_webpage.views.index_body.body.body import body
 from blondiescakes_webpage.views.index_body.footer.footer import footer
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.page_state import PageState
 
+
 @rx.page(
         route="/",
         title="BlondiesCake's",
@@ -13,19 +14,21 @@ from blondiescakes_webpage.pages.visual_database_updater.components_database.sta
         description="Los mejores pasteles",
         #meta=,
         #script_tags: list[Any] | None = None,
-        on_load=PageState.get_database_data
+        
 )
 
 def index() -> rx.Component:
     """Main page"""
     return rx.box(
-        rx.vstack(
-            navbar(),
-            header(),
-            body(),
-            footer(),
-            width="100%",
-            spacing="0",
-            align="center"
+                rx.vstack(
+                    navbar(),
+                    header(),
+                    body(),
+                    footer(),
+            
+                    width="100%",
+                    spacing="0",
+                    align="center",
+                ),
+            style={"overflow":"hidden"}
         )
-    )
