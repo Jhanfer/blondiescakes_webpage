@@ -3,8 +3,8 @@ from blondiescakes_webpage.pages.visual_database_updater.components_database.sta
 supabase_api=SupabaseAPI()
 
 
-async def get_data(table:str) -> Featured:
-    return supabase_api.get_data(table)
+async def get_all_data_database() -> Featured:
+    return supabase_api.get_all_data()
 
 async def get_data_alter_api(categorie:str) -> Featured:
     return supabase_api.get_data_alter(categorie)

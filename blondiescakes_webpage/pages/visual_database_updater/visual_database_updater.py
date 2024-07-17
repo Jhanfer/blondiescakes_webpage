@@ -115,14 +115,57 @@ def image_updater_page() -> rx.Component:
 
                         rx.vstack(
                                 rx.text("ITEMS DE LA TIENDA"),
-                                rx.box(
-                                    backend_items("Pagina principal",PageState.general_database_data),
-                                    on_mount=PageState.get_database_data("Images_database"),
+
+                                rx.tabs.root(
+                                    rx.tabs.list(
+                                        rx.tabs.trigger("Tab 1", value="tab1"),
+                                        rx.tabs.trigger("Tab 2", value="tab2"),
+                                        rx.tabs.trigger("Tab 3", value="tab3"),
+                                        rx.tabs.trigger("Tab 4", value="tab4"),
+                                        rx.tabs.trigger("Tab 5", value="tab5"),
+                                    ),
+                                    rx.tabs.content(
+                                        rx.box(
+                                            backend_items("Pagina principal",PageState.general_database_data),
+                                            on_mount=PageState.get_database_data,
+                                        ),
+                                        value="tab1",
+                                    ),
+                                    rx.tabs.content(
+                                        rx.box(
+                                            backend_items("Buttercream",PageState.class_buttercream),
+                                            on_mount=PageState.get_database_data_alter("buttercream"),
+                                        ),
+                                        value="tab2",
+                                    ),
+
+                                    rx.tabs.content(
+                                        rx.box(
+                                            backend_items("Frias",PageState.class_frias),
+                                            on_mount=PageState.get_database_data_alter("frias"),
+                                        ),
+                                        value="tab3",
+                                    ),
+
+                                    rx.tabs.content(
+                                        rx.box(
+                                            backend_items("Tradicionales",PageState.class_tradicionales),
+                                            on_mount=PageState.get_database_data_alter("tradicionales"),
+                                        ),
+                                        value="tab4",
+                                    ),
+
+                                    rx.tabs.content(
+                                        rx.box(
+                                            backend_items("Saludables",PageState.class_saludables),
+                                            on_mount=PageState.get_database_data_alter("saludables"),
+                                        ),
+                                        value="tab5",
+                                    ),
                                 ),
-                                rx.box(
-                                    backend_items("Buttercream",PageState.class_buttercream),
-                                    #on_mount=PageState.get_class_buttercream_data("class_buttercream"),
-                                ),
+
+                                
+                                
                             align="center",
                             justify="center",
                             width="100%"

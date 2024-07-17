@@ -7,14 +7,48 @@ from blondiescakes_webpage.components.wrapping_react.framer_motion import motion
 
 def items() -> rx.Component:
     return rx.flex(
-                rx.cond(
-                    PageState.class_saludables,
+                rx.box(
+                    rx.cond(
+                        PageState.class_buttercream,
+                                rx.vstack(
+                                    rx.divider(),
+                                    rx.heading("Buttercream"),
+                                    rx.hstack(
+                                        rx.flex(
+                                            rx.foreach( #iterar
+                                                PageState.class_buttercream, #elemento iterado (lista)
+                                                featured_link
+                                            ), #llama a la función y le pasa como argumento cada elemento iterado
+                                            spacing="7",
+                                            wrap="wrap",
+                                            width="100%",
+                                            justify="center",
+                                            align="center"),
+                                        align="center"
+                                        ),
+
+                                    justify="center",
+                                    align="center",
+                                    width="100%",
+                                    padding=st.Size.DEFAULT.value,
+                                    spacing=st.SizeNoEm.MEDIUM.value
+                                ),
+                    ),
+                on_mount=PageState.get_database_data_alter("buttercream"),
+                padding_top="1em"
+                ),
+
+
+                rx.box(
+                    rx.cond(
+                        PageState.class_frias,
                             rx.vstack(
-                                rx.text("NUESTROS PRODUCTOS",color=st.ColorPalette.ENFASIS.value,size="4",padding_bottom="2em"),
+                                rx.divider(),
+                                rx.heading("Frias"),
                                 rx.hstack(
                                     rx.flex(
                                         rx.foreach( #iterar
-                                            PageState.class_saludables, #elemento iterado (lista)
+                                            PageState.class_frias, #elemento iterado (lista)
                                             featured_link), #llama a la función y le pasa como argumento cada elemento iterado
                                         spacing="7",
                                         wrap="wrap",
@@ -28,19 +62,54 @@ def items() -> rx.Component:
                                 width="100%",
                                 padding=st.Size.DEFAULT.value,
                                 spacing=st.SizeNoEm.MEDIUM.value
-                            )
+                            ),
                         ),
+                    on_mount=PageState.get_database_data_alter("frias")
+                    ),
+
+                    rx.box(
+                        rx.cond(
+                            PageState.class_tradicionales,
+                                rx.vstack(
+                                    rx.divider(),
+                                    rx.heading("Tradicionales"),
+                                    rx.hstack(
+                                        rx.flex(
+                                            rx.foreach( #iterar
+                                                PageState.class_tradicionales, #elemento iterado (lista)
+                                                featured_link), #llama a la función y le pasa como argumento cada elemento iterado
+                                            spacing="7",
+                                            wrap="wrap",
+                                            width="100%",
+                                            justify="center",
+                                            align="center"),
+                                        align="center"),
+
+                                    justify="center",
+                                    align="center",
+                                    width="100%",
+                                    padding=st.Size.DEFAULT.value,
+                                    spacing=st.SizeNoEm.MEDIUM.value
+                                ),
+                        ),
+                    on_mount=PageState.get_database_data_alter("tradicionales")
+                    ),
+
+                        
                     wrap="wrap",
                     spacing="8",
-                    on_mount=[PageState.get_database_data_alter("saludables")]
+                    justify="center",
+                    direction="column"
                     )
             
 
 def featured_link(featured:Featured) -> rx.Component:
     return rx.vstack(
+                    #rx.text(PageState.title),
                     motion(
                         rx.vstack(
                                 motion(
+                                    
                                     rx.image(
                                             src=featured.image_url,
                                             background=st.ColorPalette.MAIN.value,
@@ -103,7 +172,7 @@ def backend_items(categorie:str,database_content:list[Featured]) -> rx.Component
         rx.cond(
             PageState.general_database_data,
                     rx.vstack(
-                        
+
                         rx.hstack(
                             rx.flex(
                                 rx.foreach( #iteradir
