@@ -11,8 +11,8 @@ def items() -> rx.Component:
                     rx.cond(
                         PageState.class_buttercream,
                                 rx.vstack(
-                                    rx.divider(),
-                                    rx.heading("Buttercream"),
+                                    
+                                    rx.heading("Buttercream",color=st.ColorPalette.ENFASIS.value,padding_bottom="1em",style={"letter_spacing": "0.5em","font-family":"auther","font-weight":"light"}),
                                     rx.hstack(
                                         rx.flex(
                                             rx.foreach( #iterar
@@ -43,8 +43,7 @@ def items() -> rx.Component:
                     rx.cond(
                         PageState.class_frias,
                             rx.vstack(
-                                rx.divider(),
-                                rx.heading("Frias"),
+                                rx.heading("Frias",color=st.ColorPalette.ENFASIS.value,padding_bottom="1em",style={"letter_spacing": "0.5em","font-family":"auther","font-weight":"light"}),
                                 rx.hstack(
                                     rx.flex(
                                         rx.foreach( #iterar
@@ -64,15 +63,15 @@ def items() -> rx.Component:
                                 spacing=st.SizeNoEm.MEDIUM.value
                             ),
                         ),
-                    on_mount=PageState.get_database_data_alter("frias")
+                    on_mount=PageState.get_database_data_alter("frias"),
+                    direction="row"
                     ),
 
                     rx.box(
                         rx.cond(
                             PageState.class_tradicionales,
                                 rx.vstack(
-                                    rx.divider(),
-                                    rx.heading("Tradicionales"),
+                                    rx.heading("Tradicionales",color=st.ColorPalette.ENFASIS.value,padding_bottom="1em",style={"letter_spacing": "0.5em","font-family":"auther","font-weight":"light"}),
                                     rx.hstack(
                                         rx.flex(
                                             rx.foreach( #iterar

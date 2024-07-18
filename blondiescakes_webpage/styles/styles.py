@@ -43,11 +43,19 @@ STYLE_SHEET={
     "::selection": { #SELECCION DE TEXTO E IMAGENES
         "background_color":ColorPalette.LINES.value},
     rx.heading:{
-        "font_family":"pertili"
+        "font_family":"pertili",
+        "color":ColorPalette.ENFASIS.value,
     },
     rx.text: {
         "font_family": "pertili",
-        "white_space":"normal"
+        "white_space":"normal",
+        "color":ColorPalette.ENFASIS.value,
+    },
+    rx.input:{
+        "color":ColorPalette.ENFASIS.value,
+    },
+    rx.icon:{
+        "color":ColorPalette.ENFASIS.value,
     },
     rx.link:{
         "text_decoration":"None",

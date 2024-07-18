@@ -6,8 +6,8 @@ class CookieState(rx.State):
     show:str=rx.Cookie("False")
     current_url:str=rx.Cookie("")
 
-    def update_cookie(self,coso:dict):
-        self.sesion_token=coso
+    def update_cookie(self,token:dict):
+        self.sesion_token=token
 
     def update_current_url(self,url:str):
         self.current_url=url
@@ -17,4 +17,6 @@ class CookieState(rx.State):
 
     def logout(self):
         self.show=False
-        return rx.remove_cookie("sesion_token")
+        return [rx.remove_cookie("sesion_token"),rx.toast.success("Sesión cerrada")]
+    
+

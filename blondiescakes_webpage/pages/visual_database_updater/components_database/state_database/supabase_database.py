@@ -108,33 +108,6 @@ class SupabaseAPI():
             pass
 
 
-
-    """def get_data(self,table:str):
-        
-        self.act_data()
-        response = self.supabase.table(table).select("*").execute()
-
-        datos=[]
-    
-        if len(response.data) > 0:
-            for featured_item in response.data: #itera
-                datos.append( 
-                    Featured( #se utiliza Featured ya que permite extraer los datos e iterar sobre ellos
-                        id=featured_item["id"],
-                        image_url=featured_item["image_url"],
-                        url_purchase=featured_item["url_purchase"],
-                        title=featured_item["title"],
-                        upload_time=featured_item["upload_time"],
-                        categorie=featured_item["categorie"]
-                    )
-                )
-                
-        else:
-            pass
-
-        return datos
-    
-"""
     def insert_data(self,id:str,image_url:str,url_purchase:str,title:str,categorie:str):
         self.act_data()
 
@@ -163,37 +136,6 @@ class SupabaseAPI():
             else:
                 self.errors="No se pudo subir"
                 print(self.errors)
-
-
-    """def insert_data(self,id:str,image_url:str,url_purchase:str,title:str,categorie:str):
-        self.act_data()
-
-        
-        category_to_table = {
-            "Pagina principal": "Images_database",
-            "Buttercream": "class_buttercream",
-            "Frios": "class_frias",
-            "Saludables": "class_saludables",
-            "Tradicionales": "class_tradicionales"
-        }
-
-        # Obtener el nombre de la tabla
-        table = category_to_table.get(categorie, "default_table")
-        print(table)
-        timestamp=time.time()
-        times=time.localtime(timestamp)
-        format=f"{datetime.date.today()} {times.tm_hour}:{times.tm_min}:{times.tm_sec}"
-        
-        if not table == "default_table":
-            if image_url and url_purchase and title != None:
-                self.supabase.table(table).insert({"id":id, "image_url":image_url,"url_purchase":url_purchase,"title":title,"upload_time":f"{format}"}).execute()
-                self.success="Subido con éxito"
-                print(self.success)
-                
-            else:
-                self.errors="No se pudo subir"
-                print(self.errors)"""
-
 
 
     def delete_data(self,id:list):

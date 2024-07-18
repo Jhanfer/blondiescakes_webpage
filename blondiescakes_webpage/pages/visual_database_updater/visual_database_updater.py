@@ -29,34 +29,38 @@ class VerifyID(rx.State):
 
 
     async def verify_token(self):
-        error=[rx.redirect("/"),rx.toast.error("Error 4")]
+        CookieState.show_page(False)
+        self.show = False
         token=self.token_stored
         await self.get_cookie()
         cookie=self.sesion_cookie
+        
 
-        """print(self.user_id,self.page_id)"""
-        if self.generated_uid == self.user_id and self.generated_pid == self.page_id:
-            if not cookie == None:
-                if not token == {}:
-                    if self.show==False:
-                        CookieState.show_page(True)
-                        show= await self.get_state(CookieState)
-                        self.show=show.show
-                    
-                    try:
-                        payload=jwt.decode(token["access_token"],algorithms=c.AL,key=c.SEED)
-                        self.username=payload.get("sub")
-                    except ExpiredSignatureError:
-                        return [rx.toast.error("Error 4")]
-                else:
-                    return [rx.toast.error("Error 3")]
-
-                """user=mongo_client.test.users.find_one({"username":username})
-                exp=payload.get("exp")"""
-            else:
-                return [rx.toast.error("Error 2")]
+        if self.generated_uid != self.user_id or self.generated_pid != self.page_id:
+            return [rx.toast.error("Error 1: ID de usuario o página no coinciden"),rx.redirect("/")]
         else:
-            return [rx.toast.error("Error 1: ""generated_uid and user_id or generated_pid and page_id are not the same"" ")]
+            CookieState.show_page(True)
+            show = await self.get_state(CookieState)
+            self.show = show.show
+
+        if cookie is None:
+            return [rx.toast.error("Error 2: Cookie no encontrada")]
+
+        if not token:
+            return [rx.toast.error("Error 3: Token no válido")]
+
+    
+        try:
+            payload = jwt.decode(token["access_token"], key=c.SEED, algorithms=[c.AL])
+            self.username = payload.get("sub")
+            return []  # Autenticación exitosa
+        except ExpiredSignatureError:
+            return [rx.toast.error("Error 4: Token expirado")]
+
+
+    def logout(self):
+        self.show = False
+
 
     def get_data(self,token:dict,pid:str,uid:str):
         self.token_stored=token
@@ -84,7 +88,7 @@ def image_updater_page() -> rx.Component:
                 rx.vstack(
                         rx.hstack(
                                 rx.heading(f"Bienvenid@ de vuelta, {VerifyID.username}!",color="black"),
-                                rx.link(rx.button("Cerrar sesión",on_click=CookieState.logout),href="/backend_login",is_external=False)
+                                rx.link(rx.button("Cerrar sesión",on_click=[CookieState.logout,VerifyID.logout]),href="/backend_login",is_external=False)
                             ),
                         rx.hstack(
                                 
@@ -118,23 +122,28 @@ def image_updater_page() -> rx.Component:
 
                                 rx.tabs.root(
                                     rx.tabs.list(
-                                        rx.tabs.trigger("Tab 1", value="tab1"),
-                                        rx.tabs.trigger("Tab 2", value="tab2"),
-                                        rx.tabs.trigger("Tab 3", value="tab3"),
-                                        rx.tabs.trigger("Tab 4", value="tab4"),
-                                        rx.tabs.trigger("Tab 5", value="tab5"),
+                                        rx.tabs.trigger("General", value="tab1"),
+                                        rx.tabs.trigger("Buttercream", value="tab2"),
+                                        rx.tabs.trigger("Frias", value="tab3"),
+                                        rx.tabs.trigger("Tradicionales", value="tab4"),
+                                        rx.tabs.trigger("Saludables", value="tab5"),
+                                        style={"justify-content":"center"},
+                                        size="1"
                                     ),
                                     rx.tabs.content(
                                         rx.box(
                                             backend_items("Pagina principal",PageState.general_database_data),
                                             on_mount=PageState.get_database_data,
+                                            style={"justify-content":"center"}
                                         ),
                                         value="tab1",
+                                        style={"justify-content":"center"}
                                     ),
                                     rx.tabs.content(
                                         rx.box(
                                             backend_items("Buttercream",PageState.class_buttercream),
                                             on_mount=PageState.get_database_data_alter("buttercream"),
+                                            style={"justify-content":"center"}
                                         ),
                                         value="tab2",
                                     ),
@@ -143,6 +152,7 @@ def image_updater_page() -> rx.Component:
                                         rx.box(
                                             backend_items("Frias",PageState.class_frias),
                                             on_mount=PageState.get_database_data_alter("frias"),
+                                            style={"justify-content":"center"}
                                         ),
                                         value="tab3",
                                     ),
@@ -151,6 +161,7 @@ def image_updater_page() -> rx.Component:
                                         rx.box(
                                             backend_items("Tradicionales",PageState.class_tradicionales),
                                             on_mount=PageState.get_database_data_alter("tradicionales"),
+                                            style={"justify-content":"center"}
                                         ),
                                         value="tab4",
                                     ),
@@ -159,16 +170,20 @@ def image_updater_page() -> rx.Component:
                                         rx.box(
                                             backend_items("Saludables",PageState.class_saludables),
                                             on_mount=PageState.get_database_data_alter("saludables"),
+                                            style={"justify-content":"center"}
                                         ),
                                         value="tab5",
                                     ),
+                                    style={"justify-content":"center"},
+                                    
                                 ),
 
                                 
                                 
                             align="center",
                             justify="center",
-                            width="100%"
+                            width="100%",
+                            style={"overflow":"hidden"}
                         ),
 
                     align="center",
@@ -177,10 +192,13 @@ def image_updater_page() -> rx.Component:
                     width="100%"
                 ),
                     
-                rx.flex()),
-            rx.flex(),
-
+                rx.vstack(
+                    rx.spinner(),
+                    justify="center",
+                    align="center"
+                )),
         align="center",
+        justify="center",
         width="100%")
 
 

@@ -1,6 +1,6 @@
 import reflex as rx
 from blondiescakes_webpage.pages.visual_database_updater.component_login_database.login_state.LoginState import LoginState
-
+from blondiescakes_webpage.styles import styles as st
 
 
 def login_component() -> rx.Component:
