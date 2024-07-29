@@ -1,4 +1,4 @@
-#!/home/jhanfer/Documentos/proyectos/reflex/blondiescakes_webpage/.venv/bin/python
+#!/home/jhan/Documentos/reflex/blondiescakes_webpage/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
