@@ -1,11 +1,3 @@
-#cosas a crear
-"""
-1 sistema que me permita ver las fotos que están subidas
-2 sistema de autenticación de usuario
-3 crear id, subir url de imagen, subir titulo, fecha de subida
-4 eliominacion de imagenes
-5 subida de imagenes
-"""
 import time
 import datetime
 import reflex as rx
@@ -159,6 +151,18 @@ class SupabaseAPI():
             print("No eliminado: ID no válido")       
 
 
+
+    def get_google_json_credential(self):
+        self.act_data()
+        response = self.supabase.table("Google analytics API Credentials").select("*").execute()
+        datos = {}
+        if len(response.data) > 0:
+            for item in response.data:
+                datos.update(item)
+        datos = datos.get("json-credentials")
+        return datos
+
+
 class Featured(rx.Base):
     id:str
     image_url:str
@@ -166,3 +170,19 @@ class Featured(rx.Base):
     title:str
     upload_time:str
     categorie:str
+
+
+
+#cosas a crear
+"""
+1 sistema que me permita ver las fotos que están subidas - Hecho
+2 sistema de autenticación de usuario - Hecho
+3 crear id, subir url de imagen, subir titulo, fecha de subida - Hecho
+4 eliominacion de imagenes - Hecho
+5 subida de imagenes - Hecho
+"""
+
+
+
+
+

@@ -7,6 +7,7 @@ from blondiescakes_webpage.pages.visual_database_updater.components_database.sta
 from blondiescakes_webpage.pages.visual_database_updater.component_login_database.login_state.PyMongoAPI import mongo_client
 from blondiescakes_webpage.pages.visual_database_updater.component_login_database.login_state.cookies import CookieState
 from blondiescakes_webpage.styles import constants as c
+from blondiescakes_webpage.state_general.analytics_api import GoogleAnalyticsAPI
 
 from jose import jwt
 from jose import ExpiredSignatureError
@@ -122,21 +123,52 @@ def image_updater_page() -> rx.Component:
 
                                 rx.tabs.root(
                                     rx.tabs.list(
-                                        rx.tabs.trigger("General", value="tab1"),
-                                        rx.tabs.trigger("Buttercream", value="tab2"),
-                                        rx.tabs.trigger("Frias", value="tab3"),
-                                        rx.tabs.trigger("Tradicionales", value="tab4"),
-                                        rx.tabs.trigger("Saludables", value="tab5"),
+                                        rx.tabs.trigger("Usuarios activos", value="tab1", color_scheme="pink", color="black"),
+                                        rx.tabs.trigger("General", value="tab2", color_scheme="pink", color="black"),
+                                        rx.tabs.trigger("Buttercream", value="tab3", color_scheme="pink", color="black"),
+                                        rx.tabs.trigger("Frias", value="tab4", color_scheme="pink", color="black"),
+                                        rx.tabs.trigger("Tradicionales", value="tab5", color_scheme="pink", color="black"),
+                                        rx.tabs.trigger("Saludables", value="tab6", color_scheme="pink", color="black"),
                                         style={"justify-content":"center"},
                                         size="1"
                                     ),
+
+                                    rx.tabs.content(
+                                        rx.box(
+                                                rx.recharts.bar_chart(
+                                                    rx.recharts.graphing_tooltip(),
+                                                    rx.recharts.bar(
+                                                        data_key="users",
+                                                        stroke="#8884d8",
+                                                        fill="#8884d8",
+                                                    ),
+                                                    rx.recharts.bar(
+                                                        data_key="sessions",
+                                                        stroke="#82ca9d",
+                                                        fill="#82ca9d",
+                                                    ),
+                                                    rx.recharts.x_axis(data_key="country"),
+                                                    rx.recharts.y_axis(),
+                                                    data=GoogleAnalyticsAPI.datos,
+                                                    sync_id="1",
+                                                    width="100%",
+                                                    height=200,
+                                                    on_mount=GoogleAnalyticsAPI.get_analytics_data
+                                            ),
+                                            style={"justify-content":"center"}
+                                        ),
+                                        value="tab1",
+                                        style={"justify-content":"center"}
+                                        ),
+
+
                                     rx.tabs.content(
                                         rx.box(
                                             backend_items("Pagina principal",PageState.general_database_data),
                                             on_mount=PageState.get_database_data,
                                             style={"justify-content":"center"}
                                         ),
-                                        value="tab1",
+                                        value="tab2",
                                         style={"justify-content":"center"}
                                     ),
                                     rx.tabs.content(
@@ -145,7 +177,7 @@ def image_updater_page() -> rx.Component:
                                             on_mount=PageState.get_database_data_alter("buttercream"),
                                             style={"justify-content":"center"}
                                         ),
-                                        value="tab2",
+                                        value="tab3",
                                     ),
 
                                     rx.tabs.content(
@@ -154,7 +186,7 @@ def image_updater_page() -> rx.Component:
                                             on_mount=PageState.get_database_data_alter("frias"),
                                             style={"justify-content":"center"}
                                         ),
-                                        value="tab3",
+                                        value="tab4",
                                     ),
 
                                     rx.tabs.content(
@@ -163,7 +195,7 @@ def image_updater_page() -> rx.Component:
                                             on_mount=PageState.get_database_data_alter("tradicionales"),
                                             style={"justify-content":"center"}
                                         ),
-                                        value="tab4",
+                                        value="tab5",
                                     ),
 
                                     rx.tabs.content(
@@ -172,7 +204,7 @@ def image_updater_page() -> rx.Component:
                                             on_mount=PageState.get_database_data_alter("saludables"),
                                             style={"justify-content":"center"}
                                         ),
-                                        value="tab5",
+                                        value="tab6",
                                     ),
                                     style={"justify-content":"center"},
                                     
@@ -191,12 +223,19 @@ def image_updater_page() -> rx.Component:
                     padding_top="3em",
                     width="100%"
                 ),
-                    
-                rx.vstack(
-                    rx.spinner(),
+            rx.flex()
+            ),
+
+            rx.cond(~VerifyID.show,
+                    rx.vstack(
+                        rx.spacer(),
+                        rx.heading("Cargando componentes..."),
+
+                        rx.spinner(size="3",color="black"),
                     justify="center",
                     align="center"
-                )),
+                ),
+            ),
         align="center",
         justify="center",
         width="100%")

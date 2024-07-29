@@ -113,4 +113,3 @@ class BackendUpdater(rx.State):
         else:
             return rx.toast.error("Error: no eliminado")
 
-#debo hacer que el eliminar elementos detecte la categoria

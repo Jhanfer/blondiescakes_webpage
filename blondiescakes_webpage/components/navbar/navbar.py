@@ -20,9 +20,6 @@ def navbar() -> rx.Component:
                             width="100%",
                             justify="center",
                             align="center"),
-
-                        rx.script("""
-                        """),
                         
                     class_name="gradient-element",
                     justify="center",
@@ -47,24 +44,25 @@ def navbar() -> rx.Component:
 
 #Navbar components
 
-def text(text:str) -> rx.Component:
+def text(text:str,href:str) -> rx.Component:
     return rx.link(
             rx.text(text,
                     color=st.TextColor.TITLES.value,
                     ),
                 is_external=False,
-                href="",
+                href=href,
                 padding_left="1em",
-                padding_right="1em")
+                padding_right="1em"
+            )
 
 def navbar_content() -> rx.Component:
     return rx.hstack(
 
         rx.vstack(
             rx.flex(
-                text("INICIO"),
-                text("CONTACTO"),
-                text("ENVÍOS"),
+                text("INICIO","/"),
+                text("CONTACTO","/contactanos"),
+                text("ENVÍOS","/envios"),
                 display=["none", "none", "flex", "flex", "flex"],
                 direction="row"
                 ),
@@ -78,9 +76,9 @@ def navbar_content() -> rx.Component:
 
         rx.vstack(
             rx.flex(
-                text("NOSOTROS"),
-                text("VISIÓN"),
-                text("MISIÓN"),
+                text("NOSOTROS","/nosotros"),
+                text("VISIÓN","/vision"),
+                text("MISIÓN","/mision"),
                 display=["none", "none", "flex", "flex", "flex"],
                 direction="row"
                 ),
@@ -89,7 +87,8 @@ def navbar_content() -> rx.Component:
         width="100%",
         align="center",
         justify="center",
-        spacing="9"
+        spacing="8",
+        style={"overflow":"hiddend"}
         )
 
 

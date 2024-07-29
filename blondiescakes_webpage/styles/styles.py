@@ -17,8 +17,8 @@ class SizeNoEm(Enum):
     DEFAULT="3"
     BIG="5"
     LARGE="7"
-    EXTRA="9"
-
+    EXTRA="9"    
+#"text-shadow" : "-3px 2px 6px #463626"
 #Colors
 class ColorPalette(Enum):
     MAIN="#F7E6DB"

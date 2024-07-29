@@ -29,12 +29,12 @@ def drawer() -> rx.Component:
                                     padding_left="13em",
                                     direction="column"),
 
-                                menú_button("INICIO"),
-                                menú_button("CONTACTO"),
-                                menú_button("ENVÍOS"),
-                                menú_button("NOSOTROS"),
-                                menú_button("VISIÓN"),
-                                menú_button("MISIÓN"),
+                                menú_button("INICIO","/"),
+                                menú_button("CONTACTO","/contactanos"),
+                                menú_button("ENVÍOS",""),
+                                menú_button("NOSOTROS",""),
+                                menú_button("VISIÓN",""),
+                                menú_button("MISIÓN",""),
                                 justify="start",
                                 align="center"),
 
@@ -47,5 +47,10 @@ def drawer() -> rx.Component:
                             background_color=st.TextColor.TITLES.value)),
             direction="right")
 
-def menú_button(title:str) -> rx.Component:
-    return rx.button(title,width="100%",radius="none")
+def menú_button(title:str,route:str) -> rx.Component:
+    return  rx.button(
+                title,
+                width="100%",
+                radius="none",
+                on_click=rx.redirect(route)
+            )

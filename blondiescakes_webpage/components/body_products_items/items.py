@@ -119,7 +119,8 @@ def featured_link(featured:Featured) -> rx.Component:
                                             on_click=rx.redirect(featured.url_purchase),
                                             display="block",#con esto hacemos que la imagen sea cuadrada sin estrechar
                                             style={"overflow":"hidden", #con esto hacemos que la imagen sea cuadrada sin estrechar
-                                                    "object-fit":"cover"},
+                                                    "object-fit":"cover",
+                                            },
                                             ),
                                     while_hover={"scale":1.1},
                                     while_tap={"scale":0.9},
