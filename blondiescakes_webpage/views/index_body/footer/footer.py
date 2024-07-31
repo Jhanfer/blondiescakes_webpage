@@ -11,7 +11,7 @@ def footer() -> rx.Component:
                         color=st.ColorPalette.ENFASIS.value,
                         align="center"
                 ),
-                rx.text(f"© BlondiesCake's - Todos los derechos reservados 2020 - {datetime.date.today().year}",
+                rx.text(f"© BlondiesCake's - Todos los derechos reservados 2019 - {datetime.date.today().year}",
                         color=st.ColorPalette.ENFASIS.value,
                         align="center",
                         size="2"

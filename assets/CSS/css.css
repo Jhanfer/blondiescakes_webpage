@@ -123,21 +123,134 @@
 
 
 
-.container {
+.container-image {
+    margin: 0;
     position: relative;
-    width: 200px;
-    height: 100px;
-    background-color: pink;
+    z-index: 1000;
+    border-radius :5rem 5rem 0 0;
 }
 
-.container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-image: url('https://i.ibb.co/1JF2csZ/contact-header.jpg');
-    background-size: cover;
-    
+.image-container {
+    border-radius :5rem 5rem 0 0;
+    object-fit: cover;
+    width: 100%;
+    max-width: inherit;
+    position: relative;
+}
+
+
+
+/*Background blur movement*/
+
+
+@keyframes rotate {
+    0% {
+    transform: rotate(0deg);
+    }
+    100% {
+    transform: rotate(360deg);
+    }
+}
+
+.gradient {
+    --size: 750px;
+    --speed: 50s;
+    --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+
+    width: var(--size);
+    height: var(--size);
+    filter: blur(calc(var(--size) / 5));
+    background-image: linear-gradient(hsl(222, 84, 60, 100%), hsl(164, 79, 71));
+    animation: rotate var(--speed) var(--easing) alternate infinite;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+@media (min-width: 720px) {
+    .gradient {
+    --size: 500px;
+    }
+}
+
+.shape1 {
+    width: 200px;
+    aspect-ratio: 0.866;
+    background-color: aqua;
+    clip-path: polygon(
+    0% 25%,
+    0% 75%,
+    50% 100%, 
+    100% 75%, 
+    100% 25%, 
+    50% 0%);
+}
+
+.shape2 {
+    width: 200px;
+    aspect-ratio: 0.866;
+    background-color: pink;
+    clip-path: polygon(
+    0% 100%,
+    0% 100%,
+    50% 100%, 
+    100% 75%, 
+    100% 25%, 
+    50% 0%);
+}
+
+.shape3 {
+    width: 200px;
+    aspect-ratio: 0.866;
+    background-color: yellow;
+    clip-path: polygon(
+    0% 100%,
+    0% 100%,
+    50% 100%, 
+    100% 75%, 
+    100% 25%, 
+    50% 0%);
+}
+
+.shape3 {
+    width: 200px;
+    aspect-ratio: 0.866;
+    background-color: #B6985E;
+    clip-path: polygon(
+    0% 100%,
+    0% 100%,
+    50% 100%, 
+    100% 75%, 
+    100% 25%, 
+    50% 0%);
+}
+
+.shape5 {
+    width: 200px;
+    aspect-ratio: 0.866;
+    background-color: #463626;
+    clip-path: polygon(
+    0% 100%,
+    0% 100%,
+    50% 100%, 
+    100% 75%, 
+    100% 25%, 
+    50% 0%);
+}
+
+.shape6 {
+    width: 200px;
+    aspect-ratio: 0.866;
+    background-color: #F7E6DB;
+    clip-path: polygon(
+    0% 100%,
+    0% 100%,
+    50% 100%, 
+    100% 75%, 
+    100% 25%, 
+    50% 0%);
+}
+
+
+  /* This is just to transition when you change the viewport size. */
+  * {
+    transition: all 0.5s ease-out;
 }
