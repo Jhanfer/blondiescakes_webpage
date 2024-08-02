@@ -61,8 +61,8 @@ def navbar_content() -> rx.Component:
         rx.vstack(
             rx.flex(
                 text("INICIO","/"),
-                text("CONTACTO","/contactanos"),
-                text("ENVÍOS","/envios"),
+                text("CONTACTO","/nosotros#contacto"),
+                text("ENVÍOS","/nosotros#envios"),
                 display=["none", "none", "flex", "flex", "flex"],
                 direction="row"
                 ),
@@ -77,8 +77,8 @@ def navbar_content() -> rx.Component:
         rx.vstack(
             rx.flex(
                 text("NOSOTROS","/nosotros"),
-                text("VISIÓN","/vision"),
-                text("MISIÓN","/mision"),
+                text("VISIÓN","/nosotros#vision"),
+                text("MISIÓN","/nosotros#mision"),
                 display=["none", "none", "flex", "flex", "flex"],
                 direction="row"
                 ),

@@ -174,7 +174,7 @@
 .shape1 {
     width: 200px;
     aspect-ratio: 0.866;
-    background-color: aqua;
+    background-color: pink;
     clip-path: polygon(
     0% 25%,
     0% 75%,
@@ -187,7 +187,7 @@
 .shape2 {
     width: 200px;
     aspect-ratio: 0.866;
-    background-color: pink;
+    background-color: gold;
     clip-path: polygon(
     0% 100%,
     0% 100%,
@@ -200,7 +200,7 @@
 .shape3 {
     width: 200px;
     aspect-ratio: 0.866;
-    background-color: yellow;
+    background-color: #F7E6DB;
     clip-path: polygon(
     0% 100%,
     0% 100%,
@@ -249,8 +249,3 @@
     50% 0%);
 }
 
-
-  /* This is just to transition when you change the viewport size. */
-  * {
-    transition: all 0.5s ease-out;
-}

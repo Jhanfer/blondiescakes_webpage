@@ -1,18 +1,19 @@
 import reflex as rx
 from blondiescakes_webpage.components.navbar.navbar import navbar
 from blondiescakes_webpage.views.index_body.footer.footer import footer
+from blondiescakes_webpage.styles import styles as st
+import re
 
-class Test(rx.State):
-    path:str
 
-    def generar_zigzag(self, amplitud, frecuencia, longitud, offset_x=650):
-        path = f'M {offset_x},0'
-        for i in range(1, longitud + 1):
-            x = (i % 2) * frecuencia + offset_x
-            y = i * amplitud
-            path += f' L {x},{y}'
-        #print(path)
-        self.path = path
+class SendWatsAppMessage(rx.State):
+    message:str
+    def send_message(self):
+        if not len(self.message) == 0:
+            num="121212"
+            message = f"https://wa.me/{num}?text={re.sub(r'(\S)\s+(\S)', r'\1%20\2', self.message.strip())}"
+            return rx.redirect(message)
+    def update_message(self,message:str):
+        self.message = message
 
 
 
@@ -72,6 +73,7 @@ def us() -> rx.Component:
                         de queso crema y nueces? ¿Y qué me decís de un red
                         velvet clásico pero regular y sin colorante artificial?""",
                         style={"font-size":"clamp(1em, 1.5vw + 0.5em, 1.3em)"}
+                        
                 ),
             width="auto",
             max_width="50em",
@@ -172,7 +174,6 @@ def us() -> rx.Component:
 
         top="10em",
         position="relative",
-        padding_bottom="10em",
         align="center",
         spacing="9",
         justify="center",
@@ -180,146 +181,164 @@ def us() -> rx.Component:
         
         ),
 
-        footer(),
 
+        rx.flex(
+            rx.heading("""Nuestra visión es convertirnos en la pastelería de tortas 
+                    artesanales y personalizadas de preferencia en Cali.""",
+                    style={"font-size":"clamp(2rem, 1.5vw + 1.8rem, 1.8rem)"}
+            ),
+            rx.text("""
+                    Queremos ser conocidos por nuestra calidad, creatividad con 
+                    pasteles y el uso de ingredientes saludables y locales. Queremos 
+                    construir una familia de adictos a los pasteles que entiendan 
+                    la vida en la que reina el dulzor de la vida y la dulzura del amor.""",
+                    style={"font-size":"clamp(1em, 1.5vw + 0.5em, 1.3em)"}    
+            ),
+            direction="column",
+            id="vision",
+            padding_top="13em",
+            width="auto",
+            max_width="50em",
+            wrap="wrap",
+            spacing="3",
+            padding_left="2em",
+            padding_right="2em",
+
+        ),
+
+
+        rx.flex(
+            rx.heading("""En Blondie’s Cakes, nuestra misión es proporcionar 
+                    experiencias dulces y personalizadas""",
+                    style={"font-size":"clamp(2rem, 1.5vw + 1.8rem, 1.8rem)"}
+            ),
+            rx.text("""
+                    Usamos solo los mejores ingredientes, frescos y de temporada, 
+                    junto con técnicas de la vieja escuela y un toque moderno, 
+                    para crear trabajos de arte sabor específicos. 
+                    Aquí en Blondie’s Cakes, nos enorgullecemos de la belleza 
+                    que se disfruta a través de nuestros productos. Ya sea para 
+                    ocasiones especiales, profesionales o simplemente disfrutando 
+                    una ocasión única, parece que Blondie’s Cakes fue hecha para 
+                    engendrar emociones y recuerdos duraderos.""",
+                    style={"font-size":"clamp(1em, 1.5vw + 0.5em, 1.3em)"}    
+            ),
+            direction="column",
+            id="mision",
+            padding_top="3em",
+            width="auto",
+            max_width="50em",
+            wrap="wrap",
+            spacing="3",
+            padding_left="2em",
+            padding_right="2em",
+
+        ),
+
+
+        rx.vstack(
+                rx.heading("ENVIOS A TODA CALI",padding_top="2em"),
+                rx.flex(
+                    rx.image(src="/nosotros/delivery.svg",width="35em",heigth="auto"),
+                    rx.flex(
+                        rx.text("• Garantizamos una entrega segura y a tiempo."),
+                        rx.text("• Utilizamos empaques especiales para garantizar que llegue a tu hogar en perfectas condiciones."),
+                        rx.text("• Te ofrecemos opciones de entrega flexibles."),
+                        rx.text("• Contáctanos y te brindaremos toda la información que necesitas para hacer tu pedido."),
+                        width="20em",
+                        max_width="35em",
+                        direction="column",
+                        spacing="5"
+                    ),
+                    
+                    justify="center",
+                    align="center",
+                    direction="row",
+                    wrap="wrap",
+                    padding_bottom="2em"
+                ),
+            height="auto",
+            width="100%",
+            background_color="pink",
+            justify="center",
+            align="center",
+            id="envios"
+        ),
+
+
+        rx.flex(
+                rx.box(
+                    rx.heading("contactanos",
+                        position="sticky",
+                        color=st.ColorPalette.ENFASIS.value,
+                        style={"font-size":"clamp(1rem, 0.5vw + 2.8rem, 3.5rem)"}
+                    ),
+                    
+                ),
+                rx.text(f"Llámanos a nuestro teléfono ",rx.link("12345678",href="12345678"), " o"),
+                rx.card(
+                    rx.vstack(    
+                        rx.chakra.avatar(
+                            size="xl"
+                        ),
+                        rx.text("escríbenos a nuestro WhatsApp!"),
+                        rx.text_area(
+                                    size="3",
+                                    placeholder="escribe tu mensaje",
+                                    on_blur=SendWatsAppMessage.update_message,
+                                    on_change=SendWatsAppMessage.update_message,
+                                    on_focus=SendWatsAppMessage.update_message
+                        ),
+                        rx.button("enviar whatsapp",on_click=SendWatsAppMessage.send_message),
+                    
+                        style={
+                            "background-color":"transparent",
+                        },
+                    justify="center",
+                    align="center",
+                    #padding_left="1em",
+                    #padding_right="1em"
+                ),
+                title="contacto",
+                size="5",
+                variant="surface",
+                padding="5em"
+            ),
+            position="relative",
+            margin_top="10em",
+            padding="1em",
+            margin_bottom="5em",
+            direction="column",
+            justify="center",
+            align="center",
+            spacing="6",
+            id="contacto"
+        ),
+
+
+        rx.flex(
+            rx.box(class_name="shape1"),
+            rx.box(class_name="shape2"),
+            position="absolute",
+            z_index="-1",
+            style={"filter":"blur(100px)"}
+        ),
+
+        rx.flex(
+            rx.box(class_name="shape2"),
+            rx.box(class_name="shape1"),
+            position="absolute",
+            top="40em",
+            z_index="-1",
+            style={"filter":"blur(100px)"}
+        ),
+
+        rx.box(
+            footer(),
+            width="100%"
+        ),
         
         align="center",
         spacing="9",
         style={"overflow":"hidden"}
     )
-
-
-
-
-
-
-"""
-rx.flex(
-                    rx.flex(
-
-
-                        rx.flex(
-                            rx.heading("1",size="8"),
-                            rx.heading("Creo, diseño y horneo:", size="8"),
-                            rx.text(""
-                                    cada torta es una obra de arte única, hecha a 
-                                    mano, y diseñada especialmente para usted. 
-                                    Desde la primera idea hasta la última pincelada, 
-                                    me involucro en la creación de cada pastel para 
-                                    garantizar que su pastel sea perfecto."
-                            ),
-                        width="20em",
-                        direction="column",
-                        wrap="wrap",
-                        ),
-
-                        rx.flex(
-                            rx.heading("2",size="8"),
-                            rx.heading("Creo, diseño y horneo:", size="8"),
-                            rx.text(""
-                                    cada torta es una obra de arte única, hecha a 
-                                    mano, y diseñada especialmente para usted. 
-                                    Desde la primera idea hasta la última pincelada, 
-                                    me involucro en la creación de cada pastel para 
-                                    garantizar que su pastel sea perfecto."
-                            ),
-                        width="20em",
-                        direction="column",
-                        wrap="wrap",
-                        ),
-                    spacing="9",
-                    wrap="wrap",
-                    direction="row",
-                    justify="center",
-                    align="center",
-                    width="100%"
-                    ),
-
-                    rx.hstack(
-                        rx.vstack(
-                            rx.heading("3",size="8"),
-                            rx.heading("Creo, diseño y horneo:", size="8"),
-                            rx.text(""
-                                    cada torta es una obra de arte única, hecha a 
-                                    mano, y diseñada especialmente para usted. 
-                                    Desde la primera idea hasta la última pincelada, 
-                                    me involucro en la creación de cada pastel para 
-                                    garantizar que su pastel sea perfecto.""
-                            ),
-                        ),
-
-                        rx.vstack(
-                            rx.heading("4",size="8"),
-                            rx.heading("Creo, diseño y horneo:", size="8"),
-                            rx.text(""
-                                    cada torta es una obra de arte única, hecha a 
-                                    mano, y diseñada especialmente para usted. 
-                                    Desde la primera idea hasta la última pincelada, 
-                                    me involucro en la creación de cada pastel para 
-                                    garantizar que su pastel sea perfecto.""
-                            )
-                        ),
-                    spacing="9"
-                    ),
-
-                style={"border-radius":"10px"},
-                wrap="wrap"
-                
-                ),
-"""
-
-
-
-""""
-
-rx.vstack(
-        navbar(),
-        rx.vstack( 
-            rx.box(
-                    rx.heading("¿Quienes somos?", size="7"),
-                    rx.text(""¡Hola! ¡Soy la chef y pastelera Joselyn de Blondie’s Cake!
-                            Me encanta hacer tortas personalizadas que se ajusten a tu estilo
-                            y el tema de tu evento. Desde tortas de cumpleaños temáticas hasta
-                            tortas de bodas, ¡Lo hago todo! ¿Deseas una deliciosa torta cubierta
-                            con buttercream y flores comestibles? ¡Llámame! ¿Quieres una clásica
-                            torta de chocolate con un toque moderno? ¡También! ¡Envíame un mensaje
-                            para convertir tu idea en una realidad azucarada! #cakes #cakeshop 
-                            #blondiescake #weddingcake #birthdaycake"",
-
-                            size="6"
-                    ),
-                position="relative",
-                top="25em",
-                left="4em",
-                style={"display":"block",
-                        #"margin-left":"auto",
-                        "margin-right":"auto",
-                        #"background-color":"white"
-                },
-                width="25em",
-                height="20em"
-            ),
-
-            class_name="container",
-            width="100%",
-            height="100em",
-            top="-5em",
-            on_mount=Test.generar_zigzag(100,100,20),
-            #style={"clip-path": f"path('{Test.path}')"}
-            #style={"clip-path":"path('M 0,100 L 750,100 L 650,200 L 750,300 L 650,400 L 750,500 L 650,600 L 750,700 L 650,800 L 750,900 L 650,1000 L 750,1100 L 650,1200 L 750,1300 L 650,1400 L 750,1500 L 650,1600 L 750,1700 L 650,1800 L 750,1900 L 0,2000')"}
-        ),
-        rx.box(
-            footer(),
-            width="100%",
-            top="95em",
-            position="relative"
-        ),
-        spacing="0"
-    
-    )
-
-
-
-"""
-
-

@@ -28,13 +28,12 @@ def drawer() -> rx.Component:
                                     rx.drawer.close(rx.box(rx.button("Cerrar",radius="none"),align="end")),
                                     padding_left="13em",
                                     direction="column"),
-
                                 menú_button("INICIO","/"),
-                                menú_button("CONTACTO","/contactanos"),
-                                menú_button("ENVÍOS",""),
-                                menú_button("NOSOTROS",""),
-                                menú_button("VISIÓN",""),
-                                menú_button("MISIÓN",""),
+                                menú_button("CONTACTO","/nosotros#contacto"),
+                                menú_button("ENVÍOS","/nosotros#envios"),
+                                menú_button("NOSOTROS","/nosotros"),
+                                menú_button("VISIÓN","/nosotros#vision"),
+                                menú_button("MISIÓN","/nosotros#mision"),
                                 justify="start",
                                 align="center"),
 
