@@ -8,7 +8,26 @@ from blondiescakes_webpage.pages.visual_database_updater.components_database.sta
 
 def products_container() -> rx.Component:
         return rx.vstack(
+
+                        rx.heading("DISFRUTA DEL DULCE CON",
+                                size="9",
+                                color=st.ColorPalette.ENFASIS.value,
+                                style={"font-size":"clamp(2em, 3.5vw, 3.5em)"},
+                                padding_top="2em",
+                                padding_bottom="1em"
+                        ),
                         
+                        rx.flex(
+                                items(),
+
+                                padding_top="1em",
+                                padding_bottom="2em",
+                                spacing="8",
+                                wrap="wrap",
+                                justify="center",
+                                align="center",
+                        ),
+
                         rx.hstack(
                                 rx.vstack(
                                         rx.icon(tag="truck",width="2em",height="auto",color="black"),
@@ -81,19 +100,6 @@ def products_container() -> rx.Component:
                         align="center"
                         ),
 
-                        rx.text("DISFRUTA DEL DULCE CON",size="7",color=st.ColorPalette.ENFASIS.value),
-                        rx.flex(
-
-                                items(),
-
-                                padding_top="1em",
-                                padding_bottom="2em",
-                                spacing="8",
-                                wrap="wrap",
-                                justify="center",
-                                align="center",
-                        ),
-                #padding_top="4em",
                 align="center",
                 justify="center",
                 style={"overflow":"hidden"}

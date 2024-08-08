@@ -5,7 +5,6 @@ from blondiescakes_webpage.pages.visual_database_updater import visual_database_
 from blondiescakes_webpage.pages import index
 from blondiescakes_webpage.pages.redirect_pages import backend_reloader
 from blondiescakes_webpage.pages.visual_database_updater.component_login_database.login_page import login_page
-from blondiescakes_webpage.pages.navbar_pages.contact import contact
 from blondiescakes_webpage.pages.navbar_pages.us import about_us
 ###
 

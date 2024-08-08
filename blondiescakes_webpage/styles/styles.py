@@ -34,7 +34,7 @@ class TextColor(Enum):
 #stylesheets
 STYLESHEETS=[
     #"https://fonts.googleapis.com/css?family=JetBrains+Mono:weight@100&display=swap",
-    #"https://fonts.googleapis.com/css?family=Nunito+Sans:weight@400&display=swap",
+    "https://fonts.googleapis.com/css?family=Playwrite+AR:weight@400&display=swap",
     "/CSS/css.css"
 ]
 
@@ -45,11 +45,15 @@ STYLE_SHEET={
     rx.heading:{
         "font_family":"pertili",
         "color":ColorPalette.ENFASIS.value,
+        "align":"center",
+        "justify_content":"center"
     },
     rx.text: {
         "font_family": "pertili",
         "white_space":"normal",
         "color":ColorPalette.ENFASIS.value,
+        "align":"center",
+        "justify_content":"center"
     },
     rx.input:{
         "color":ColorPalette.ENFASIS.value,

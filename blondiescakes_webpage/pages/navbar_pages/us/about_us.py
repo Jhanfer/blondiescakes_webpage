@@ -206,7 +206,6 @@ def us() -> rx.Component:
 
         ),
 
-
         rx.flex(
             rx.heading("""En Blondie’s Cakes, nuestra misión es proporcionar 
                     experiencias dulces y personalizadas""",
@@ -275,7 +274,7 @@ def us() -> rx.Component:
                     ),
                     
                 ),
-                rx.text(f"Llámanos a nuestro teléfono ",rx.link("12345678",href="12345678"), " o"),
+                rx.text(f"Llámanos a nuestro teléfono ",rx.link("12345678",href="tel: +5712345678"), " o"),
                 rx.card(
                     rx.vstack(    
                         rx.chakra.avatar(
@@ -296,8 +295,6 @@ def us() -> rx.Component:
                         },
                     justify="center",
                     align="center",
-                    #padding_left="1em",
-                    #padding_right="1em"
                 ),
                 title="contacto",
                 size="5",

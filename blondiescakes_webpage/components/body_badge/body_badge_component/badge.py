@@ -1,72 +1,115 @@
 import reflex as rx 
 from blondiescakes_webpage.styles import styles as st
-from blondiescakes_webpage.components.body_badge.body_header_textimage.textimage import textimage
 from blondiescakes_webpage.components.wrapping_react.AwesomeSlider import carousel
 from blondiescakes_webpage.components.wrapping_react.framer_motion import motion
-#from blondiescakes_webpage.components.wrapping_react.instagram_api import InstaAPI
+
 
 def badge() -> rx.Component:
     return rx.vstack(
-            rx.heading("Síguenos en instagram",color=st.ColorPalette.MAIN.value,position="absolute",padding_bottom="18em"),
-            
-            
+
+            rx.heading("Síguenos en instagram",
+                    color=st.ColorPalette.MAIN.value,
+                    position="absolute",
+                    padding_bottom="10em",
+                    size="9",
+                    display=["none","none","none","none","flex"]
+            ),
+
+            rx.heading("Síguenos en instagram",
+                    color=st.ColorPalette.MAIN.value,
+                    position="absolute",
+                    padding_bottom="18em",
+                    size="7",
+                    display=["flex","flex","flex","flex","none"]
+            ),
             
             rx.vstack(
-                    carousel(
-                            rx.card(
-                                    motion(
-                                        rx.image(
-                                            src="body/badge_carousel.jpeg",
-                                            width="20em",
-                                            height="auto",
-                                            on_click=rx.redirect("https://www.instagram.com/p/C6y3SRtgcw3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==")
-                                        ),
-                                    while_hover={"scale":1.1},
-                                    while_tap={"scale":0.9},
-                                    transition={"type": "spring", "stiffness":300,"damping":20}
-                                    ),
-                                size="5"
-                            ),
-                            rx.card(
-                                    motion(
-                                        rx.image(
-                                            src="body/badge_carousel2.jpeg",
-                                            width="20em",
-                                            height="auto",
-                                            on_click=rx.redirect("https://www.instagram.com/p/C6owde_gA7a/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==")
-                                        ),
-                                    while_hover={"scale":1.1},
-                                    while_tap={"scale":0.9},
-                                    transition={"type": "spring", "stiffness":300,"damping":20}    
-                                    ),
-                                size="4"
-                            ),
-                            rx.card(
-                                    motion(
-                                        rx.image(
-                                            src="body/badge_carousel3.jpeg",
-                                            width="20em",
-                                            height="auto",
-                                            on_click=rx.redirect("https://www.instagram.com/p/C1j5c2oAscv/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==")
-                                        ),
-                                    while_hover={"scale":1.1},
-                                    while_tap={"scale":0.9},
-                                    transition={"type": "spring", "stiffness":300,"damping":20}
-                                    ),    
-                                size="4"
-                            ),
-                        animation="fallAnimation",
-                        mobile_touch=True,
-                        bullets=False,
-                        style={"width":"80%",
-                                "--content-background-color":"transparent",
-                                "--control-button-width":"30%",
-                                "--slider-height-percentage":"80%",
-                                "--organic-arrow-height":"20px",
-                                "--organic-arrow-color":f"{st.ColorPalette.MAIN.value}"
 
-                                }, 
+                rx.flex(
+                    rx.image(
+                        src="body/badge/header2HD.jpeg",
+                        position="absolute",
+                        width="8em",
+                        height="auto",
+                        top="58em",
+                        left="5em",
+                        style={
+                            "border-radius":"100px 100px 100px 100px"
+                        }
                     ),
+                    display=["none","none","flex","flex","flex"]
+                ),
+                
+                rx.flex(
+                    rx.image(
+                        src="body/badge/header3HD.jpeg",
+                        position="absolute",
+                        width="8em",
+                        height="auto",
+                        top="97em",
+                        right="6em",
+                        style={
+                            "border-radius":"100px 100px 100px 100px"
+                        }
+                    ),
+                    display=["none","none","flex","flex","flex"]
+                ),
+
+                carousel(
+                        rx.card(
+                                motion(
+                                    rx.image(
+                                        src="body/badge_carousel.jpeg",
+                                        width="25em",
+                                        height="auto",
+                                        on_click=rx.redirect("https://www.instagram.com/p/C6y3SRtgcw3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==")
+                                    ),
+                                while_hover={"scale":1.1},
+                                while_tap={"scale":0.9},
+                                transition={"type": "spring", "stiffness":300,"damping":20}
+                                ),
+                            size="5"
+                        ),
+                        rx.card(
+                                motion(
+                                    rx.image(
+                                        src="body/badge_carousel2.jpeg",
+                                        width="25em",
+                                        height="auto",
+                                        on_click=rx.redirect("https://www.instagram.com/p/C6owde_gA7a/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==")
+                                    ),
+                                while_hover={"scale":1.1},
+                                while_tap={"scale":0.9},
+                                transition={"type": "spring", "stiffness":300,"damping":20}    
+                                ),
+                            size="4"
+                        ),
+                        rx.card(
+                                motion(
+                                    rx.image(
+                                        src="body/badge_carousel3.jpeg",
+                                        width="25em",
+                                        height="auto",
+                                        on_click=rx.redirect("https://www.instagram.com/p/C1j5c2oAscv/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==")
+                                    ),
+                                while_hover={"scale":1.1},
+                                while_tap={"scale":0.9},
+                                transition={"type": "spring", "stiffness":300,"damping":20}
+                                ),    
+                            size="4"
+                        ),
+                    animation="fallAnimation",
+                    mobile_touch=True,
+                    bullets=False,
+                    style={"width":"93%",
+                            "--content-background-color":"transparent",
+                            "--control-button-width":"30%",
+                            "--slider-height-percentage":"94%",
+                            "--organic-arrow-height":"40px",
+                            "--organic-arrow-color":f"{st.ColorPalette.MAIN.value}"
+
+                            }, 
+                ),
                     
                 width="100%",
                 justify="center",
@@ -75,27 +118,31 @@ def badge() -> rx.Component:
                 style={"overflow":"hidden"}
             ),
             
+            rx.heading("No te olvides del dulce",
+                    color=st.ColorPalette.MAIN.value,
+                    position="absolute",
+                    padding_top="10em",
+                    size="9",
+                    display=["none","none","none","none","flex"]
+            ),
+
+            rx.heading("No te olvides del dulce",
+                    color=st.ColorPalette.MAIN.value,
+                    position="absolute",
+                    padding_top="20em",
+                    size="7",
+                    display=["flex","flex","flex","flex","none"]
+            ),
+
             justify="center",
             align="center",
             margin_bottom="3em",
             width="100%",
             bg=st.ColorPalette.ENFASIS.value,
-            height="30em",
+            height="60em",
             z_index="10",
             padding_top="5em"
 )
-
-
-"""  rx.image(src="body/badge_item1.png",width="5em",height="5em"),
-
-            rx.vstack(
-                    textimage("body/main_badge.png","Más de 3 años de experiencia",st.ColorPalette.MAIN.value,"5"),
-                    rx.button("Donde estamos",variant="solid",radius="none",background_color=st.ColorPalette.MAIN.value,color=st.ColorPalette.ENFASIS.value),
-                align="center",
-                justify="center"),
-
-            rx.image(src="body/badge_item2.png",width="5em",height="5em",margin_top="12em"),
-"""
 
 
 def review() -> rx.Component:
@@ -151,15 +198,8 @@ def card(name:str,review:str,src:str) -> rx.Component:
 def stack() -> rx.Component:
     return (card("Lisue","Me encanta!","/body/lisue.jpeg"),
             card("Juan","Excelente sabor","/body/juan.jpeg"),
-            card("Teressa","No existe mejor sabor!","/body/teressa.jpeg"))
-
-
-
-
-
-
-
-
+            card("Teressa","No existe mejor sabor!","/body/teressa.jpeg")
+            )
 
 
 def ig_image(image:list) -> rx.Component:

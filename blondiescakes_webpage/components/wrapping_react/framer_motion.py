@@ -31,7 +31,6 @@ class useScroll(Component):
     library="framer-motion@12.0.0-alpha.0"
     tag="useScroll"
 
-    
 
 usescroll = useScroll.create
 

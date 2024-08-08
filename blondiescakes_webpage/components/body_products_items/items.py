@@ -12,7 +12,7 @@ def items() -> rx.Component:
                         PageState.class_buttercream,
                                 rx.vstack(
                                     
-                                    rx.heading("Buttercream",color=st.ColorPalette.ENFASIS.value,padding_bottom="1em",style={"letter_spacing": "0.5em","font-family":"auther","font-weight":"light"}),
+                                    rx.heading("Buttercream",color=st.ColorPalette.ENFASIS.value,padding_bottom="1em",style={"font-family":"'playwrite ar'"}),
                                     rx.hstack(
                                         rx.flex(
                                             rx.foreach( #iterar
@@ -43,7 +43,7 @@ def items() -> rx.Component:
                     rx.cond(
                         PageState.class_frias,
                             rx.vstack(
-                                rx.heading("Frias",color=st.ColorPalette.ENFASIS.value,padding_bottom="1em",style={"letter_spacing": "0.5em","font-family":"auther","font-weight":"light"}),
+                                rx.heading("Frias",color=st.ColorPalette.ENFASIS.value,padding_bottom="1em",style={"font-family":"'playwrite ar'"}),
                                 rx.hstack(
                                     rx.flex(
                                         rx.foreach( #iterar
@@ -71,7 +71,7 @@ def items() -> rx.Component:
                         rx.cond(
                             PageState.class_tradicionales,
                                 rx.vstack(
-                                    rx.heading("Tradicionales",color=st.ColorPalette.ENFASIS.value,padding_bottom="1em",style={"letter_spacing": "0.5em","font-family":"auther","font-weight":"light"}),
+                                    rx.heading("Tradicionales",color=st.ColorPalette.ENFASIS.value,padding_bottom="1em",style={"font-family":"'playwrite ar'"}),
                                     rx.hstack(
                                         rx.flex(
                                             rx.foreach( #iterar
@@ -104,7 +104,6 @@ def items() -> rx.Component:
 
 def featured_link(featured:Featured) -> rx.Component:
     return rx.vstack(
-                    #rx.text(PageState.title),
                     motion(
                         rx.vstack(
                                 motion(
@@ -151,7 +150,6 @@ def featured_link(featured:Featured) -> rx.Component:
                         ),
                         
                         initial={"opacity": 0, "scale": 0.5},
-                        #animate={"opacity":1,"scale":1},
                         while_in_view={"opacity": 1, "scale": 1},
                         while_focus={"opacity": 1, "scale": 1},
                         transition={"duration": 0.2,"ease":"easeOut"},#"repeatType":"reverse","repeat":"Infinity"},

@@ -10,10 +10,14 @@ def body() -> rx.Component:
             review(),
             rx.flex(
                     rx.vstack(
-                            rx.heading("Quienes somos",color=st.ColorPalette.ENFASIS.value,style={"font_family":"pertili"}),
+                            rx.heading("Quienes somos",
+                                    color=st.ColorPalette.ENFASIS.value
+                            ),
                             rx.text("""Blondiescake's ofrece una porción de la cultura venezolana y deliciosos postres. 
                                     El uso de ingredientes frescos y de primera calidad en cada postre se basa en recetas 
-                                    antiguas, pero con un toque creativo que los hace irresistibles.""",color=st.ColorPalette.ENFASIS.value),
+                                    antiguas, pero con un toque creativo que los hace irresistibles.""",
+                                    color=st.ColorPalette.ENFASIS.value
+                            ),
                         width="80%",
                         padding="3em",
                         align="center",

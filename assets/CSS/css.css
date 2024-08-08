@@ -19,19 +19,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: transparent; /* Color de la flecha de desplazamiento */
+    background-color: #463626; /* Color de la flecha de desplazamiento */
 }
 
-/*
-.gradient-element.visible {
-    opacity: 1;
-    transform: translateY(0); 
-}
 
-.gradient-element.hidden {
-    opacity: 0;
-    transform: translateY(-100px); 
-}*/
 
 /*Header*/
 
@@ -62,12 +53,6 @@
     font-weight: bold;
     src: url("/fonts/pertili.ttf") format("opentype");
 }
-@font-face {
-    font-family: auther;
-    font-weight: bold;
-    src: url("/fonts/Auther.tff") format("opentype");
-}
-
 
 
 /*icono del logo*/

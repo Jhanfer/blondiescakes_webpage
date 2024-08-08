@@ -32,52 +32,38 @@ def header() -> rx.Component:
                         align="center",  
                     ),
 
-            rx.hstack(
-                    motion(         
-                            motion(        
-                                    rx.flex(
-                                            rx.link(
-                                                    rx.text("@BLONDIES_CAKE",
-                                                        color=st.ColorPalette.ENFASIS.value,
-                                                        position="relative",
-                                                        size="3",
-                                                        align="center",
-                                                        
-                                                    ),
-                                                href="https://www.instagram.com/blondies_cake/"
-                                            ),
-                                            rx.icon(
-                                                tag="instagram",
-                                                position="relative",
-                                                width="1.09em",
-                                                height="auto",
-                                                color=st.ColorPalette.ENFASIS.value,
-                                                top="-0.1em"
-                                            ),
-                                            
-                                        justify="start",
-                                        align_items="center",
-                                        spacing="4",
-                                        display="flex",
-                                        class_name="vertical-text",
-                                        z_index="101"
-                                    ),
-                                
-                                initial={"opacity":0,"y":-50},
-                                animate={"opacity":1,"y":0},
-                                transition={"delay":0.1,"type":"keyframes","duration":1,"stiffness": 260, "damping": 0}
-                            ),
+            rx.hstack(     
+                
+                    rx.flex(
+                        blondies_link("20em"),
+                        display=["none", "none", "flex", "flex", "flex"],
                         z_index="101",
                         position="absolute",
-                        top="25em",
+                        top="20em",
                         #top="30em",
-                        left="-3em",
+                        left="-2em",
                         #left="1em",
-                        while_hover={"scale":1.1},
-                        while_tap={"scale":0.8},
-                        transition={"type":"spring","stiffness":260,"damping":10}
-                    ),
-                    textimage_header("header/header.jpeg","Regala amor, regala dulce",size="9"),
+                        justify="center",
+                        align_items="center",
+                        spacing="4",
+                        class_name="vertical-text",
+                    ), 
+                    rx.flex(
+                        blondies_link("15em"),
+                        display=["none", "flex", "none", "none", "none"],
+                        z_index="101",
+                        position="absolute",
+                        top="15em",
+                        #top="30em",
+                        left="-2em",
+                        #left="1em",
+                        justify="center",
+                        align_items="center",
+                        spacing="4",
+                        class_name="vertical-text",
+                    ), 
+
+                    textimage_header("header/123.jpg","Regala amor, regala dulce",size="9"),
                 spacing="9",
                 width="100%",
                 align="center",
@@ -95,9 +81,44 @@ def header() -> rx.Component:
         width="100%",
         spacing="5",
         direction="column",
-        padding_bottom="10em",
+        #padding_bottom="10em",
         
 
     )
 
 
+def blondies_link(top:str) -> rx.Component:
+    return  rx.flex(
+                motion(
+                    motion(
+                            rx.link(
+                                    rx.text("@BLONDIES_CAKE",
+                                        color=st.ColorPalette.ENFASIS.value,
+                                        position="relative",
+                                        size="3",
+                                        align="center",
+                                    ),
+                                href="https://www.instagram.com/blondies_cake/"
+                            ),
+                            rx.icon(
+                                tag="instagram",
+                                position="relative",
+                                width="1.09em",
+                                height="1.09em",
+                                color=st.ColorPalette.ENFASIS.value,
+                                top="-1.39em",
+                                left="10em"
+                            ),
+                        
+                            while_hover={"scale":1.1},
+                            while_tap={"scale":0.8},
+                            transition={"type":"spring","stiffness":260,"damping":10}
+                        ),
+                        
+                        rx.divider(background=st.ColorPalette.LINES.value,decorative=True, position="absolute",padding_left="20em", top="0.5em",left="12em",size="4",style={"height":"0.2em"}),
+                        
+                        initial={"opacity":0,"y":-50},
+                        animate={"opacity":1,"y":0},
+                        transition={"delay":0.1,"type":"keyframes","duration":1,"stiffness": 260, "damping": 0}
+                    ),
+            )
