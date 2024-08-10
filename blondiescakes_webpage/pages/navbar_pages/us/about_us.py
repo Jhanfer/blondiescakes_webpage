@@ -85,32 +85,26 @@ def us() -> rx.Component:
                 rx.flex(
                     rx.flex(
                         rx.heading("1"),
-                        rx.heading("PRUEBA"),
-                        rx.text("""Lorem ipsum dolor sit amet, consectetur 
-                                adipiscing elit, sed do eiusmod tempor incididunt 
-                                ut labore et dolore magna aliqua. Ut enim ad minim 
-                                veniam, quis nostrud exercitation ullamco laboris 
-                                nisi ut aliquip ex ea commodo consequat. Duis aute 
-                                irure dolor in reprehenderit in voluptate velit esse 
-                                cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                                occaecat cupidatat non proident, sunt in culpa qui officia 
-                                deserunt mollit anim id est laborum."""
+                        rx.heading("Diseño personalizado"),
+                        rx.text("""
+                                Soy una arquitecta de sabores. Hago tus cosas y diseño 
+                                tartas, tan deliciosas como bellos. Desde el primer bocado
+                                de tela hasta tu último aliento gracias al último toque de 
+                                glaseado, tu torta será un trabajo de arte delicioso.
+                                """
                         ),
                     width="20em",
                     direction="column"
                     ),
                     rx.flex(
-                        rx.heading("1"),
-                        rx.heading("PRUEBA"),
-                        rx.text("""Lorem ipsum dolor sit amet, consectetur 
-                                adipiscing elit, sed do eiusmod tempor incididunt 
-                                ut labore et dolore magna aliqua. Ut enim ad minim 
-                                veniam, quis nostrud exercitation ullamco laboris 
-                                nisi ut aliquip ex ea commodo consequat. Duis aute 
-                                irure dolor in reprehenderit in voluptate velit esse 
-                                cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                                occaecat cupidatat non proident, sunt in culpa qui officia 
-                                deserunt mollit anim id est laborum."""
+                        rx.heading("2"),
+                        rx.heading("Colaboración"),
+                        rx.text("""
+                                Trabajamos mano a mano para crear tortas que enamoren 
+                                todos tus sentidos. Tu visión, mi pasión, juntos creamos 
+                                momentos dulces para recordar. Cada bocado es una experiencia 
+                                única, diseñada para deleitar tu paladar y sorprender a tus invitados.
+                                """
                         ),
                     width="20em",
                     direction="column"
@@ -126,33 +120,32 @@ def us() -> rx.Component:
 
                 rx.flex(
                     rx.flex(
-                        rx.heading("1"),
-                        rx.heading("PRUEBA"),
-                        rx.text("""Lorem ipsum dolor sit amet, consectetur 
-                                adipiscing elit, sed do eiusmod tempor incididunt 
-                                ut labore et dolore magna aliqua. Ut enim ad minim 
-                                veniam, quis nostrud exercitation ullamco laboris 
-                                nisi ut aliquip ex ea commodo consequat. Duis aute 
-                                irure dolor in reprehenderit in voluptate velit esse 
-                                cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                                occaecat cupidatat non proident, sunt in culpa qui officia 
-                                deserunt mollit anim id est laborum."""
+                        rx.heading("3"),
+                        rx.heading("Ingredientes naturales"),
+                        rx.text("""
+                                Mis pasteles son más que simples postres; son una oda 
+                                a los ingredientes frescos y de temporada. Cada mordisco 
+                                es un viaje por los sabores más genuinos, solo utilizo 
+                                productos frescos y de la mejor calidad. Ya sean frutas 
+                                jugosas o nueces crujientes, cada ingrediente se elige 
+                                con esmero para proporcionar una experiencia eterna.
+                                """
                         ),
                     width="20em",
                     direction="column"
                     ),
                     rx.flex(
-                        rx.heading("1"),
-                        rx.heading("PRUEBA"),
-                        rx.text("""Lorem ipsum dolor sit amet, consectetur 
-                                adipiscing elit, sed do eiusmod tempor incididunt 
-                                ut labore et dolore magna aliqua. Ut enim ad minim 
-                                veniam, quis nostrud exercitation ullamco laboris 
-                                nisi ut aliquip ex ea commodo consequat. Duis aute 
-                                irure dolor in reprehenderit in voluptate velit esse 
-                                cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                                occaecat cupidatat non proident, sunt in culpa qui officia 
-                                deserunt mollit anim id est laborum."""
+                        rx.heading("4"),
+                        rx.heading("Innovación"),
+                        rx.text("""
+                                Estoy constantemente innovando e intentando nuevas 
+                                formas de impresionar y encantar a mis clientes. 
+                                Me encanta probar con nuevos sabores y técnicas para 
+                                destacarme con tortas únicas e inolvidables. 
+                                Desde variantes modernas de sabores clásicos núcleo 
+                                y corteza, a rellenos exóticos y texturas completamente 
+                                innovadoras.
+                                """
                         ),
                     width="20em",
                     direction="column"
@@ -185,7 +178,7 @@ def us() -> rx.Component:
         rx.flex(
             rx.heading("""Nuestra visión es convertirnos en la pastelería de tortas 
                     artesanales y personalizadas de preferencia en Cali.""",
-                    style={"font-size":"clamp(2rem, 1.5vw + 1.8rem, 1.8rem)"}
+                    style={"font-size":"clamp(1.8rem, 1.5vw + 1.8rem, 1.8rem)"}
             ),
             rx.text("""
                     Queremos ser conocidos por nuestra calidad, creatividad con 
@@ -209,7 +202,7 @@ def us() -> rx.Component:
         rx.flex(
             rx.heading("""En Blondie’s Cakes, nuestra misión es proporcionar 
                     experiencias dulces y personalizadas""",
-                    style={"font-size":"clamp(2rem, 1.5vw + 1.8rem, 1.8rem)"}
+                    style={"font-size":"clamp(1.8rem, 1.5vw + 1.8rem, 1.8rem)"}
             ),
             rx.text("""
                     Usamos solo los mejores ingredientes, frescos y de temporada, 
@@ -266,14 +259,30 @@ def us() -> rx.Component:
 
 
         rx.flex(
-                rx.box(
-                    rx.heading("contactanos",
-                        position="sticky",
+                rx.vstack(
+                    rx.heading("¿Te apetece algo?",
                         color=st.ColorPalette.ENFASIS.value,
-                        style={"font-size":"clamp(1rem, 0.5vw + 2.8rem, 3.5rem)"}
+                        style={"font-size":"clamp(1rem, 0.5vw + 2.1rem, 3.5rem)"},
+                        
+                    ),
+
+                    rx.text("""¡Escríbenos! Haremos realidad tu pastel de ensueño. 
+                            Personalizamos cada creación para que sea única y especial""",
+                            style={"font-size":"clamp(1em, 1.5vw + 0.5em, 1.3em)"}
                     ),
                     
+                    #width="50%",
+                    spacing="4",
+                    id="contacto",
+                    justify="center",
+                    align="center",
+                    padding_top="3em",
+                    width="auto",
+                    max_width="30em",
+                    wrap="wrap",
                 ),
+
+                
                 rx.text(f"Llámanos a nuestro teléfono ",rx.link("12345678",href="tel: +5712345678"), " o"),
                 rx.card(
                     rx.vstack(    
@@ -309,7 +318,7 @@ def us() -> rx.Component:
             justify="center",
             align="center",
             spacing="6",
-            id="contacto"
+            
         ),
 
 

@@ -36,7 +36,7 @@ class SupabaseAPI():
                     Featured(
                         id=featured_item["id"],
                         image_url=featured_item["image_url"],
-                        url_purchase=featured_item["url_purchase"],
+                        item_description=featured_item["item_description"],
                         title=featured_item["title"],
                         upload_time=featured_item["upload_time"],
                         categorie=featured_item["categorie"]
@@ -57,7 +57,7 @@ class SupabaseAPI():
                     Featured(
                         id=featured_item["id"],
                         image_url=featured_item["image_url"],
-                        url_purchase=featured_item["url_purchase"],
+                        item_description=featured_item["item_description"],
                         title=featured_item["title"],
                         upload_time=featured_item["upload_time"],
                         categorie=featured_item["categorie"]
@@ -100,9 +100,12 @@ class SupabaseAPI():
             pass
 
 
-    def insert_data(self,id:str,image_url:str,url_purchase:str,title:str,categorie:str):
+    def insert_data(self,id:str,image_url:str,item_description:str,title:str,categorie:str):
+        """Insert data on database
+        purchase_url has been changed to "Description" prompt
+        """
         self.act_data()
-
+        
         
         category_to_table = {
             "Pagina principal": "Images_database",
@@ -120,8 +123,8 @@ class SupabaseAPI():
         format=f"{datetime.date.today()} {times.tm_hour}:{times.tm_min}:{times.tm_sec}"
         
         if not categoria_backend == "default_table":
-            if image_url and url_purchase and title != None:
-                self.supabase.table("Images_database").insert({"id":id, "image_url":image_url,"url_purchase":url_purchase,"title":title,"upload_time":f"{format}","categorie":categoria_backend}).execute()
+            if image_url and item_description and title != None:
+                self.supabase.table("Images_database").insert({"id":id, "image_url":image_url,"item_description":item_description,"title":title,"upload_time":f"{format}","categorie":categoria_backend}).execute()
                 self.success="Subido con éxito"
                 print(self.success)
                 
@@ -166,7 +169,7 @@ class SupabaseAPI():
 class Featured(rx.Base):
     id:str
     image_url:str
-    url_purchase:str
+    item_description:str
     title:str
     upload_time:str
     categorie:str

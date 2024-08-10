@@ -1,7 +1,7 @@
 import reflex as rx
 from blondiescakes_webpage.styles import styles as st
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.page_state import PageState
-from blondiescakes_webpage.components.body_products_items.items import backend_items
+from blondiescakes_webpage.components.body_products_items.items_backend import backend_items
 from blondiescakes_webpage.pages.visual_database_updater.components_database.updater_component import updater
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.Updater import BackendUpdater
 from blondiescakes_webpage.pages.visual_database_updater.component_login_database.login_state.PyMongoAPI import mongo_client

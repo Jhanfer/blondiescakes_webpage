@@ -21,14 +21,14 @@ def updater(button_text:str):
                         justify="between"),
                     
                     rx.flex(
-                        rx.text("URL de la imagen(URL directa)"),
-                        rx.input(placeholder="url de imagen",on_blur=BackendUpdater.set_image_url),
+                        rx.text("Descripción del articulo"),
+                        rx.input(placeholder="descripción",on_blur=BackendUpdater.set_item_description),
                         width="100%",
                         justify="between"),
-                        
+
                     rx.flex(
-                        rx.text("URL de whatsapp"),
-                        rx.input(placeholder="url de compra",on_blur=BackendUpdater.set_url_purchase),
+                        rx.text("URL de la imagen(URL directa)"),
+                        rx.input(placeholder="url de imagen",on_blur=BackendUpdater.set_image_url),
                         width="100%",
                         justify="between"),
 

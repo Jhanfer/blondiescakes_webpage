@@ -10,6 +10,7 @@ def body() -> rx.Component:
             review(),
             rx.flex(
                     rx.vstack(
+                            rx.icon(tag="wheat",color=st.ColorPalette.LINES.value),
                             rx.heading("Quienes somos",
                                     color=st.ColorPalette.ENFASIS.value
                             ),

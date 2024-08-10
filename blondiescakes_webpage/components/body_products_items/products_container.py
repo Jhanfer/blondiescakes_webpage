@@ -8,12 +8,19 @@ from blondiescakes_webpage.pages.visual_database_updater.components_database.sta
 
 def products_container() -> rx.Component:
         return rx.vstack(
-
+                        rx.flex(
+                                rx.image(
+                                        src="/body/decoration.svg",
+                                        width="15em",
+                                        #height="10em",
+                                ),
+                                top="110em"
+                        ),
                         rx.heading("DISFRUTA DEL DULCE CON",
                                 size="9",
                                 color=st.ColorPalette.ENFASIS.value,
-                                style={"font-size":"clamp(2em, 3.5vw, 3.5em)"},
-                                padding_top="2em",
+                                style={"font-size":"clamp(1.8em, 3.5vw, 3.5em)"},
+                                #padding_top="2em",
                                 padding_bottom="1em"
                         ),
                         
@@ -42,7 +49,10 @@ def products_container() -> rx.Component:
                                                 justif="center",
                                                 align="center",
                                                 size="1",
-                                                color=st.ColorPalette.ENFASIS.value
+                                                color=st.ColorPalette.ENFASIS.value,
+                                                style={
+                                                        "text-align":"normal"
+                                                }
                                         ),
 
                                         justify="center",
@@ -65,7 +75,10 @@ def products_container() -> rx.Component:
                                                 justif="center",
                                                 align="center",
                                                 size="1",
-                                                color=st.ColorPalette.ENFASIS.value
+                                                color=st.ColorPalette.ENFASIS.value,
+                                                style={
+                                                        "text-align":"normal"
+                                                }
                                         ),
 
                                         justify="center",
@@ -88,7 +101,10 @@ def products_container() -> rx.Component:
                                                 justif="center",
                                                 align="center",
                                                 size="1",
-                                                color=st.ColorPalette.ENFASIS.value
+                                                color=st.ColorPalette.ENFASIS.value,
+                                                style={
+                                                        "text-align":"normal"
+                                                }
                                         ),
 
                                         justify="center",

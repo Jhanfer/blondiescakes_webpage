@@ -14,7 +14,10 @@ def footer() -> rx.Component:
                 rx.text(f"© BlondiesCake's - Todos los derechos reservados 2019 - {datetime.date.today().year}",
                         color=st.ColorPalette.ENFASIS.value,
                         align="center",
-                        size="2"
+                        size="2",
+                        style={
+                                "text-align":"normal"
+                        }
                 ),
                 justify="center",
                 align="center",

@@ -6,9 +6,6 @@ class DrawerState(rx.State):
     show_right: bool = False
     show_top: bool = False
 
-    def top(self):
-        self.show_top = not (self.show_top)
-
     def right(self):
         self.show_right = not (self.show_right)
 
@@ -30,29 +27,96 @@ def drawer() -> rx.Component:
         rx.chakra.drawer(
             rx.chakra.drawer_overlay(
                 rx.chakra.drawer_content(
-                    rx.chakra.drawer_header("Confirm"),
+                    rx.chakra.drawer_header(
+                                rx.image(
+                                    src="/navbar/navbar.png",
+                                    background_color=st.ColorPalette.MAIN.value,
+                                    border_radius="15px",
+                                    padding="1em",
+                                    margin_bottom="1em",
+                                    on_click=[DrawerState.right,rx.redirect("/")],
+                                    style={
+                                        "cursor":"pointer"
+                                    }
+                                ),
+                            "Menú",
+                            color=st.ColorPalette.MAIN.value,
+                            justify="center"
+                    ),
                     rx.chakra.drawer_body(
-                        "Do you want to confirm example?"
+                            rx.chakra.vstack(
+                                menu_button("INICIO","/","home"),
+                                menu_button("CONTACTO","/nosotros#contacto","phone"),
+                                menu_button("ENVÍOS","/nosotros#envios","truck"),
+                                menu_button("NOSOTROS","/nosotros","user"),
+                                menu_button("VISIÓN","/nosotros#vision","telescope"),
+                                menu_button("MISIÓN","/nosotros#mision","circle-slash"),
+
+                                width="100%",
+                                spacing="4"
+                            ),
+                        display=["flex", "flex", "flex", "flex", "none"],
                     ),
                     rx.chakra.drawer_footer(
-                        rx.chakra.button(
-                            "Close",
-                            on_click=DrawerState.right,
-                        )
+                        rx.button(
+                                rx.chakra.hstack(
+                                    rx.icon(tag="ban",color=st.ColorPalette.MAIN.value,size=20),
+                                    rx.text("Cerrar",color=st.ColorPalette.MAIN.value),
+                                    spacing="9"
+                                ),
+                            width="100%",
+                            on_click=[DrawerState.right],
+                            padding="0.5em",
+                            style={
+                                "justify-content":"normal",
+                                "variant":"ghost",
+                                "border-radius":"15px",
+                                "background_color":"transparent",
+                            }
+                        ),
                     ),
                     bg="#463626",
                 )
             ),
             is_open=DrawerState.show_right,
+            close_on_esc=True,
+            close_on_overlay_click=True,
+            on_esc=DrawerState.right,
+            on_overlay_click=DrawerState.right,
+            size="xs"
+            
         ),
     )
 
 
 
+def menu_button(title:str,route:str,icon:str) -> rx.Component:
+    return  rx.button(
+                    rx.chakra.hstack(
+                        rx.icon(tag=icon,color=st.ColorPalette.MAIN.value,size=20),
+                        rx.text(title,color=st.ColorPalette.MAIN.value),
+                        spacing="9"
+                    ),
+                width="100%",
+                on_click=[DrawerState.right,rx.redirect(route)],
+                padding="0.5em",
+                style={
+                    "justify-content":"normal",
+                    "variant":"ghost",
+                    "border-radius":"15px",
+                    "background_color":"transparent",
+                }
+            )
 
-#terminar el sidebar o buscar mejores opciones de sidebar
 
 
+
+
+
+
+
+
+"""="
 
 def erre(): 
     return rx.drawer.root(
@@ -102,56 +166,4 @@ def erre():
             direction="right",
             )
 
-def menu_button(title:str,route:str) -> rx.Component:
-    return  rx.link(
-                rx.button(
-                    title,
-                    width="100%",
-                    radius="none",
-                ),
-                href=route,
-                is_external=False,
-            )
-
-
-
-
-
-
-
-
-
-
-
-
 """
-
-
-"""
-
-
-
-"""def drawer_example():
-    return rx.chakra.vstack(
-        rx.chakra.button(
-            "Abrir Drawer", on_click=DrawerState.toggle_drawer
-        ),
-        rx.chakra.drawer(
-            rx.chakra.drawer_overlay(
-                rx.chakra.drawer_content(
-                    rx.chakra.drawer_header("Confirmar"),
-                    rx.chakra.drawer_body(
-                        "¿Quieres confirmar el ejemplo?"
-                    ),
-                    rx.chakra.drawer_footer(
-                        rx.chakra.button(
-                            "Cerrar y Actualizar",
-                            on_click=DrawerState.close_and_refresh,
-                        )
-                    ),
-                    bg="rgba(0, 0, 0, 0.3)",
-                )
-            ),
-            is_open=DrawerState.show_right,
-        ),
-    )"""
