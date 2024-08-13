@@ -3,14 +3,15 @@ from blondiescakes_webpage.components.navbar.navbar import navbar
 from blondiescakes_webpage.views.index_body.footer.footer import footer
 from blondiescakes_webpage.styles import styles as st
 import re
+from blondiescakes_webpage.styles import constants as ct
 
 
 class SendWatsAppMessage(rx.State):
     message:str
     def send_message(self):
         if not len(self.message) == 0:
-            num="121212"
-            message = f"https://wa.me/{num}?text={re.sub(r'(\S)\s+(\S)', r'\1%20\2', self.message.strip())}"
+            message = f"https://wa.me/{ct.CONTACT_NUMBER}?text={re.sub(r'(\S)\s+(\S)', r'\1%20\2', self.message.strip())}"
+            print(message)
             return rx.redirect(message)
     def update_message(self,message:str):
         self.message = message
@@ -231,18 +232,72 @@ def us() -> rx.Component:
         rx.vstack(
                 rx.heading("ENVIOS A TODA CALI",padding_top="2em"),
                 rx.flex(
-                    rx.image(src="/nosotros/delivery.svg",width="35em",heigth="auto"),
+                    rx.image(
+                        src="/nosotros/delivery.svg",
+                        width="28em",
+                        heigth="auto",
+                        position="relative"
+                    ),
+
+                    #Mobile
                     rx.flex(
-                        rx.text("• Garantizamos una entrega segura y a tiempo."),
-                        rx.text("• Utilizamos empaques especiales para garantizar que llegue a tu hogar en perfectas condiciones."),
-                        rx.text("• Te ofrecemos opciones de entrega flexibles."),
-                        rx.text("• Contáctanos y te brindaremos toda la información que necesitas para hacer tu pedido."),
+                            rx.text("""• Garantizamos una entrega segura y a tiempo.""",
+                                    position="relative",
+                                    
+                            ),
+                            
+                            rx.text("""• Utilizamos empaques especiales para garantizar 
+                                    que llegue a tu hogar en perfectas condiciones.""",
+                                    position="relative",
+                                    
+                            ),
+                            rx.text("• Te ofrecemos opciones de entrega flexibles.",
+                                    position="relative",
+                                    
+                            ),
+                            
+                            rx.text("""• Contáctanos y te brindaremos toda la 
+                                    información que necesitas para hacer tu pedido.""",
+                                    position="relative",
+                                    
+                            ),
                         width="20em",
                         max_width="35em",
                         direction="column",
-                        spacing="5"
+                        spacing="5",
+                        display=["flex", "flex", "none", "none", "none"]
                     ),
                     
+                    #Desktop
+                    rx.flex(
+                            rx.text("""• Garantizamos una entrega segura y a tiempo.""",
+                                    position="relative",
+                                    left="-10em"
+                            ),
+                            
+                            rx.text("""• Utilizamos empaques especiales para garantizar 
+                                    que llegue a tu hogar en perfectas condiciones.""",
+                                    position="relative",
+                                    left="-6em"
+                            ),
+                            rx.text("• Te ofrecemos opciones de entrega flexibles.",
+                                    position="relative",
+                                    left="-5em"
+                            ),
+                            
+                            rx.text("""• Contáctanos y te brindaremos toda la 
+                                    información que necesitas para hacer tu pedido.""",
+                                    position="relative",
+                                    left="-3em"
+                            ),
+                        width="20em",
+                        max_width="35em",
+                        direction="column",
+                        spacing="5",
+                        display=["none", "none", "flex", "flex", "flex"],
+                    ),
+
+
                     justify="center",
                     align="center",
                     direction="row",
@@ -251,7 +306,7 @@ def us() -> rx.Component:
                 ),
             height="auto",
             width="100%",
-            background_color="pink",
+            background_color="#D1C3B2",
             justify="center",
             align="center",
             id="envios"
@@ -283,11 +338,11 @@ def us() -> rx.Component:
                 ),
 
                 
-                rx.text(f"Llámanos a nuestro teléfono ",rx.link("12345678",href="tel: +5712345678"), " o"),
+                rx.text(f"Llámanos a nuestro teléfono ",rx.link(ct.CONTACT_NUMBER,href=f"tel: {ct.CONTACT_NUMBER}"), " o"),
                 rx.card(
                     rx.vstack(    
                         rx.chakra.avatar(
-                            size="xl"
+                            size="2xl"
                         ),
                         rx.text("escríbenos a nuestro WhatsApp!"),
                         rx.text_area(
@@ -295,7 +350,8 @@ def us() -> rx.Component:
                                     placeholder="escribe tu mensaje",
                                     on_blur=SendWatsAppMessage.update_message,
                                     on_change=SendWatsAppMessage.update_message,
-                                    on_focus=SendWatsAppMessage.update_message
+                                    on_focus=SendWatsAppMessage.update_message,
+                                    color_scheme="gray"
                         ),
                         rx.button("enviar whatsapp",on_click=SendWatsAppMessage.send_message),
                     
@@ -307,17 +363,18 @@ def us() -> rx.Component:
                 ),
                 title="contacto",
                 size="5",
-                variant="surface",
-                padding="5em"
+                variant="classic",
+                padding="5em",
+                background_color=st.ColorPalette.ENFASIS.value,
+                
             ),
             position="relative",
-            margin_top="10em",
             padding="1em",
             margin_bottom="5em",
             direction="column",
             justify="center",
             align="center",
-            spacing="6",
+            spacing="5",
             
         ),
 

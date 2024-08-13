@@ -9,75 +9,47 @@ from blondiescakes_webpage.components.items_dialog_roots.dialogs_roots import di
 
 def items() -> rx.Component:
     return rx.flex(
-                rx.box(
-                    rx.cond(
-                        PageState.class_buttercream,
-                                rx.vstack(
-                                    
-                                    rx.heading("Buttercream",size="8",color=st.ColorPalette.ENFASIS.value,padding_bottom="1em",style={"font-family":"'playwrite ar'"}),
-                                    rx.hstack(
-                                        rx.flex(
-                                            rx.foreach( #iterar
-                                                PageState.class_buttercream, #elemento iterado (lista)
-                                                featured_link
-                                            ), #llama a la función y le pasa como argumento cada elemento iterado
-                                            spacing="7",
-                                            wrap="wrap",
-                                            width="100%",
-                                            justify="center",
-                                            align="center"),
-                                        align="center"
-                                        ),
+                    rx.box(
+                        rx.cond(
+                            PageState.class_buttercream,
+                                    rx.vstack(
+                                        
+                                        rx.heading("Buttercream",size="8",color=st.ColorPalette.ENFASIS.value,padding_bottom="1em",style={"font-family":"'playwrite ar'"}),
+                                        rx.hstack(
+                                            rx.flex(
+                                                rx.foreach( #iterar
+                                                    PageState.class_buttercream, #elemento iterado (lista)
+                                                    featured_link
+                                                ), #llama a la función y le pasa como argumento cada elemento iterado
+                                                spacing="7",
+                                                wrap="wrap",
+                                                width="100%",
+                                                justify="center",
+                                                align="center"),
+                                            align="center"
+                                            ),
 
-                                    justify="center",
-                                    align="center",
-                                    width="100%",
-                                    padding=st.Size.DEFAULT.value,
-                                    spacing=st.SizeNoEm.MEDIUM.value
-                                ),
-                    ),
-                on_mount=PageState.get_database_data_alter("buttercream"),
-                padding_top="1em"
-                ),
-
-
-                rx.box(
-                    rx.cond(
-                        PageState.class_frias,
-                            rx.vstack(
-                                rx.heading("Frias",size="8",color=st.ColorPalette.ENFASIS.value,padding_bottom="1em",style={"font-family":"'playwrite ar'"}),
-                                rx.hstack(
-                                    rx.flex(
-                                        rx.foreach( #iterar
-                                            PageState.class_frias, #elemento iterado (lista)
-                                            featured_link), #llama a la función y le pasa como argumento cada elemento iterado
-                                        spacing="7",
-                                        wrap="wrap",
-                                        width="100%",
                                         justify="center",
-                                        align="center"),
-                                    align="center"),
-
-                                justify="center",
-                                align="center",
-                                width="100%",
-                                padding=st.Size.DEFAULT.value,
-                                spacing=st.SizeNoEm.MEDIUM.value
-                            ),
+                                        align="center",
+                                        width="100%",
+                                        padding=st.Size.DEFAULT.value,
+                                        spacing=st.SizeNoEm.MEDIUM.value
+                                    ),
                         ),
-                    on_mount=PageState.get_database_data_alter("frias"),
-                    direction="row"
+                    on_mount=PageState.get_database_data_alter("buttercream"),
+                    padding_top="1em"
                     ),
+
 
                     rx.box(
                         rx.cond(
-                            PageState.class_tradicionales,
+                            PageState.class_frias,
                                 rx.vstack(
-                                    rx.heading("Tradicionales",size="8",color=st.ColorPalette.ENFASIS.value,padding_bottom="1em",style={"font-family":"'playwrite ar'"}),
+                                    rx.heading("Frias",size="8",color=st.ColorPalette.ENFASIS.value,padding_bottom="1em",style={"font-family":"'playwrite ar'"}),
                                     rx.hstack(
                                         rx.flex(
                                             rx.foreach( #iterar
-                                                PageState.class_tradicionales, #elemento iterado (lista)
+                                                PageState.class_frias, #elemento iterado (lista)
                                                 featured_link), #llama a la función y le pasa como argumento cada elemento iterado
                                             spacing="7",
                                             wrap="wrap",
@@ -92,11 +64,38 @@ def items() -> rx.Component:
                                     padding=st.Size.DEFAULT.value,
                                     spacing=st.SizeNoEm.MEDIUM.value
                                 ),
+                            ),
+                        on_mount=PageState.get_database_data_alter("frias"),
+                        direction="row"
                         ),
-                    on_mount=PageState.get_database_data_alter("tradicionales")
-                    ),
 
-                        
+                        rx.box(
+                            rx.cond(
+                                PageState.class_tradicionales,
+                                    rx.vstack(
+                                        rx.heading("Tradicionales",size="8",color=st.ColorPalette.ENFASIS.value,padding_bottom="1em",style={"font-family":"'playwrite ar'"}),
+                                        rx.hstack(
+                                            rx.flex(
+                                                rx.foreach( #iterar
+                                                    PageState.class_tradicionales, #elemento iterado (lista)
+                                                    featured_link), #llama a la función y le pasa como argumento cada elemento iterado
+                                                spacing="7",
+                                                wrap="wrap",
+                                                width="100%",
+                                                justify="center",
+                                                align="center"),
+                                            align="center"),
+
+                                        justify="center",
+                                        align="center",
+                                        width="100%",
+                                        padding=st.Size.DEFAULT.value,
+                                        spacing=st.SizeNoEm.MEDIUM.value
+                                    ),
+                            ),
+                        on_mount=PageState.get_database_data_alter("tradicionales")
+                        ),
+
                     wrap="wrap",
                     spacing="8",
                     justify="center",

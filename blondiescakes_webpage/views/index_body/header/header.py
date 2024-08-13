@@ -9,14 +9,20 @@ def header() -> rx.Component:
                     rx.hstack(
                             rx.spacer(),
                             motion(
-                                    rx.flex(
-                                        rx.image(src="/header/back.svg",width="15em",height="auto"),
-                                        rx.text("PASTELERÍA A LA CARTA",
-                                                color=st.ColorPalette.ENFASIS.value,
-                                                padding_left="1.7em",
-                                                padding_top="2em",
-                                                position="absolute"
+                                    motion(
+                                        rx.flex(
+                                            rx.image(src="/header/back.svg",width="15em",height="auto"),
+                                            rx.text("PASTELERÍA A LA CARTA",
+                                                    color=st.ColorPalette.ENFASIS.value,
+                                                    padding_left="1.7em",
+                                                    padding_top="2em",
+                                                    position="absolute"
+                                            ),
+                                            on_click=rx.redirect("/#productos")
                                         ),
+                                        while_hover={"scale":1.1},
+                                        while_tap={"scale":0.9},
+                                        transition={"type": "spring", "stiffness":300,"damping":20}
                                     ),
                                 initial={"opacity":0,"x":-50},
                                 animate={"opacity":1,"x":0},
