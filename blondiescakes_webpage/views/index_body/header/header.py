@@ -11,7 +11,12 @@ def header() -> rx.Component:
                             motion(
                                     motion(
                                         rx.flex(
-                                            rx.image(src="/header/back.svg",width="15em",height="auto"),
+                                            rx.image(
+                                                src="/header/back.svg",
+                                                width="15em",
+                                                height="auto",
+                                                alt="Fondo rosa en forma de óvalo"
+                                            ),
                                             rx.text("PASTELERÍA A LA CARTA",
                                                     color=st.ColorPalette.ENFASIS.value,
                                                     padding_left="1.7em",

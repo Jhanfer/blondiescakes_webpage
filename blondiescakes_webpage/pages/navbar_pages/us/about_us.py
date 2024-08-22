@@ -4,7 +4,7 @@ from blondiescakes_webpage.views.index_body.footer.footer import footer
 from blondiescakes_webpage.styles import styles as st
 import re
 from blondiescakes_webpage.styles import constants as ct
-
+from blondiescakes_webpage.utils import utils as ut
 
 class SendWatsAppMessage(rx.State):
     message:str
@@ -19,15 +19,20 @@ class SendWatsAppMessage(rx.State):
 
 
 @rx.page(
-    route="/nosotros"
+    route=ut.ABOUTUS_ROUTE,
+    title=ut.about_us_title,
+    description=ut.about_us_description,
+    meta=ut.about_us_meta,
+
 )
 
 def us() -> rx.Component:
     return rx.vstack(
+        ut.lang(),
         navbar(),
 
         rx.flex(
-            rx.heading("¿Quienes Somos?",position="relative",style={"font-size":"clamp(1.875rem, 1.301rem + 2.449vw, 3.95rem)"}),
+            rx.heading("Detrás de los postres",position="relative",style={"font-size":"clamp(1.875rem, 1.301rem + 2.449vw, 3.95rem)"}),
             rx.flex( 
                 rx.box(    
                     rx.image(
@@ -35,6 +40,7 @@ def us() -> rx.Component:
                             width="clamp(1rem, 9vw + 20rem, 30rem)",
                             height="auto",
                             class_name="image-container",
+                            alt="Foto de Joselyn, fundadora de Blondie´s Cake sosteniendo su logo"
                     ),
                     class_name="container-image"
                 ),
@@ -43,12 +49,20 @@ def us() -> rx.Component:
                             style={"font-size":"clamp(2rem, 1.5vw + 1.8rem, 1.8rem)"}
                     ),
                     rx.text("""
-                            Me encanta hacer tortas personalizadas que se ajusten a tu estilo
-                            y el tema de tu evento. Desde tortas de cumpleaños temáticas hasta
-                            tortas de bodas, ¡Lo hago todo! ¿Deseas una deliciosa torta cubierta
-                            con buttercream y flores comestibles? ¡Llámame! ¿Quieres una clásica
-                            torta de chocolate con un toque moderno?¡Envíame un mensaje
-                            para convertir tu idea en una realidad azucarada!""",
+                            Apesar de tener mas 8 años de experiencia en el sector,
+                            Blondies nace en un momento de aislamiento social con sus
+                            restricciones, la Pandemia del Covid 2019, tuve que
+                            enfrentar muchas dificultades por falta de trabajo, debido a
+                            que la empresa donde laboraba cerrò sus puertas, la falta
+                            de movilidad entre otros obstáculos, me vi en la necesidad
+                            de crear productos de pasteleria y reposterìa
+                            personalizados, ofreciendo una gran variedad de opciones y
+                            alternativas a mis clientes, creando asì una nueva demanda
+                            en la modalidad virtual, mirando hacia el futuro con la
+                            esperanza de crecer, de brindarle a nuestros clientes un
+                            buen servicio, adaptàndonos a nuevos escenarios que
+                            puedan surjir en el futuro.
+                            """,
                             style={"font-size":"clamp(1em, 1.5vw + 0.5em, 1.3em)"}
                         ),
                 max_width="35em",
@@ -62,17 +76,21 @@ def us() -> rx.Component:
             ),
             
             rx.vstack(    
-                rx.heading("""¿Hay algo más especial que celebrar un
-                        momento importante con un pastel delicioso?""",
+                rx.heading("""
+                        ¿Qué mejor manera de celebrar un momento importante que 
+                        con un pastel delicioso elaborado con maestría y cuidado?
+                        """,
                         style={"font-size":"clamp(2rem, 1.5vw + 1.8rem, 1.8rem)"}
                 ),
-                rx.text("""Lo mío son los ingredientes frescos y de temporada.
-                        Considero que una torta rica debe ser, además, sana.
-                        Si los productos locales son lo tuyo y los sabores
-                        auténticos te encantan, ¡aquí estamos para vos!
-                        ¿Qué opinás de una torta de zanahoria con frosting 
-                        de queso crema y nueces? ¿Y qué me decís de un red
-                        velvet clásico pero regular y sin colorante artificial?""",
+                rx.text(
+                    """ 
+                    En Blondies, nos adaptamos a los nuevos tiempos, ofreciendo 
+                    nuestros servicios de manera virtual, pero siempre con la misma 
+                    calidad y atención personalizada. Nuestro objetivo es crecer junto 
+                    a ti, brindándote el mejor servicio y los pasteles más deliciosos 
+                    para tus momentos especiales."
+                    """,
+
                         style={"font-size":"clamp(1em, 1.5vw + 0.5em, 1.3em)"}
                         
                 ),
@@ -86,12 +104,12 @@ def us() -> rx.Component:
                 rx.flex(
                     rx.flex(
                         rx.heading("1"),
-                        rx.heading("Diseño personalizado"),
+                        rx.heading("Versatilidad en Eventos"),
                         rx.text("""
-                                Soy una arquitecta de sabores. Hago tus cosas y diseño 
-                                tartas, tan deliciosas como bellos. Desde el primer bocado
-                                de tela hasta tu último aliento gracias al último toque de 
-                                glaseado, tu torta será un trabajo de arte delicioso.
+                                Ofrecemos una amplia gama de opciones para 
+                                diversos tipos de eventos, incluyendo corporativos, 
+                                cumpleaños, aniversarios y bodas. Nuestra flexibilidad 
+                                nos permite adaptarnos a las necesidades específicas de cada cliente.
                                 """
                         ),
                     width="20em",
@@ -99,12 +117,12 @@ def us() -> rx.Component:
                     ),
                     rx.flex(
                         rx.heading("2"),
-                        rx.heading("Colaboración"),
+                        rx.heading("Descuentos por Volumen"),
                         rx.text("""
-                                Trabajamos mano a mano para crear tortas que enamoren 
-                                todos tus sentidos. Tu visión, mi pasión, juntos creamos 
-                                momentos dulces para recordar. Cada bocado es una experiencia 
-                                única, diseñada para deleitar tu paladar y sorprender a tus invitados.
+                                Premiamos la confianza de nuestros clientes ofreciendo 
+                                descuentos adicionales en pedidos de mayor volumen. Además, 
+                                brindamos opciones de personalización de productos para hacer 
+                                cada orden única.
                                 """
                         ),
                     width="20em",
@@ -122,14 +140,12 @@ def us() -> rx.Component:
                 rx.flex(
                     rx.flex(
                         rx.heading("3"),
-                        rx.heading("Ingredientes naturales"),
+                        rx.heading("Compromiso Social"),
                         rx.text("""
-                                Mis pasteles son más que simples postres; son una oda 
-                                a los ingredientes frescos y de temporada. Cada mordisco 
-                                es un viaje por los sabores más genuinos, solo utilizo 
-                                productos frescos y de la mejor calidad. Ya sean frutas 
-                                jugosas o nueces crujientes, cada ingrediente se elige 
-                                con esmero para proporcionar una experiencia eterna.
+                                Trabajamos en colaboración con la Fundación Gamaliel, 
+                                canalizando parte de nuestros ingresos hacia causas benéficas. 
+                                Con cada compra, nuestros clientes contribuyen indirectamente
+                                a esta labor social.
                                 """
                         ),
                     width="20em",
@@ -137,15 +153,12 @@ def us() -> rx.Component:
                     ),
                     rx.flex(
                         rx.heading("4"),
-                        rx.heading("Innovación"),
+                        rx.heading("Apoyo Comunitario"),
                         rx.text("""
-                                Estoy constantemente innovando e intentando nuevas 
-                                formas de impresionar y encantar a mis clientes. 
-                                Me encanta probar con nuevos sabores y técnicas para 
-                                destacarme con tortas únicas e inolvidables. 
-                                Desde variantes modernas de sabores clásicos núcleo 
-                                y corteza, a rellenos exóticos y texturas completamente 
-                                innovadoras.
+                                Nuestro compromiso se extiende a diversas comunidades locales. 
+                                Distribuimos almuerzos, productos de limpieza y artículos de aseo 
+                                personal a ancianatos, refugios caninos y hogares infantiles de la 
+                                ciudad, acompañando estas donaciones con palabras de aliento y apoyo.
                                 """
                         ),
                     width="20em",
@@ -182,10 +195,12 @@ def us() -> rx.Component:
                     style={"font-size":"clamp(1.8rem, 1.5vw + 1.8rem, 1.8rem)"}
             ),
             rx.text("""
-                    Queremos ser conocidos por nuestra calidad, creatividad con 
-                    pasteles y el uso de ingredientes saludables y locales. Queremos 
-                    construir una familia de adictos a los pasteles que entiendan 
-                    la vida en la que reina el dulzor de la vida y la dulzura del amor.""",
+                    Posicionarnos en 10 años como una empresa
+                    comercializadora de productos arteanales de primera calidad
+                    en Cali, comprometidos con nuestra comunidad llevàndoles
+                    dìa a dìa experiencias ùnicas que deleiten todos sus sentidos
+                    en cada una de sus celebraciones.
+                    """,
                     style={"font-size":"clamp(1em, 1.5vw + 0.5em, 1.3em)"}    
             ),
             direction="column",
@@ -206,14 +221,11 @@ def us() -> rx.Component:
                     style={"font-size":"clamp(1.8rem, 1.5vw + 1.8rem, 1.8rem)"}
             ),
             rx.text("""
-                    Usamos solo los mejores ingredientes, frescos y de temporada, 
-                    junto con técnicas de la vieja escuela y un toque moderno, 
-                    para crear trabajos de arte sabor específicos. 
-                    Aquí en Blondie’s Cakes, nos enorgullecemos de la belleza 
-                    que se disfruta a través de nuestros productos. Ya sea para 
-                    ocasiones especiales, profesionales o simplemente disfrutando 
-                    una ocasión única, parece que Blondie’s Cakes fue hecha para 
-                    engendrar emociones y recuerdos duraderos.""",
+                    Crear una experiencia gastronòmica memorable a traves de
+                    nuestros productos de pastelerìa y reposterìa horneados y
+                    frescos de manera artesanal brindando una experiencia ùnica
+                    y agradable a nuestros clientes.
+                    """,
                     style={"font-size":"clamp(1em, 1.5vw + 0.5em, 1.3em)"}    
             ),
             direction="column",
@@ -236,7 +248,8 @@ def us() -> rx.Component:
                         src="/nosotros/delivery.svg",
                         width="28em",
                         heigth="auto",
-                        position="relative"
+                        position="relative",
+                        alt="Imagen de un repartidor en moto"
                     ),
 
                     #Mobile
@@ -344,7 +357,7 @@ def us() -> rx.Component:
                         rx.chakra.avatar(
                             size="2xl"
                         ),
-                        rx.text("escríbenos a nuestro WhatsApp!"),
+                        rx.text("escríbenos a nuestro WhatsApp!",color=st.ColorPalette.MAIN.value),
                         rx.text_area(
                                     size="3",
                                     placeholder="escribe tu mensaje",

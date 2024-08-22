@@ -10,6 +10,7 @@ from blondiescakes_webpage.pages.navbar_pages.us import about_us
 
 from blondiescakes_webpage.styles import constants as cs
 from blondiescakes_webpage.styles import styles as st
+from blondiescakes_webpage.utils import utils as ut
 
 
 app = rx.App(
@@ -20,7 +21,9 @@ app = rx.App(
         has_background=True
     ),
     head_components=[
+        ut.JsonLDScript.json_script(),
         rx.script(src=cs.ANALYTICS_SCRIPTS_1),
-        rx.script(cs.ANALYTICS_SCRIPTS_2)
+        rx.script(cs.ANALYTICS_SCRIPTS_2),
+        
     ]
 )

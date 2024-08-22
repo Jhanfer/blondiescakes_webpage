@@ -34,6 +34,7 @@ class TextColor(Enum):
 #stylesheets
 STYLESHEETS=[
     "https://fonts.googleapis.com/css?family=Playwrite+AR:weight@400&display=swap",
+    "https://fonts.googleapis.com/css?family=EB+Garamond:weight@400&display=swap",
     "/CSS/css.css"
 ]
 
@@ -49,7 +50,7 @@ STYLE_SHEET={
         "text-align":"center"
     },
     rx.text: {
-        "font_family": "pertili",
+        "font_family": "ebgaramond",
         "white_space":"normal",
         "color":ColorPalette.ENFASIS.value,
         "align":"center",

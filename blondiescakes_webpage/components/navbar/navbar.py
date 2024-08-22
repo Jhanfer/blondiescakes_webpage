@@ -69,12 +69,14 @@ def navbar_content() -> rx.Component:
 
             rx.chakra.divider(decorative=True,color=st.ColorPalette.LINES.value,border_color=st.ColorPalette.LINES.value)),
 
-        rx.image(src="/navbar/navbar.png",
-                width="7.9em",
-                height="5em",
-                position="sticky",
-                on_click=rx.redirect("/")
-            ),
+        rx.image(
+            src="/navbar/navbar.png",
+            width="7.9em",
+            height="5em",
+            position="sticky",
+            on_click=rx.redirect("/"),
+            alt="Logo de Blondie´s Cake"
+        ),
 
         rx.vstack(
             rx.flex(

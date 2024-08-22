@@ -7,20 +7,22 @@ from blondiescakes_webpage.components.wrapping_react.framer_motion import motion
 def badge() -> rx.Component:
     return rx.vstack(
 
-            rx.heading("Síguenos en instagram",
+            rx.text("Síguenos en instagram",
                     color=st.ColorPalette.MAIN.value,
                     position="absolute",
                     padding_bottom="10em",
                     size="9",
-                    display=["none","none","none","none","flex"]
+                    display=["none","none","none","none","flex"],
+                    style={"font-family":"pertili"}
             ),
 
-            rx.heading("Síguenos en instagram",
+            rx.text("Síguenos en instagram",
                     color=st.ColorPalette.MAIN.value,
                     position="absolute",
                     padding_bottom="18em",
                     size="7",
-                    display=["flex","flex","flex","flex","none"]
+                    display=["flex","flex","flex","flex","none"],
+                    style={"font-family":"pertili"}
             ),
             
             rx.vstack(
@@ -33,6 +35,7 @@ def badge() -> rx.Component:
                         height="auto",
                         top="58em",
                         left="5em",
+                        alt="Imagen decorativa de pastel de rosas",
                         style={
                             "border-radius":"100px 100px 100px 100px"
                         }
@@ -48,6 +51,7 @@ def badge() -> rx.Component:
                         height="auto",
                         top="97em",
                         right="6em",
+                        alt="Imagen decorativa de pastel de cumpleaños",
                         style={
                             "border-radius":"100px 100px 100px 100px"
                         }
@@ -62,6 +66,7 @@ def badge() -> rx.Component:
                                         src="body/badge_carousel.jpeg",
                                         width="25em",
                                         height="auto",
+                                        alt="Foto de Joselyn, fundadora de Blondie´s con una batidora",
                                         on_click=rx.redirect("https://www.instagram.com/p/C6y3SRtgcw3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==")
                                     ),
                                 while_hover={"scale":1.1},
@@ -76,6 +81,7 @@ def badge() -> rx.Component:
                                         src="body/badge_carousel2.jpeg",
                                         width="25em",
                                         height="auto",
+                                        alt="Foto de Joselyn, fundadora de Blondie´s con el logo de la empresa",
                                         on_click=rx.redirect("https://www.instagram.com/p/C6owde_gA7a/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==")
                                     ),
                                 while_hover={"scale":1.1},
@@ -90,6 +96,7 @@ def badge() -> rx.Component:
                                         src="body/badge_carousel3.jpeg",
                                         width="25em",
                                         height="auto",
+                                        alt="Foto eventos a los que ha id Blondie´s",
                                         on_click=rx.redirect("https://www.instagram.com/p/C1j5c2oAscv/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==")
                                     ),
                                 while_hover={"scale":1.1},
@@ -118,20 +125,22 @@ def badge() -> rx.Component:
                 style={"overflow":"hidden"}
             ),
             
-            rx.heading("No te olvides del dulce",
+            rx.text("No te olvides del dulce",
                     color=st.ColorPalette.MAIN.value,
                     position="absolute",
                     padding_top="10em",
                     size="9",
-                    display=["none","none","none","none","flex"]
+                    display=["none","none","none","none","flex"],
+                    style={"font-family":"pertili"}
             ),
 
-            rx.heading("No te olvides del dulce",
+            rx.text("No te olvides del dulce",
                     color=st.ColorPalette.MAIN.value,
                     position="absolute",
                     padding_top="20em",
                     size="7",
-                    display=["flex","flex","flex","flex","none"]
+                    display=["flex","flex","flex","flex","none"],
+                    style={"font-family":"pertili"}
             ),
 
             justify="center",
@@ -202,9 +211,3 @@ def stack() -> rx.Component:
             )
 
 
-def ig_image(image:list) -> rx.Component:
-    return rx.card(
-        rx.image(
-            src=image
-        )
-    )

@@ -46,7 +46,8 @@ def backend_featured_link(featured:Featured) -> rx.Component:
                             width="15em",
                             height="auto",
                             alt=f"producto: {featured.title}",
-                            align="center"),
+                            align="center"
+                            ),
                     rx.vstack(
                             rx.text(
                                 featured.title,

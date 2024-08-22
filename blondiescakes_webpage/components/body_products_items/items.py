@@ -96,6 +96,35 @@ def items() -> rx.Component:
                         on_mount=PageState.get_database_data_alter("tradicionales")
                         ),
 
+
+                        rx.box(
+                        rx.cond(
+                            PageState.class_saludables,
+                                rx.vstack(
+                                    rx.heading("Saludables",size="8",color=st.ColorPalette.ENFASIS.value,padding_bottom="1em",style={"font-family":"'playwrite ar'"}),
+                                    rx.hstack(
+                                        rx.flex(
+                                            rx.foreach( #iterar
+                                                PageState.class_saludables, #elemento iterado (lista)
+                                                featured_link), #llama a la función y le pasa como argumento cada elemento iterado
+                                            spacing="7",
+                                            wrap="wrap",
+                                            width="100%",
+                                            justify="center",
+                                            align="center"),
+                                        align="center"),
+
+                                    justify="center",
+                                    align="center",
+                                    width="100%",
+                                    padding=st.Size.DEFAULT.value,
+                                    spacing=st.SizeNoEm.MEDIUM.value
+                                ),
+                            ),
+                        on_mount=PageState.get_database_data_alter("saludables"),
+                        direction="row"
+                        ),
+
                     wrap="wrap",
                     spacing="8",
                     justify="center",
@@ -111,7 +140,7 @@ def featured_link(featured:Featured) -> rx.Component:
 
                                     rx.text(
                                         featured.title,
-                                        size="5",
+                                        size="6",
                                         align="center",
                                         color=st.ColorPalette.ENFASIS.value
                                     ),
@@ -126,7 +155,7 @@ def featured_link(featured:Featured) -> rx.Component:
                         initial={"opacity": 0, "scale": 0.5},
                         while_in_view={"opacity": 1, "scale": 1},
                         while_focus={"opacity": 1, "scale": 1},
-                        transition={"duration": 0.2,"ease":"easeOut"},#"repeatType":"reverse","repeat":"Infinity"},
+                        transition={"duration": 0.2,"ease":"easeOut"},
                         style={"display":"inline-block"}
                     ),
                 spacing="6",

@@ -39,6 +39,7 @@ def textimage_header(image:str,text:str,color:Optional[str]=st.ColorPalette.ENFA
                                         border_radius="70px 70px",
                                         object_fit="cover",
                                         top="3em",
+                                        alt="Imagen de pastel con fresas y crema",
                                         display=["flex", "flex", "none", "none", "none"],
                                 ),
 
@@ -52,6 +53,7 @@ def textimage_header(image:str,text:str,color:Optional[str]=st.ColorPalette.ENFA
                                         border_radius="70px 70px",
                                         object_fit="cover",
                                         top="3em",
+                                        alt="Imagen de pastel con fresas y crema",
                                         display=["none", "none", "flex", "flex", "flex"],
                                 ),
                         ),

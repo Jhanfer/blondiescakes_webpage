@@ -6,12 +6,19 @@ def footer() -> rx.Component:
         return rx.hstack(
 
         rx.vstack(
-                rx.image(src="/navbar/navbar.png",width="9em",height="5em"),
+                rx.image(
+                        src="/navbar/navbar.png",
+                        width="9em",
+                        height="5em",
+                        alt="Logo de Blondie´s Cake"
+                ),
+
                 rx.text("Página en construcción...",
                         color=st.ColorPalette.ENFASIS.value,
                         align="center"
                 ),
-                rx.text(f"© BlondiesCake's - Todos los derechos reservados 2019 - {datetime.date.today().year}",
+                
+                rx.text(f"© Blondie´s Cake - Todos los derechos reservados 2019 - {datetime.date.today().year}",
                         color=st.ColorPalette.ENFASIS.value,
                         align="center",
                         size="2",
