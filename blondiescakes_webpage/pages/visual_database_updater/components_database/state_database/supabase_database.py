@@ -6,8 +6,11 @@ from supabase import create_client, Client
 import dotenv
 
 
-class SupabaseAPI():
 
+
+#Supabase API
+class SupabaseAPI():
+    """Api from SUPABASE Database"""
     dotenv.load_dotenv()
     url: str = os.environ.get("SUPABASE_URL")
     key: str = os.environ.get("SUPABASE_KEY")
@@ -17,6 +20,7 @@ class SupabaseAPI():
     success:dict={}
 
     def act_data(self):
+        """Update data"""
         dotenv.load_dotenv()
         if self.url and self.key:
             self.supabase: Client = create_client(self.url, self.key)
@@ -25,6 +29,7 @@ class SupabaseAPI():
 
 
     def get_all_data(self):
+        """Gets all data"""
         self.act_data()
         response = self.supabase.table("Images_database").select("*").execute()
 
@@ -46,6 +51,7 @@ class SupabaseAPI():
 
 
     def get_data_alter(self,categorie:str):
+        """Get data based on the type data required"""
         self.act_data()
         response = self.supabase.table("Images_database").select("*").execute()
 
@@ -132,9 +138,9 @@ class SupabaseAPI():
                 self.errors="No se pudo subir"
                 print(self.errors)
 
-
+    
     def delete_data(self,id:list):
-
+        """Deletes Data"""
         self.act_data()
 
         if id and isinstance(id, list):
@@ -154,8 +160,8 @@ class SupabaseAPI():
             print("No eliminado: ID no válido")       
 
 
-
     def get_google_json_credential(self):
+        """Gets Google API Credential for works"""
         self.act_data()
         response = self.supabase.table("Google analytics API Credentials").select("*").execute()
         datos = {}
@@ -166,6 +172,79 @@ class SupabaseAPI():
         return datos
 
 
+    ##Pages Updater##
+
+    # Highlight updater #
+    def get_highlight(self):
+        self.act_data()
+        response = self.supabase.table("Destacado Página principal").select("*").eq("id", 1).execute()
+
+        highlight = []
+
+        if len(response.data) > 0:
+            switch=True
+            for featured_item in response.data:
+                highlight.append(
+                    Highlights(
+                        title=featured_item["title"],
+                        description=featured_item["description"],
+                        image_url=featured_item["image_url"],
+                        switch=switch
+                    )
+                )
+        return highlight
+
+    def highlight_updater(self, title:str, description:str, image_url:str):
+        self.act_data()
+        response = self.supabase.table("Destacado Página principal").update({"title": title, "description":description, "image_url":image_url}).eq("id", 1).execute()
+
+
+    # Windows updater #
+    def get_windows(self):
+        self.act_data()
+        response = self.supabase.table("windows_index_component").select("*").execute()
+
+        windows_data = []
+        windows_data_titles = []
+
+        if len(response.data) > 0:
+            switch = True
+            for featured_items in response.data:
+                if featured_items["id"] == 1:
+                    windows_data_titles.append(
+                        [featured_items["title"],
+                        featured_items["description"]]
+                    )
+                    windows_data.append(
+                        WinData(
+                            id=featured_items["id"],
+                            text=featured_items["text"],
+                            image_url=f"url('{featured_items["image_url"]}')",
+                            switch=switch
+                        )
+                    )
+                else:
+                    windows_data.append(
+                        WinData(
+                            id=featured_items["id"],
+                            text=featured_items["text"],
+                            image_url=f"url('{featured_items["image_url"]}')",
+                            switch=switch
+                        )
+                    )
+        return [windows_data_titles,windows_data]
+
+
+    def windows_updater(self, id:str, title:str, description:str, image_url:str, text:str):
+        self.act_data()
+        if not id == "1":
+            response = self.supabase.table("windows_index_component").update({"title": title, "description":description, "image_url":image_url, "text":text}).eq("id", id).execute()
+            print(response)
+        else:
+            response = self.supabase.table("windows_index_component").update({"title": title, "description":description, "image_url":image_url, "text":text}).eq("id", 1).execute()
+
+
+#Bases
 class Featured(rx.Base):
     id:str
     image_url:str
@@ -175,17 +254,16 @@ class Featured(rx.Base):
     categorie:str
 
 
-
-#cosas a crear
-"""
-1 sistema que me permita ver las fotos que están subidas - Hecho
-2 sistema de autenticación de usuario - Hecho
-3 crear id, subir url de imagen, subir titulo, fecha de subida - Hecho
-4 eliominacion de imagenes - Hecho
-5 subida de imagenes - Hecho
-"""
+class Highlights(rx.Base):
+    title:str
+    description:str
+    image_url:str
+    switch:bool
 
 
 
-
-
+class WinData(rx.Base):
+    id:str
+    text:str
+    image_url:str
+    switch:bool

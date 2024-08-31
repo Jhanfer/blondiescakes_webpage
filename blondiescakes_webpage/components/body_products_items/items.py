@@ -17,10 +17,12 @@ def items() -> rx.Component:
                                         rx.heading("Buttercream",size="8",color=st.ColorPalette.ENFASIS.value,padding_bottom="1em",style={"font-family":"'playwrite ar'"}),
                                         rx.hstack(
                                             rx.flex(
+
                                                 rx.foreach( #iterar
                                                     PageState.class_buttercream, #elemento iterado (lista)
                                                     featured_link
                                                 ), #llama a la función y le pasa como argumento cada elemento iterado
+                                                
                                                 spacing="7",
                                                 wrap="wrap",
                                                 width="100%",

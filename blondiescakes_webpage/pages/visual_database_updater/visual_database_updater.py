@@ -8,6 +8,9 @@ from blondiescakes_webpage.pages.visual_database_updater.component_login_databas
 from blondiescakes_webpage.pages.visual_database_updater.component_login_database.login_state.cookies import CookieState
 from blondiescakes_webpage.styles import constants as c
 from blondiescakes_webpage.state_general.analytics_api import GoogleAnalyticsAPI
+from blondiescakes_webpage.pages.visual_database_updater.components_database.update_or_change_index_text import index_text_updater
+from blondiescakes_webpage.components.index_edit_components.highlight import IndexHighLight
+from blondiescakes_webpage.components.index_edit_components.other_products_windows import IndexWindows
 
 from jose import jwt
 from jose import ExpiredSignatureError
@@ -101,7 +104,7 @@ def image_updater_page() -> rx.Component:
                                                     background_color="#ec1c1c",
                                                     color="#000000",
                                                     disabled=BackendUpdater.checked,
-                                                    on_click=lambda:[BackendUpdater.delete_database_items,BackendUpdater.refresh_page],
+                                                    on_click=lambda:[BackendUpdater.delete_database_items,rx.call_script("window.location.reload()")],
                                                     padding_left="1em"
                                                 ),
                                     justify="between",
@@ -129,10 +132,13 @@ def image_updater_page() -> rx.Component:
                                         rx.tabs.trigger("Frias", value="tab4", color_scheme="pink", color="black"),
                                         rx.tabs.trigger("Tradicionales", value="tab5", color_scheme="pink", color="black"),
                                         rx.tabs.trigger("Saludables", value="tab6", color_scheme="pink", color="black"),
+                                        rx.tabs.trigger("Editar página", value="tab7", color_scheme="pink", color="black"),
+                                        
                                         style={"justify-content":"center"},
                                         size="1"
                                     ),
 
+                                    #Google Analitycs Charts 
                                     rx.tabs.content(
                                         rx.box(
                                                 rx.recharts.bar_chart(
@@ -206,6 +212,15 @@ def image_updater_page() -> rx.Component:
                                         ),
                                         value="tab6",
                                     ),
+
+                                    rx.tabs.content(
+                                        rx.box(
+                                            index_text_updater(),
+                                            style={"justify-content":"center"}
+                                        ),
+                                        value="tab7",
+                                    ),
+
                                     style={"justify-content":"center"},
                                     
                                 ),
@@ -238,7 +253,9 @@ def image_updater_page() -> rx.Component:
             ),
         align="center",
         justify="center",
-        width="100%")
+        width="100%",
+        on_mount=IndexHighLight.get_data()
+        )
 
 
 

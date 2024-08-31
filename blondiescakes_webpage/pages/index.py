@@ -6,7 +6,8 @@ from blondiescakes_webpage.views.index_body.body.body import body
 from blondiescakes_webpage.views.index_body.footer.footer import footer
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.page_state import PageState
 from blondiescakes_webpage.utils import utils as ut
-import json
+from blondiescakes_webpage.components.index_edit_components.highlight import IndexHighLight
+
 
 @rx.page(
         route=ut.INDEX_ROUTE,
@@ -14,6 +15,7 @@ import json
         image=ut.preview,
         description=ut.index_description,
         meta=ut.index_meta,
+
 
         #script_tags: list[Any] | None = None,
 )

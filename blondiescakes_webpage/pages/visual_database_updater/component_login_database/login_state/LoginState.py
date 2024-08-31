@@ -38,21 +38,23 @@ class LoginState(rx.State):
 
     def auth_user(self):
         
-        if self.rate_limiter.is_rate_limited(self.username):
+        if not self.rate_limiter.is_rate_limited(self.username):
+            
+            # Buscar usuario en la base de datos
+            user = mongo_client.test.users.find_one({"username": self.username})
+            if not user:
+                return rx.toast.error("Usuario o contraseña incorrectos")
+
+            # Verificar contraseña
+            if not bcrypt.verify(self.password, user["password"]):
+                return rx.toast.error("Usuario o contraseña incorrectos")
+        else:
             return rx.toast.error("Demasiados intentos. Por favor, intente más tarde.")
-        # Buscar usuario en la base de datos
-        user = mongo_client.test.users.find_one({"username": self.username})
-        if not user:
-            return rx.toast.error("Usuario o contraseña incorrectos")
-
-        # Verificar contraseña
-        if not bcrypt.verify(self.password, user["password"]):
-            return rx.toast.error("Usuario o contraseña incorrectos")
-
+        
         # Generar token
         page_id = str(uuid4())
         user_id = str(user["_id"])
-        access_token_expiration = datetime.now(tz=timezone.utc) + timedelta(minutes=c.AC_DURATION)
+        access_token_expiration = datetime.now(tz=timezone.utc) + timedelta(minutes=int(c.AC_DURATION))
         access_token = {"sub": self.username,"exp": access_token_expiration}
         token = {
             "access_token": jwt.encode(access_token, key=c.SEED, algorithm=c.AL),

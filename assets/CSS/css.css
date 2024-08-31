@@ -234,3 +234,16 @@
     50% 0%);
 }
 
+
+
+
+
+
+
+.windows-container {
+    z-index: -1;
+}
+
+.windows-container::before {
+    filter: brightness(0.2);
+}
