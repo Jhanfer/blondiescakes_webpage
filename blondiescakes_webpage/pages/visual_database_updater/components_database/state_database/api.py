@@ -1,4 +1,4 @@
-from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_database import SupabaseAPI,Featured, Highlights, WinData
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_database import SupabaseAPI,Featured, Highlights, WinData, ReviewsBase, IndexSumary
 
 supabase_api=SupabaseAPI()
 
@@ -32,3 +32,19 @@ async def get_windows_data() -> list[WinData]:
 
 def update_windows(id:str, title:str, description:str, image_url:str, text:str):
     supabase_api.windows_updater(id,title,description,image_url,text)
+
+
+# Reviews #
+async def get_reviews_data_api() -> list[ReviewsBase]:
+    return supabase_api.get_reviews_data()
+
+def update_reviews(google_json):
+    supabase_api.update_reviews_data(google_json)
+
+
+# Sumary Texts #
+async def get_sumary_data() -> list[IndexSumary]:
+    return supabase_api.get_index_sumary_text()
+
+def update_sumary_data(index_text_json:dict):
+    supabase_api.update_sumary_data(index_text_json)

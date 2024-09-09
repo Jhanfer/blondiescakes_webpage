@@ -3,8 +3,8 @@ from blondiescakes_webpage.components.wrapping_react.framer_motion import motion
 from blondiescakes_webpage.styles import styles as st
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_database import WinData
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.api import get_windows_data
-from blondiescakes_webpage.pages.visual_database_updater.components_database.updater_component import updater_windows
-from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.Updater import IndexWindowsUpdater
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.updater_components.update_windows_gui import updater_windows
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.updaters_states.index_windows_updater import IndexWindowsUpdater
 
 
 class IndexWindows(rx.State):
@@ -34,7 +34,10 @@ def windows() -> rx.Component:
                                         size="9",
                                         padding_top="1em",
                                         padding_bottom="1em",
-                                        style={"font-family":"pertili"}
+                                        style={
+                                                "font-family":"pertili",
+                                                "font-size":"clamp(3rem, 3.5vw + 1.8rem, 3.8rem)"
+                                        }
                                 ),
                                 rx.hstack(
                                         rx.flex(
@@ -73,7 +76,9 @@ def windows() -> rx.Component:
                                                 rx.text(
                                                         IndexWindows.description,
                                                 color=st.ColorPalette.ENFASIS.value,
-                                                style={"font-size":"clamp(1em, 1.5vw + 0.5em, 1.3em)"}
+                                                style={
+                                                        "font-size":"clamp(1em, 1.5vw + 0.5em, 1.3em)"
+                                                }
                                                 ),
                                         max_width="60em",
                                         width="100%",
@@ -102,28 +107,24 @@ def windows() -> rx.Component:
 def other_products(featured:WinData) -> rx.Component:
         return motion(
                 rx.flex(
-                        rx.text(
-                                featured.text,
-                                z_index="100000",
-                                color=st.ColorPalette.MAIN.value,
-                                style={
-                                        "font-size":"2em",
-                                },
-                                position="absolute"
-                        ),
                         rx.flex(
-                                
+                                rx.text(
+                                        featured.text,
+                                        z_index="100000",
+                                        color=st.ColorPalette.MAIN.value,
+                                        style={
+                                                "font-size":"2em",
+                                        },
+                                        class_name="windows-container-son"
+                                ),
+
                                 width="17em",
                                 height="18em",
                                 background_image=featured.image_url,
-                                style={ 
-                                        "filter": "brightness(0.7)",
-                                        "border-radius": "30em 30em 0em 0em",
-                                        "background-size": "cover"
-                                },
                                 align="center",
                                 justify="center",
-                                class_name="windows-container"
+                                class_name="windows-container",
+                                
                         ),
                         align="center",
                         justify="center",
@@ -183,12 +184,28 @@ def windows_backend() -> rx.Component:
                                 
                         ),
                 direction="column",
-                spacing="5",
+                spacing="7",
                 on_mount=IndexWindows.get_data,
                 on_mouse_enter=[IndexWindows.get_data,IndexWindowsUpdater.get_all_data(IndexWindows.windows_data)],
                 justify="center",
-                align="center"
+                align="center",
                 ),
-
-                updater_windows(button_text="actualizar", published_title=IndexWindows.title, published_description=IndexWindows.description, all_data=IndexWindows.windows_data)
+                
+                rx.flex(
+                        updater_windows(
+                                button_text="actualizar",
+                                published_title=IndexWindows.title,
+                                published_description=IndexWindows.description,
+                                all_data=IndexWindows.windows_data
+                        ),
+                        padding_top="2em"
+                )
         )
+
+
+
+
+
+
+
+

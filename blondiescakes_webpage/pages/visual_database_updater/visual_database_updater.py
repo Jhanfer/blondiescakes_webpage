@@ -2,19 +2,17 @@ import reflex as rx
 from blondiescakes_webpage.styles import styles as st
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.page_state import PageState
 from blondiescakes_webpage.components.body_products_items.items_backend import backend_items
-from blondiescakes_webpage.pages.visual_database_updater.components_database.updater_component import updater
-from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.Updater import BackendUpdater
-from blondiescakes_webpage.pages.visual_database_updater.component_login_database.login_state.PyMongoAPI import mongo_client
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.updater_components.update_items_gui import updater
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.updaters_states.item_updater import BackendUpdater
 from blondiescakes_webpage.pages.visual_database_updater.component_login_database.login_state.cookies import CookieState
 from blondiescakes_webpage.styles import constants as c
 from blondiescakes_webpage.state_general.analytics_api import GoogleAnalyticsAPI
 from blondiescakes_webpage.pages.visual_database_updater.components_database.update_or_change_index_text import index_text_updater
 from blondiescakes_webpage.components.index_edit_components.highlight import IndexHighLight
-from blondiescakes_webpage.components.index_edit_components.other_products_windows import IndexWindows
 
 from jose import jwt
 from jose import ExpiredSignatureError
-import time
+
 
 class VerifyID(rx.State):
     user_id:str

@@ -15,8 +15,10 @@ SEED = os.environ.get("SEED")
 
 ### Head_component Scripts ###
 
-ANALYTICS_SCRIPTS_1 = os.environ.get("ANALYTICS_SCRIPTS_1")
+
 ANALYTICS_ID = os.environ.get("ANALYTICS_ID")
+
+ANALYTICS_SCRIPTS_1 = f"https://www.googletagmanager.com/gtag/js?id={ANALYTICS_ID}"
 
 ANALYTICS_SCRIPTS_2 = f"""window.dataLayer = window.dataLayer || [];
                         function gtag(){{dataLayer.push(arguments);}}

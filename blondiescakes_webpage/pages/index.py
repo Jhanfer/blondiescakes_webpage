@@ -9,6 +9,9 @@ from blondiescakes_webpage.utils import utils as ut
 from blondiescakes_webpage.components.index_edit_components.highlight import IndexHighLight
 
 
+
+
+
 @rx.page(
         route=ut.INDEX_ROUTE,
         title=ut.index_title,

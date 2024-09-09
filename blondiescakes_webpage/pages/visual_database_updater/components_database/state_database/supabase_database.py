@@ -4,6 +4,47 @@ import reflex as rx
 import os
 from supabase import create_client, Client
 import dotenv
+import json
+
+
+
+##Bases##
+#Featured index items#
+class Featured(rx.Base):
+    id:str
+    image_url:str
+    item_description:str
+    title:str
+    upload_time:str
+    categorie:str
+
+
+#Highlight#
+class Highlights(rx.Base):
+    title:str
+    description:str
+    image_url:str
+    switch:bool
+
+
+#Windata#
+class WinData(rx.Base):
+    id:str
+    text:str
+    image_url:str
+    switch:bool
+
+
+#reviews#
+class ReviewsBase(rx.Base):
+    username:str
+    rating:str
+    date:str
+    description:str
+
+#Index Summary#
+class IndexSumary(rx.Base):
+    paragraph:str
 
 
 
@@ -19,6 +60,7 @@ class SupabaseAPI():
     errors:str=""
     success:dict={}
 
+    @property
     def act_data(self):
         """Update data"""
         dotenv.load_dotenv()
@@ -30,11 +72,9 @@ class SupabaseAPI():
 
     def get_all_data(self):
         """Gets all data"""
-        self.act_data()
+        self.act_data
         response = self.supabase.table("Images_database").select("*").execute()
-
         datos = []
-
         if len(response.data) > 0:
             for featured_item in response.data:
                 datos.append(
@@ -52,11 +92,9 @@ class SupabaseAPI():
 
     def get_data_alter(self,categorie:str):
         """Get data based on the type data required"""
-        self.act_data()
+        self.act_data
         response = self.supabase.table("Images_database").select("*").execute()
-
         datos = []
-
         if len(response.data) > 0:
             for featured_item in response.data:
                 datos.append(
@@ -74,8 +112,6 @@ class SupabaseAPI():
             saludables = []
             tradicionales = []
             database = []
-
-            
             # Iteramos sobre la lista de Featured y los asignamos a la categoría correspondiente
             categorias = {
                 "class_buttercream": buttercream,
@@ -84,7 +120,6 @@ class SupabaseAPI():
                 "class_tradicionales": tradicionales,
                 "class_database": database
             }
-
             for item in datos:
                 if item.categorie in categorias:
                     categorias[item.categorie].append(item)
@@ -110,9 +145,7 @@ class SupabaseAPI():
         """Insert data on database
         purchase_url has been changed to "Description" prompt
         """
-        self.act_data()
-        
-        
+        self.act_data
         category_to_table = {
             "Pagina principal": "Images_database",
             "Buttercream": "class_buttercream",
@@ -123,7 +156,6 @@ class SupabaseAPI():
 
         # Obtener el nombre de la tabla
         categoria_backend = category_to_table.get(categorie, "default_table")
-        
         timestamp=time.time()
         times=time.localtime(timestamp)
         format=f"{datetime.date.today()} {times.tm_hour}:{times.tm_min}:{times.tm_sec}"
@@ -138,11 +170,10 @@ class SupabaseAPI():
                 self.errors="No se pudo subir"
                 print(self.errors)
 
-    
+
     def delete_data(self,id:list):
         """Deletes Data"""
-        self.act_data()
-
+        self.act_data
         if id and isinstance(id, list):
             deleted = False
             for i in id:
@@ -162,7 +193,7 @@ class SupabaseAPI():
 
     def get_google_json_credential(self):
         """Gets Google API Credential for works"""
-        self.act_data()
+        self.act_data
         response = self.supabase.table("Google analytics API Credentials").select("*").execute()
         datos = {}
         if len(response.data) > 0:
@@ -176,11 +207,9 @@ class SupabaseAPI():
 
     # Highlight updater #
     def get_highlight(self):
-        self.act_data()
+        self.act_data
         response = self.supabase.table("Destacado Página principal").select("*").eq("id", 1).execute()
-
         highlight = []
-
         if len(response.data) > 0:
             switch=True
             for featured_item in response.data:
@@ -195,18 +224,16 @@ class SupabaseAPI():
         return highlight
 
     def highlight_updater(self, title:str, description:str, image_url:str):
-        self.act_data()
+        self.act_data
         response = self.supabase.table("Destacado Página principal").update({"title": title, "description":description, "image_url":image_url}).eq("id", 1).execute()
 
 
     # Windows updater #
     def get_windows(self):
-        self.act_data()
+        self.act_data
         response = self.supabase.table("windows_index_component").select("*").execute()
-
         windows_data = []
         windows_data_titles = []
-
         if len(response.data) > 0:
             switch = True
             for featured_items in response.data:
@@ -236,7 +263,7 @@ class SupabaseAPI():
 
 
     def windows_updater(self, id:str, title:str, description:str, image_url:str, text:str):
-        self.act_data()
+        self.act_data
         if not id == "1":
             response = self.supabase.table("windows_index_component").update({"title": title, "description":description, "image_url":image_url, "text":text}).eq("id", id).execute()
             print(response)
@@ -244,26 +271,62 @@ class SupabaseAPI():
             response = self.supabase.table("windows_index_component").update({"title": title, "description":description, "image_url":image_url, "text":text}).eq("id", 1).execute()
 
 
-#Bases
-class Featured(rx.Base):
-    id:str
-    image_url:str
-    item_description:str
-    title:str
-    upload_time:str
-    categorie:str
+    # Google Maps Reviews #
+    def get_reviews_data(self):
+        self.act_data
+        response = self.supabase.table("google_review_data").select("*").execute()
+        if len(response.data) > 0:
+            dictionary = response.data
+            reviews = dictionary[0]["data"]
+            reviews_list = []
+            for review in reviews:
+                if "description" in review:
+                    if len(review["description"]) > 190:
+                        short = review["description"][:190] + "..."
+                        reviews_list.append(
+                            ReviewsBase(
+                                username=review["username"],
+                                rating=review["rating"],
+                                description=short,
+                                date=review["date"]
+                            )
+                        )
+                    else:
+                        reviews_list.append(
+                            ReviewsBase(
+                                username=review["username"],
+                                rating=review["rating"],
+                                description=review["description"],
+                                date=review["date"]
+                            )
+                        )
+                else:
+                    pass
+        return reviews_list
+
+    def update_reviews_data(self,google_json):
+        self.act_data
+        response = self.supabase.table("google_review_data").update({"data":google_json}).eq("id", 1).execute()
 
 
-class Highlights(rx.Base):
-    title:str
-    description:str
-    image_url:str
-    switch:bool
+    #Text Getters#
+    def get_index_sumary_text(self):
+        self.act_data
+        response = self.supabase.table("index_about_us_texts").select("*").eq("id", 1).execute()
+        paragraphs_list = []
+        if len(response.data) > 0:
+            for i in response.data[0]["texts"]:
+                title = i
+            for items in response.data[0]["texts"][title]:                
+                paragraphs_list.append(
+                    IndexSumary(
+                        paragraph=response.data[0]["texts"][title][f"{items}"]
+                    )
+                )
+        return [paragraphs_list,title]
 
 
-
-class WinData(rx.Base):
-    id:str
-    text:str
-    image_url:str
-    switch:bool
+    def update_sumary_data(self,index_text_json:dict):
+        self.act_data
+        response = self.supabase.table("index_about_us_texts").update({"texts":index_text_json}).eq("id", 1).execute()
+        

@@ -2,6 +2,19 @@ import reflex as rx
 from blondiescakes_webpage.styles import styles as st
 from blondiescakes_webpage.components.wrapping_react.AwesomeSlider import carousel
 from blondiescakes_webpage.components.wrapping_react.framer_motion import motion
+from blondiescakes_webpage.components.wrapping_react.RatingStars import rating_stars
+import reflex as rx
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.api import get_reviews_data_api
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_database import ReviewsBase
+import reflex_chakra as ch
+
+class BadgeReviews(rx.State):
+    reviews_data:list[ReviewsBase]
+
+    async def get_reviews_data(self):
+        self.reviews_data = await get_reviews_data_api()
+
+
 
 
 def badge() -> rx.Component:
@@ -150,64 +163,108 @@ def badge() -> rx.Component:
             bg=st.ColorPalette.ENFASIS.value,
             height="60em",
             z_index="10",
-            padding_top="5em"
+            padding_top="5em",
+            on_mount=BadgeReviews.get_reviews_data
 )
 
 
 def review() -> rx.Component:
     return rx.hstack(
-                
-                rx.flex(
-                        stack(),
-                    spacing="4",
-                    display=["none","none","none","flex","flex"]
-                ),
-
-                rx.flex(
+            rx.cond(BadgeReviews.reviews_data,
+                rx.vstack(
+                    rx.text(
+                        "Reviews de Google Maps",
+                        color=st.ColorPalette.MAIN.value,
+                        size="8"
+                    ),
+                    rx.flex(
                         rx.grid(
                             rx.scroll_area(
                                 rx.flex(
-                                        stack(),
+                                        rx.foreach(
+                                            BadgeReviews.reviews_data,
+                                            card
+                                        ),
                                     spacing="4"
                                 ),
                             scrollbars="horizontal",
                             type="always"
                         ),
-                    padding="1em"),
-                display=["flex","flex","flex","none","none","none"]),
+                        padding="1em"),
+                    ),
+
+                    justify="center",
+                    align="center"
+                ),
+            ),
 
             justify="center",
             align="center",
             margin_bottom="0em",
             width="100%",
             bg=st.ColorPalette.ENFASIS.value,
-            height="30em",
-            z_index="5"
+            height="40em",
+            z_index="5",
 )
 
-def card(name:str,review:str,src:str) -> rx.Component:
+
+
+def card(featured:ReviewsBase):
     return rx.card(
             rx.vstack(
-                        rx.chakra.avatar(name="I",size="xl",src=src),
-                        rx.text(review,color=st.ColorPalette.ENFASIS.value),
-                        rx.text(name,color=st.ColorPalette.ENFASIS.value),
                         rx.hstack(
-                                rx.icon(tag="star",color="gold"),
-                                rx.icon(tag="star",color="gold"),
-                                rx.icon(tag="star",color="gold"),
-                                rx.icon(tag="star-half",color="gold"),
-                            spacing="0"    
-                        )
+                            ch.avatar(
+                                size="xl",
+                                src="featured",
+                                name=featured.username
+                            ),
+
+                            rx.vstack(    
+                                rx.text(
+                                    featured.username,
+                                    color=st.ColorPalette.ENFASIS.value,
+                                    size="7"
+                                ),
+
+                                rx.hstack(
+                                    rating_stars(
+                                        value=featured.rating,
+                                        read_only=True,
+                                        radius="small",
+                                        width="7em"
+                                    ),
+
+                                    rx.text(
+                                        featured.date,
+                                        color="gray",
+                                        justify="center"
+                                    ),
+                                ),
+
+                                justify="center",
+                                align="start"
+                            ),
+
+                            align="center"
+                        ),
+                        
+                        rx.text(
+                            featured.description,
+                            color=st.ColorPalette.ENFASIS.value,
+                            justify="center",
+                            style={
+                                "font-size":"clamp(1em, 0.5vw + 0.5em, 1.3em)"
+                            }
+                        ),
+                        
+
+                        justify="between",
+                        align="between",
                         
                     ),
-            width="20em",
-            height="15em",
-            bg="white")
-
-def stack() -> rx.Component:
-    return (card("Lisue","Me encanta!","/body/lisue.jpeg"),
-            card("Juan","Excelente sabor","/body/juan.jpeg"),
-            card("Teressa","No existe mejor sabor!","/body/teressa.jpeg")
-            )
+        width="30em",
+        height="15em",
+        bg="white"
+    )
 
 

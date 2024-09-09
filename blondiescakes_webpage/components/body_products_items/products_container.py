@@ -150,39 +150,3 @@ def products_container() -> rx.Component:
         )
 
 
-def other_products(src:str,text:str) -> rx.Component:
-        return motion(
-                rx.flex(
-                        
-                        rx.flex(
-                                rx.text(
-                                        text,
-                                        
-                                        z_index="100000",
-                                        color=st.ColorPalette.MAIN.value,
-                                        style={
-                                                "font-size":"2em",
-                                        }
-                                ),
-                                width="17em",
-                                height="18em",
-                                style={ 
-                                        "background-image":f"url('{src}')",
-                                        "border-radius":"30em 30em 0em 0em",
-                                        "background-size":"cover"
-                                },
-                                align="center",
-                                justify="center",
-                        ),
-                        align="center",
-                        justify="center",
-                        width="17em",
-                        height="18em",
-                        
-                ),
-                
-        while_hover={"opacity":0.9},
-        transition={"damping":20,"swiftness":20}
-        )
-
-

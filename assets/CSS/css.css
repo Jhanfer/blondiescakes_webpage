@@ -238,12 +238,24 @@
 
 
 
-
-
 .windows-container {
-    z-index: -1;
+    background-size: cover;
+    border-radius: 30em 30em 0em 0em;
+    z-index: 1;
+    position: relative;
 }
 
 .windows-container::before {
-    filter: brightness(0.2);
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 30em 30em 0em 0em;
+}
+
+.windows-container-son {
+    position: relative;
 }

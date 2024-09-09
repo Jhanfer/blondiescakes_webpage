@@ -57,6 +57,14 @@ STYLE_SHEET={
         "justify_content":"center",
         "text-align":"justify"
     },
+    rx.markdown: {
+        "font_family": "ebgaramond",
+        "white_space":"normal",
+        "color":ColorPalette.ENFASIS.value,
+        "align":"center",
+        "justify_content":"center",
+        "text-align":"justify"
+    },
     rx.input:{
         "color":ColorPalette.ENFASIS.value,
     },
