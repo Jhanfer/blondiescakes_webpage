@@ -5,7 +5,7 @@ from blondiescakes_webpage.components.wrapping_react.framer_motion import motion
 from blondiescakes_webpage.components.wrapping_react.RatingStars import rating_stars
 import reflex as rx
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.api import get_reviews_data_api
-from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_database import ReviewsBase
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_api.supabase_database import ReviewsBase
 import reflex_chakra as ch
 
 class BadgeReviews(rx.State):

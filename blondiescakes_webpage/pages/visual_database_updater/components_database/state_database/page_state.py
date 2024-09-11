@@ -1,6 +1,6 @@
 import reflex as rx
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.api import get_data_alter_api,get_all_data_database #get_data
-from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_database import Featured
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_api.supabase_database import Featured
 from typing import Union
 
 class PageState(rx.State):

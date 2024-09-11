@@ -7,7 +7,9 @@ from blondiescakes_webpage.views.index_body.footer.footer import footer
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.page_state import PageState
 from blondiescakes_webpage.utils import utils as ut
 from blondiescakes_webpage.components.index_edit_components.highlight import IndexHighLight
-
+from blondiescakes_webpage.components.about_us_components.about_us_component import AboutUsComponent
+from blondiescakes_webpage.components.about_us_components.pros_component import ProsData
+from blondiescakes_webpage.components.about_us_components.purposes_component import PurposesData
 
 
 
@@ -18,8 +20,8 @@ from blondiescakes_webpage.components.index_edit_components.highlight import Ind
         image=ut.preview,
         description=ut.index_description,
         meta=ut.index_meta,
-
-
+        on_load=[AboutUsComponent.get_data, ProsData.get_pros_data, PurposesData.get_purpose_data]
+        
         #script_tags: list[Any] | None = None,
 )
 

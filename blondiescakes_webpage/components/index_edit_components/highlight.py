@@ -1,6 +1,6 @@
 import reflex as rx
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.api import get_highlight_data
-from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_database import Highlights
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_api.supabase_database import Highlights
 from blondiescakes_webpage.components.wrapping_react.framer_motion import motion
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.updater_components.update_highlight_gui import updater_highlight
 

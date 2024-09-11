@@ -1,8 +1,6 @@
 import reflex as rx
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.updaters_states.sumary_updater_state import IndexSumaryUpdater
-from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_database import IndexSumary
-
-
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_api.supabase_database import IndexSumary
 
 def updater_sumary(button_text:str,title:str,sumary:IndexSumary) -> rx.Component:
     return rx.dialog.root(

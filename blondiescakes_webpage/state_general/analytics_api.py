@@ -2,7 +2,7 @@ from google.oauth2.service_account import Credentials
 from google.analytics.data_v1beta import BetaAnalyticsDataClient
 from google.analytics.data_v1beta.types import DateRange, Metric, Dimension, RunReportRequest
 import pycountry
-from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_database import SupabaseAPI
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_api.supabase_database import SupabaseAPI
 import reflex as rx
 import os
 

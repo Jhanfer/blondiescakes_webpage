@@ -1,7 +1,7 @@
 import reflex as rx
 from blondiescakes_webpage.styles import styles as st
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.page_state import PageState
-from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_database import Featured
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_api.supabase_database import Featured
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.updaters_states.item_updater import BackendUpdater
 
 

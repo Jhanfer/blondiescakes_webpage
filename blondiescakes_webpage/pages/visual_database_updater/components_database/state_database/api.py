@@ -1,8 +1,10 @@
-from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_database import SupabaseAPI,Featured, Highlights, WinData, ReviewsBase, IndexSumary
-
-supabase_api=SupabaseAPI()
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_api.supabase_database import SupabaseAPI,Featured, Highlights, WinData, ReviewsBase, IndexSumary, AboutUs, Purposes
 
 
+supabase_api = SupabaseAPI()
+
+
+# Items #
 async def get_all_data_database() -> Featured:
     return supabase_api.get_all_data()
 
@@ -16,17 +18,17 @@ def delete_content(id_list:list):
     supabase_api.delete_data(id_list)
 
 
-
-
 #Pages components changer 
 
+# Highlight #
 async def get_highlight_data() -> Highlights:
     return supabase_api.get_highlight()
-
 
 def update_highlight(title:str, description:str, image_url:str):
     supabase_api.highlight_updater(title, description, image_url)
 
+
+# Windows #
 async def get_windows_data() -> list[WinData]:
     return supabase_api.get_windows()
 
@@ -48,3 +50,17 @@ async def get_sumary_data() -> list[IndexSumary]:
 
 def update_sumary_data(index_text_json:dict):
     supabase_api.update_sumary_data(index_text_json)
+
+
+# About us #
+async def get_about_us() -> list[AboutUs]:
+    return supabase_api.about_us()
+
+
+async def get_pros() -> list[Purposes]:
+    return supabase_api.pros()
+
+
+async def get_purposes() -> list[Purposes]:
+    return supabase_api.vision_mision()
+

@@ -1,5 +1,5 @@
 import reflex as rx
-from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_database import IndexSumary
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_api.supabase_database import IndexSumary
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.api import get_sumary_data
 from blondiescakes_webpage.styles import styles as st
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.updater_components.update_sumary_gui import updater_sumary

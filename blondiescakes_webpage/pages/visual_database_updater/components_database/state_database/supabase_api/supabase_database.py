@@ -4,71 +4,26 @@ import reflex as rx
 import os
 from supabase import create_client, Client
 import dotenv
-import json
-
-
-
-##Bases##
-#Featured index items#
-class Featured(rx.Base):
-    id:str
-    image_url:str
-    item_description:str
-    title:str
-    upload_time:str
-    categorie:str
-
-
-#Highlight#
-class Highlights(rx.Base):
-    title:str
-    description:str
-    image_url:str
-    switch:bool
-
-
-#Windata#
-class WinData(rx.Base):
-    id:str
-    text:str
-    image_url:str
-    switch:bool
-
-
-#reviews#
-class ReviewsBase(rx.Base):
-    username:str
-    rating:str
-    date:str
-    description:str
-
-#Index Summary#
-class IndexSumary(rx.Base):
-    paragraph:str
-
-
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.supabase_api.classes_base import Featured,IndexSumary,WinData,Highlights,ReviewsBase,AboutUs,Purposes
 
 
 #Supabase API
 class SupabaseAPI():
     """Api from SUPABASE Database"""
-    dotenv.load_dotenv()
     url: str = os.environ.get("SUPABASE_URL")
     key: str = os.environ.get("SUPABASE_KEY")
     supabase:Client
 
-    errors:str=""
-    success:dict={}
-
     @property
     def act_data(self):
-        """Update data"""
+        """Update data and load envs"""
         dotenv.load_dotenv()
         if self.url and self.key:
             self.supabase: Client = create_client(self.url, self.key)
-        else:
-            pass
 
+    def __act_data_test(self):
+        self.act_data
+        return self.supabase
 
     def get_all_data(self):
         """Gets all data"""
@@ -126,7 +81,7 @@ class SupabaseAPI():
                 else:
                     print(f"Categoría no reconocida: {item.categorie}")
 
-            # Añade más elif para otras categorías si es necesario
+            # añadir más elif para otras categorías si es necesario
             categories_json = {
                 "buttercream":buttercream,
                 "frias":frias,
@@ -163,12 +118,10 @@ class SupabaseAPI():
         if not categoria_backend == "default_table":
             if image_url and item_description and title != None:
                 self.supabase.table("Images_database").insert({"id":id, "image_url":image_url,"item_description":item_description,"title":title,"upload_time":f"{format}","categorie":categoria_backend}).execute()
-                self.success="Subido con éxito"
-                print(self.success)
+                print("Subido con éxito")
                 
             else:
-                self.errors="No se pudo subir"
-                print(self.errors)
+                print("No se pudo subir")
 
 
     def delete_data(self,id:list):
@@ -309,7 +262,7 @@ class SupabaseAPI():
         response = self.supabase.table("google_review_data").update({"data":google_json}).eq("id", 1).execute()
 
 
-    #Text Getters#
+    #Index sumary getter#
     def get_index_sumary_text(self):
         self.act_data
         response = self.supabase.table("index_about_us_texts").select("*").eq("id", 1).execute()
@@ -329,4 +282,61 @@ class SupabaseAPI():
     def update_sumary_data(self,index_text_json:dict):
         self.act_data
         response = self.supabase.table("index_about_us_texts").update({"texts":index_text_json}).eq("id", 1).execute()
-        
+
+
+    #About us getter# 
+    def about_us(self):
+        self.act_data
+        response = self.supabase.table("index_about_us_texts").select("*").eq("id", 2).execute()
+        data = response.data[0]["texts"]["about_us"]
+        data_second_text = response.data[0]["texts"]["second_text"]
+        if len(response.data) > 0:
+            about_us_data = [
+                AboutUs(
+                        title=data["title"],
+                        sub_title=data["sub_title"],
+                        sumary=data["sumary"],
+                        image_url=data["image_url"]
+                    ),
+            ]
+            second_text = [
+                AboutUs(
+                    title=data_second_text["title"],
+                    sumary=data_second_text["sumary"],
+                    sub_title="",
+                    image_url=""
+                )
+            ]
+        return [about_us_data,second_text]
+    
+    
+    def pros(self):
+        self.act_data
+        response = self.supabase.table("index_about_us_texts").select("*").eq("id", 3).execute()
+        if len(response.data) > 0:
+            data = response.data[0]["texts"]["pros"]
+            pros_list = []
+            for items in data:
+                pros_list.append(
+                    Purposes(
+                        title=data[items]["title"],
+                        sumary=data[items]["sumary"]
+                    )
+                )
+        return pros_list
+    
+    def vision_mision(self):
+        self.act_data
+        response = self.supabase.table("index_about_us_texts").select("*").eq("id", 4).execute()
+        if len(response.data) > 0:
+            data = response.data[0]["texts"]
+            purposes_list = []
+            for items in data:
+                purposes_list.append(
+                    Purposes(
+                        title=data[items]["title"],
+                        sumary=data[items]["sumary"],
+                        type=data[items]["type"]
+                    )
+                )
+        return purposes_list
