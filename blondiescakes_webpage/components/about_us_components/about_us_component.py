@@ -1,6 +1,6 @@
 import reflex as rx
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.api import get_about_us
-
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.updater_components.update_about_us_gui import update_about_us
 
 class AboutUsComponent(rx.State):
     title:str
@@ -77,4 +77,67 @@ def about_us() -> rx.Component:
             direction="column",
             on_mount=AboutUsComponent.get_data
             )
+    )
+
+
+def about_us_component_backend():
+    return  rx.card(
+            rx.vstack(
+                rx.heading(AboutUsComponent.title,position="relative",size="5"),
+                rx.flex( 
+                    rx.box(    
+                        rx.image(
+                                src=AboutUsComponent.image_url,
+                                width="15em",
+                                height="auto",
+                                class_name="image-container",
+                        ),
+                        class_name="container-image"
+                    ),
+                    rx.vstack(
+                        rx.heading(
+                            AboutUsComponent.sub_title,
+                            size="5"
+                        ),
+                        rx.text(
+                            AboutUsComponent.sumary,
+                            size="5"
+                        ),
+                    max_width="35em",
+                    padding="2em"
+                    ),
+                spacing="9",
+                direction="row",
+                wrap="wrap",
+                justify="center",
+                align="center"
+                ),
+
+                rx.vstack(    
+                    rx.heading(
+                        AboutUsComponent.second_title,
+                        size="5"
+                    ),
+                    rx.text(
+                        AboutUsComponent.second_sumary,
+                        size="5"
+
+                    ),
+                width="auto",
+                max_width="50em",
+                padding="2em"
+                ),
+
+                update_about_us(
+                    button_text="Actualizar",
+                    title=AboutUsComponent.title,
+                    sub_title=AboutUsComponent.sub_title,
+                    sumary=AboutUsComponent.sumary,
+                    image_url=AboutUsComponent.image_url
+                ),
+
+                justify="center",
+                align="center"
+            ),
+        on_mount=AboutUsComponent.get_data
     )

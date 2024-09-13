@@ -100,10 +100,14 @@ def highlight_backend() -> rx.Component:
                                 rx.vstack(
                                         rx.text(
                                                 IndexHighLight.title,
-                                                position="relative"
+                                                position="relative",
+                                                size="5"
                                         ),
                                 
-                                        rx.text(IndexHighLight.description),
+                                        rx.text(IndexHighLight.description,
+                                                position="relative",
+                                                size="5"
+                                        ),
 
                                         max_width="35em",
                                         padding="1em",
@@ -112,7 +116,7 @@ def highlight_backend() -> rx.Component:
 
                                 rx.image(
                                         src=IndexHighLight.image_url,
-                                        width="35em",
+                                        width="20em",
                                         height="auto",
                                         alt="Pastel de cumpleaños"
                                 ),

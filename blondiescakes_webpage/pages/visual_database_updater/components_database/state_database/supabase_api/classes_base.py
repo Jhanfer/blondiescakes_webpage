@@ -39,9 +39,9 @@ class IndexSumary(rx.Base):
 #About us#
 class AboutUs(rx.Base):
     title:str
-    sub_title:str
+    sub_title:Optional[str]
     sumary:str
-    image_url:str
+    image_url:Optional[str]
 
 class Purposes(rx.Base):
     title:str

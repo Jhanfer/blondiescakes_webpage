@@ -4,7 +4,7 @@ from blondiescakes_webpage.components.index_edit_components.highlight import hig
 from blondiescakes_webpage.components.index_edit_components.other_products_windows import windows_backend
 from blondiescakes_webpage.state_general.google_reviews_api import GoogleMapsReviewsUpdater
 from blondiescakes_webpage.components.body_sumary.sumary import sumary_backend
-
+from blondiescakes_webpage.components.about_us_components.about_us_component import about_us_component_backend
 
 def index_text_updater() -> rx.Component:
     return rx.flex(
@@ -29,8 +29,7 @@ def index_text_updater() -> rx.Component:
             ),
 
             rx.tabs.content(
-                rx.text(" -Titulo"),
-                rx.text(" -Encabezado"),
+                about_us_component_backend(),
                 rx.text(" -Ventajas"),
                 rx.text(" -Visión"),
                 rx.text(" -Misión"),
