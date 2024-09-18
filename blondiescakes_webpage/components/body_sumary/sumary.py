@@ -17,25 +17,33 @@ class IndexSumaryTexts(rx.State):
 
 def index_sumary():
     return  rx.flex(
-                rx.vstack(
-                        rx.icon(tag="wheat",color=st.ColorPalette.LINES.value),
-                        rx.heading(IndexSumaryTexts.title,
-                                color=st.ColorPalette.ENFASIS.value,
-                                style={"font-size":"clamp(1rem, 0.5vw + 2.1rem, 3.5rem)"}
-                        ),
+                rx.cond(IndexSumaryTexts.title,
+                    rx.vstack(
+                            rx.icon(tag="wheat",color=st.ColorPalette.LINES.value),
+                            rx.heading(IndexSumaryTexts.title,
+                                    color=st.ColorPalette.ENFASIS.value,
+                                    style={"font-size":"clamp(1rem, 0.5vw + 2.1rem, 3.5rem)"}
+                            ),
 
-                        rx.foreach(
-                            IndexSumaryTexts.paragraphs_list,
-                            paragraph
-                        ),
+                            rx.foreach(
+                                IndexSumaryTexts.paragraphs_list,
+                                paragraph
+                            ),
 
-                        rx.icon(tag="cherry",color=st.ColorPalette.LINES.value),
-                    max_width="60em",
-                    width="100%",
-                    padding="3em",
-                    align="center",
-                    justify="center",
-                    spacing="6"
+                            rx.icon(tag="cherry",color=st.ColorPalette.LINES.value),
+                        max_width="60em",
+                        width="100%",
+                        padding="3em",
+                        align="center",
+                        justify="center",
+                        spacing="6"
+                    ),
+
+                    rx.vstack(
+                        rx.skeleton(rx.button("button-small"), width="40em",height="5em",loading=True),
+                        rx.skeleton(rx.button("button-small"), width="40em",height="50em",loading=True),
+                        padding="2em"
+                    ),
                 ),
         align="center",
         justify="center",

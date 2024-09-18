@@ -19,7 +19,8 @@ class AboutUsComponent(rx.State):
         self.second_title = data[1][0].title
         self.second_sumary = data[1][0].sumary
 
-
+def skeleton(*,h:str,w:str) -> rx.Component:
+    return rx.skeleton(rx.button("button-small"), height=h, width=w,loading=True,background_color="grey")
 
 def about_us() -> rx.Component:
     return rx.cond(AboutUsComponent.image_url,
@@ -32,7 +33,7 @@ def about_us() -> rx.Component:
                                 width="clamp(1rem, 9vw + 20rem, 30rem)",
                                 height="auto",
                                 class_name="image-container",
-                                alt="Foto de Joselyn, fundadora de Blondie´s Cake sosteniendo su logo"
+                                alt="Foto de Joselyn, fundadora de Blondie´s Cake"
                         ),
                         class_name="container-image"
                     ),
@@ -76,7 +77,38 @@ def about_us() -> rx.Component:
             justify="center",
             direction="column",
             on_mount=AboutUsComponent.get_data
-            )
+            ),
+
+
+            rx.flex(
+                skeleton(h="4em",w="50em"),
+                rx.hstack(
+                    skeleton(h="16em",w="24em"),
+                    rx.vstack(
+                        skeleton(h="5em",w="33em"),
+                        skeleton(h="10em",w="33em"),
+                    ),
+                ),
+                skeleton(h="8em",w="33em"),
+                skeleton(h="13em",w="33em"),
+                rx.flex(
+                        skeleton(h="8em",w="33em"),
+                        skeleton(h="13em",w="33em"),
+                    direction="row",
+                    wrap="wrap",
+                    max_width="45em",
+                    width="100%",
+                    spacing="9",
+                    justify="center",
+                    align="center"
+                ),
+                direction="column",
+                padding_top="8em",
+                spacing="4",
+                justify="center",
+                align="center"
+            ),
+            
     )
 
 
@@ -133,7 +165,10 @@ def about_us_component_backend():
                     title=AboutUsComponent.title,
                     sub_title=AboutUsComponent.sub_title,
                     sumary=AboutUsComponent.sumary,
-                    image_url=AboutUsComponent.image_url
+                    image_url=AboutUsComponent.image_url,
+                    second_text_title=AboutUsComponent.second_title,
+                    second_text_sumary=AboutUsComponent.second_sumary
+
                 ),
 
                 justify="center",

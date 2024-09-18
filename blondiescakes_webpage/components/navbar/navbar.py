@@ -2,6 +2,9 @@ import reflex as rx
 from blondiescakes_webpage.styles import styles as st
 from blondiescakes_webpage.components.navbar.drawer import drawer
 from blondiescakes_webpage.components.wrapping_react.framer_motion import motion
+from blondiescakes_webpage.components.about_us_components.about_us_component import AboutUsComponent
+from blondiescakes_webpage.components.about_us_components.pros_component import ProsData
+from blondiescakes_webpage.components.about_us_components.purposes_component import PurposesData
 
 def navbar() -> rx.Component:
     return  motion(
@@ -52,7 +55,8 @@ def text(text:str,href:str) -> rx.Component:
                 is_external=False,
                 href=href,
                 padding_left="1em",
-                padding_right="1em"
+                padding_right="1em",
+                on_click=[AboutUsComponent.get_data, ProsData.get_pros_data, PurposesData.get_purpose_data]
             )
 
 def navbar_content() -> rx.Component:

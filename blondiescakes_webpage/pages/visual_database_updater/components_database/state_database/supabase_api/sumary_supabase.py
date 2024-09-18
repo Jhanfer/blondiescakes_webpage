@@ -36,7 +36,6 @@ class SumarySupabase():
                 )
         return [paragraphs_list,title]
 
-
     def update_sumary_data(self,index_text_json:dict):
         self.act_data
         response = self.supabase.table("index_about_us_texts").update({"texts":index_text_json}).eq("id", 1).execute()

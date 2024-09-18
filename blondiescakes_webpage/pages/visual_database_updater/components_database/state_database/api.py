@@ -64,12 +64,31 @@ def update_sumary_data(index_text_json:dict):
 async def get_about_us() -> list[AboutUs]:
     return about_us.about_us()
 
-def update_about_us():
-    pass
+def update_about_us(title:str,sub_title:str,image_url:str,sumary:str):
+    about_us.update_about_us(title,sub_title,image_url,sumary)
 
+def update_about_us_second_text(title:str,sumary:str):
+    about_us.update_about_us_second_text(title, sumary)
+
+#About us pros#
 async def get_pros() -> list[Purposes]:
     return about_us.pros()
 
+def update_about_us_pros_function(item_1_title:str, item_1_sumary:str, item_2_title:str, item_2_sumary:str, item_3_title: str, item_3_sumary:str, item_4_title: str, item_4_sumary:str):
+    
+    about_us.update_about_us_pros(
+            item_1_title, 
+            item_1_sumary,
+            item_2_title, 
+            item_2_sumary,
+            item_3_title, 
+            item_3_sumary, 
+            item_4_title, 
+            item_4_sumary
+)
+#About us purposes#
 async def get_purposes() -> list[Purposes]:
     return about_us.vision_mision()
 
+def update_purpose_data(data:dict):
+    about_us.mision_vision_updater(data)

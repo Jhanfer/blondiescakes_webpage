@@ -20,14 +20,12 @@ class SendWatsAppMessage(rx.State):
         self.message = message
 
 
-
 @rx.page(
     route=ut.ABOUTUS_ROUTE,
     title=ut.about_us_title,
     description=ut.about_us_description,
     meta=ut.about_us_meta,
     on_load=[AboutUsComponent.get_data, ProsData.get_pros_data, PurposesData.get_purpose_data]
-
 )
 
 def us() -> rx.Component:

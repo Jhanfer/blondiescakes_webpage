@@ -196,6 +196,13 @@ def review() -> rx.Component:
                     justify="center",
                     align="center"
                 ),
+                rx.hstack(
+                    rx.skeleton(rx.button("button-small"), width="30em",height="15em",loading=True),
+                    rx.skeleton(rx.button("button-small"), width="30em",height="15em",loading=True),
+                    rx.skeleton(rx.button("button-small"), width="30em",height="15em",loading=True),
+                    rx.skeleton(rx.button("button-small"), width="30em",height="15em",loading=True),
+                    rx.skeleton(rx.button("button-small"), width="30em",height="15em",loading=True),
+                ),
             ),
 
             justify="center",
@@ -211,57 +218,54 @@ def review() -> rx.Component:
 
 def card(featured:ReviewsBase):
     return rx.card(
-            rx.vstack(
-                        rx.hstack(
-                            ch.avatar(
-                                size="xl",
-                                src="featured",
-                                name=featured.username
+                rx.vstack(
+                    rx.hstack(
+                        ch.avatar(
+                            size="xl",
+                            src="featured",
+                            name=featured.username
+                        ),
+
+                        rx.vstack(    
+                            rx.text(
+                                featured.username,
+                                color=st.ColorPalette.ENFASIS.value,
+                                size="7"
                             ),
 
-                            rx.vstack(    
+                            rx.hstack(
+                                rating_stars(
+                                    value=featured.rating,
+                                    read_only=True,
+                                    radius="small",
+                                    width="7em"
+                                ),
+
                                 rx.text(
-                                    featured.username,
-                                    color=st.ColorPalette.ENFASIS.value,
-                                    size="7"
+                                    featured.date,
+                                    color="gray",
+                                    justify="center"
                                 ),
-
-                                rx.hstack(
-                                    rating_stars(
-                                        value=featured.rating,
-                                        read_only=True,
-                                        radius="small",
-                                        width="7em"
-                                    ),
-
-                                    rx.text(
-                                        featured.date,
-                                        color="gray",
-                                        justify="center"
-                                    ),
-                                ),
-
-                                justify="center",
-                                align="start"
                             ),
 
-                            align="center"
-                        ),
-                        
-                        rx.text(
-                            featured.description,
-                            color=st.ColorPalette.ENFASIS.value,
                             justify="center",
-                            style={
-                                "font-size":"clamp(1em, 0.5vw + 0.5em, 1.3em)"
-                            }
+                            align="start"
                         ),
-                        
 
-                        justify="between",
-                        align="between",
-                        
+                        align="center"
                     ),
+                    
+                    rx.text(
+                        featured.description,
+                        color=st.ColorPalette.ENFASIS.value,
+                        justify="center",
+                        style={
+                            "font-size":"clamp(1em, 0.5vw + 0.5em, 1.3em)"
+                        }
+                    ),
+                    justify="between",
+                    align="between",
+                ),
         width="30em",
         height="15em",
         bg="white"

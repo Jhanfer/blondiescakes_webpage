@@ -1,6 +1,6 @@
 import reflex as rx
 from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.api import get_purposes, Purposes
-
+from blondiescakes_webpage.pages.visual_database_updater.components_database.state_database.updater_components.update_purposes_gui import update_purposes_gui
 class PurposesData(rx.State):
     purpose_list:list[Purposes]
 
@@ -37,4 +37,21 @@ def component_purposes(featured:Purposes) -> rx.Component:
             spacing="3",
             padding_left="2em",
             padding_right="2em",
+    )
+
+def purposes_backend_component() -> rx.Component:
+    return rx.card(
+            rx.vstack(
+                rx.flex(
+                        rx.foreach(
+                            PurposesData.purpose_list,
+                            component_purposes
+                        ),
+                    on_mount=PurposesData.get_purpose_data,
+                    direction="column"
+                ),
+
+                update_purposes_gui("Actualizar", PurposesData.purpose_list)
+            ),
+            on_mount=PurposesData.get_purpose_data,
     )

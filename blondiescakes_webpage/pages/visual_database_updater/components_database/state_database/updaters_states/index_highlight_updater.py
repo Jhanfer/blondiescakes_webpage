@@ -26,17 +26,18 @@ class IndexHighlightUpdater(rx.State):
         self.highlight_image_url = image_url
 
     def set_all(self,title:str,image_url:str,description:str):
+        """Set all data dfunction"""
         self.highlight_image_url = image_url
         self.highlight_description = description
         self.highlight_title = title
 
     def update_data(self):
+        """Update data function"""
         if self.all_highlight_present:
             update_highlight(self.highlight_title, self.highlight_description, self.highlight_image_url)
             return rx.call_script("window.location.reload()")
         else:
             return rx.toast.error("Falta un segmento")
-        
 
     def reset_data(self):
         self.highlight_title = None

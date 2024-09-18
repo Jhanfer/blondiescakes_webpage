@@ -21,7 +21,7 @@ class AboutUsSupabase():
         if self.url and self.key:
             self.supabase: Client = create_client(self.url, self.key)
 
-    #About us getter# 
+    # About us getter # 
     def about_us(self):
         self.act_data
         response_1 = self.supabase.table("index_about_us_texts").select("*").eq("id", 2).execute()
@@ -45,16 +45,21 @@ class AboutUsSupabase():
             ]
         return [about_us_data,second_text]
     
-    #About us setter# 
-    def update_about_us(self, data:dict):
+    # About us setter # 
+    def update_about_us(self,title:str,sub_title:str,image_url:str,sumary:str):
         self.act_data
-        response = self.supabase.table("index_about_us_texts").update({"texts":data}).eq("id", 2).execute()
+        response = self.supabase.table("index_about_us_texts").update({"texts":{"about_us":{"title":title,"sumary":sumary,"sub_title":sub_title,"image_url":image_url} }}).eq("id", 2).execute()
         print(response)
 
+    def update_about_us_second_text(self, title:str,sumary:str):
+        self.act_data
+        response = self.supabase.table("index_about_us_texts").update({"texts":{"second_text":{"title":title,"sumary":sumary}}}).eq("id", 3).execute()
+        print(response)
 
+    # Pros getter #
     def pros(self):
         self.act_data
-        response = self.supabase.table("index_about_us_texts").select("*").eq("id", 5).execute()
+        response = self.supabase.table("index_about_us_texts").select("*").eq("id", 4).execute()
         if len(response.data) > 0:
             data = response.data[0]["texts"]["pros"]
             pros_list = []
@@ -67,9 +72,30 @@ class AboutUsSupabase():
                 )
         return pros_list
     
+    # Pros setter #
+    def update_about_us_pros(self, title_1: str, sumary_1: str, title_2: str, sumary_2: str, title_3: str, sumary_3: str, title_4: str, sumary_4: str):
+        self.act_data
+        data = {
+            "pros": {
+                f"item_{i}": {
+                    "title": title,
+                    "sumary": sumary
+                }
+                for i, (title, sumary) in enumerate([
+                    (title_1, sumary_1),
+                    (title_2, sumary_2),
+                    (title_3, sumary_3),
+                    (title_4, sumary_4)
+                ], start=1)
+            }
+        }
+        response = self.supabase.table("index_about_us_texts").update({"texts":data}).eq("id", 4).execute()
+        print(response)
+
+    # Purposes getter #
     def vision_mision(self):
         self.act_data
-        response = self.supabase.table("index_about_us_texts").select("*").eq("id", 6).execute()
+        response = self.supabase.table("index_about_us_texts").select("*").eq("id", 5).execute()
         if len(response.data) > 0:
             data = response.data[0]["texts"]
             purposes_list = []
@@ -83,53 +109,8 @@ class AboutUsSupabase():
                 )
         return purposes_list
 
-
-
-
-data = {
-    "about_us": {
-        "title": "Detrás de los postres",
-        "sumary": "Apesar de tener mas 8 años de experiencia en el sector, Blondies nace en un momento de aislamiento social con sus restricciones, la Pandemia del Covid 2019, tuve que enfrentar muchas dificultades por falta de trabajo, debido a que la empresa donde laboraba cerrò sus puertas, la falta de movilidad entre otros obstáculos, me vi en la necesidad de crear productos de pasteleria y reposterìa personalizados, ofreciendo una gran variedad de opciones y alternativas a mis clientes, creando asì una nueva demanda en la modalidad virtual, mirando hacia el futuro con la esperanza de crecer, de brindarle a nuestros clientes un buen servicio, adaptàndonos a nuevos escenarios que puedan surjir en el futuro.",
-        "image_url": "https://i.ibb.co/tz9rLF1/badge-carousel2.jpg",
-        "sub_title": "¡Hola! ¡Soy la chef y pastelera de Blondie’s Cake, Joselyn!"
-    }
-}
-
-
-
-{
-    "second_text": {
-        "title": "¿Qué mejor manera de celebrar un momento importante que con un pastel delicioso elaborado con maestría y cuidado?",
-        "sumary": "En Blondies, nos adaptamos a los nuevos tiempos, ofreciendo nuestros servicios de manera virtual, pero siempre con la misma calidad y atención personalizada. Nuestro objetivo es crecer junto a ti, brindándote el mejor servicio y los pasteles más deliciosos para tus momentos especiales."
-    }
-}
-
-
-
-
-
-
-
-"""def about_us(self):
+    # Purposes setter #
+    def mision_vision_updater(self, data:dict):
         self.act_data
-        response = self.supabase.table("index_about_us_texts").select("*").eq("id", 2).execute()
-        data = response.data[0]["texts"]["about_us"]
-        data_second_text = response.data[0]["texts"]["second_text"]
-        if len(response.data) > 0:
-            about_us_data = [
-                AboutUs(
-                        title=data["title"],
-                        sub_title=data["sub_title"],
-                        sumary=data["sumary"],
-                        image_url=data["image_url"]
-                    ),
-            ]
-            second_text = [
-                AboutUs(
-                    title=data_second_text["title"],
-                    sumary=data_second_text["sumary"],
-                    sub_title="",
-                    image_url=""
-                )
-            ]
-        return [about_us_data,second_text]"""
+        response = self.supabase.table("index_about_us_texts").update({"texts":data}).eq("id",5).execute()
+        print(response)
