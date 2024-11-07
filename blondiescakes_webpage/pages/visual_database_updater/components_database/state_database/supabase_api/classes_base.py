@@ -10,6 +10,7 @@ class Featured(rx.Base):
     title:str
     upload_time:str
     categorie:str
+    price:str
 
 #Highlight#
 class Highlights(rx.Base):

@@ -19,8 +19,8 @@ async def get_all_data_database() -> Featured:
 async def get_data_alter_api(categorie:str) -> Featured:
     return supabase_api.get_data_alter(categorie)
 
-def upload_supabase(id:str,image_url:str,item_description:str,title:str,categorie:str):
-    supabase_api.insert_data(id,image_url,item_description,title,categorie)
+def upload_supabase(id:str,image_url:str,item_description:str,title:str,categorie:str, price:int):
+    supabase_api.insert_data(id,image_url,item_description,title,categorie, price)
 
 def delete_content(id_list:list):
     supabase_api.delete_data(id_list)

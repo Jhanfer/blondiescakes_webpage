@@ -33,7 +33,8 @@ class SupabaseAPI():
                         item_description=featured_item["item_description"],
                         title=featured_item["title"],
                         upload_time=featured_item["upload_time"],
-                        categorie=featured_item["categorie"]
+                        categorie=featured_item["categorie"],
+                        price=featured_item["price"]
                     )
                 )
         return datos
@@ -52,7 +53,8 @@ class SupabaseAPI():
                         item_description=featured_item["item_description"],
                         title=featured_item["title"],
                         upload_time=featured_item["upload_time"],
-                        categorie=featured_item["categorie"]
+                        categorie=featured_item["categorie"],
+                        price=featured_item["price"]
                     )
                 )
             buttercream = []
@@ -88,7 +90,7 @@ class SupabaseAPI():
         else:
             pass
 
-    def insert_data(self,id:str,image_url:str,item_description:str,title:str,categorie:str):
+    def insert_data(self,id:str,image_url:str,item_description:str,title:str,categorie:str, price:int):
         """Insert data on database
         purchase_url has been changed to "Description" prompt
         """
@@ -109,7 +111,7 @@ class SupabaseAPI():
         
         if not categoria_backend == "default_table":
             if image_url and item_description and title != None:
-                self.supabase.table("Images_database").insert({"id":id, "image_url":image_url,"item_description":item_description,"title":title,"upload_time":f"{format}","categorie":categoria_backend}).execute()
+                self.supabase.table("Images_database").insert({"id":id, "image_url":image_url,"item_description":item_description,"title":title,"upload_time":f"{format}","categorie":categoria_backend,"price":price}).execute()
                 print("Subido con éxito")
                 
             else:

@@ -62,6 +62,7 @@ def backend_featured_link(featured:Featured) -> rx.Component:
                                     size="3",
                                     align="center",
                                     color=st.ColorPalette.ENFASIS.value),
+                            rx.text(featured.price, size="5"),
                             rx.text(f"{featured.upload_time[0:10]} {featured.upload_time[11:20]}",
                                     size="3",
                                     align="center",

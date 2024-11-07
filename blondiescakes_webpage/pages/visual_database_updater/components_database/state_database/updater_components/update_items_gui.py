@@ -50,6 +50,19 @@ def updater(button_text:str):
                     ),
 
                     rx.flex(
+                        rx.text("Precio del artículo"),
+                        rx.input(
+                            placeholder="precio",
+                            type="number",
+                            on_blur=BackendUpdater.set_price,
+                            on_change=BackendUpdater.set_price,
+                            on_focus=BackendUpdater.set_price
+                        ),
+                        width="100%",
+                        justify="between"
+                    ),
+
+                    rx.flex(
                         rx.text("Categoría"),
                         rx.select(["Pagina principal","Buttercream","Frios","Saludables","Tradicionales"],
                             placeholder="seleccione categoría",
@@ -59,7 +72,7 @@ def updater(button_text:str):
                         justify="between"
                     ),
 
-                    rx.button("SUBIR",color_scheme="grass",on_click=lambda:[BackendUpdater.update_data,rx.call_script("window.location.reload()")]),
+                    rx.button("SUBIR",background_color="green",on_click=lambda:[BackendUpdater.update_data,rx.call_script("window.location.reload()")]),
                 align="start",
                 spacing="5",
                 justify="center",
@@ -70,7 +83,7 @@ def updater(button_text:str):
                 
                 rx.vstack(
                         rx.dialog.close(
-                            rx.button("cerrar",size="3",color_scheme="tomato",on_click=BackendUpdater.reset_data)),
+                            rx.button("cerrar",size="3",background_color="red",on_click=BackendUpdater.reset_data)),
                     align="center"),
                 )
         )

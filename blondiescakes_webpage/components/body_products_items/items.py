@@ -138,16 +138,15 @@ def featured_link(featured:Featured) -> rx.Component:
     return rx.vstack(
                     motion(
                         rx.vstack(
-                                    dialog(featured.title,featured.image_url,featured.item_description,True),
-
+                                    dialog(featured.title,featured.image_url,featured.item_description,featured.price,True),
                                     rx.text(
                                         featured.title,
                                         size="6",
                                         align="center",
                                         color=st.ColorPalette.ENFASIS.value
                                     ),
-
-                                    dialog(featured.title,featured.image_url,featured.item_description,False),
+                                    rx.text(f"{featured.price} COP", size="5"),
+                                    dialog(featured.title,featured.image_url,featured.item_description,featured.price,False),
                                     
                             align="center",
                             justify="center",

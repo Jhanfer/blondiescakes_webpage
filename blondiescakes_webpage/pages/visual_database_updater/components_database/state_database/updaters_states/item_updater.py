@@ -14,6 +14,7 @@ class BackendUpdater(rx.State):
     item_description:str
     categorie:str
     title:str
+    price:int
 
     #refresh states
     state:bool
@@ -40,6 +41,10 @@ class BackendUpdater(rx.State):
         """Set image url function"""
         self.image_url=image_url
 
+    def set_price(self, price:int):
+        """Set the article prices"""
+        self.price = price
+
     def set_item_description(self,item_description:str):
         """Set url purchase function"""
         self.item_description=item_description
@@ -58,8 +63,8 @@ class BackendUpdater(rx.State):
 
     def update_data(self):
         """Upload data function"""
-        if self.image_id and self.item_description and self.title and self.categorie:
-            upload_supabase(self.image_id,self.image_url,self.item_description,self.title,self.categorie)
+        if self.image_id and self.item_description and self.title and self.categorie and self.price:
+            upload_supabase(self.image_id,self.image_url,self.item_description,self.title,self.categorie, self.price)
             self.refresh=True
             if self.refresh==True:
                 return rx.toast.success("Subido con éxito")

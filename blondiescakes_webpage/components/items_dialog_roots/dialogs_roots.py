@@ -2,7 +2,7 @@ import reflex as rx
 from blondiescakes_webpage.components.wrapping_react.framer_motion import motion
 from blondiescakes_webpage.styles import styles as st
 
-def dialog(title:str,image:str,purchase_link:str,switch:bool) -> rx.Component:
+def dialog(title:str,image:str,item_descirption:str,price:str,switch:bool) -> rx.Component:
     return  motion(
                 rx.dialog.root(
                     rx.cond(switch,
@@ -66,11 +66,17 @@ def dialog(title:str,image:str,purchase_link:str,switch:bool) -> rx.Component:
                                                     "border-radius":"15px"
                                             },
                                         ),
+
+                                        
                                         display=["flex", "none", "none", "none", "none"],
                                     ),
-                                    rx.box(
-                                        rx.text(purchase_link,size="2"),
+                                    rx.flex(
+                                        rx.text(item_descirption,size="5"),
+
+                                        rx.text(f"{price} COP", size="6"),
                                         width="17em",
+                                        spacing="3",
+                                        direction="column",
                                         display=["flex", "none", "none", "none", "none"],
                                     ),
 
@@ -91,9 +97,13 @@ def dialog(title:str,image:str,purchase_link:str,switch:bool) -> rx.Component:
                                         ),
                                         display=["none", "flex", "flex", "flex", "flex"],
                                     ),
-                                    rx.box(
-                                        rx.text(purchase_link),
+                                    rx.flex(
+                                        rx.text(item_descirption, size="5"),
+                                        rx.text(f"{price} COP", size="6"),
+                                        
                                         width="25em",
+                                        spacing="3",
+                                        direction="column",
                                         display=["none", "flex", "flex", "flex", "flex"],
                                     ),
 
