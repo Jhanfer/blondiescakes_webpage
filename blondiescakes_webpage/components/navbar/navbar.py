@@ -79,6 +79,7 @@ def navbar_content() -> rx.Component:
             height="5em",
             position="sticky",
             on_click=rx.redirect("/"),
+            style={"cursor":"pointer"},
             alt="Logo de Blondie´s Cake"
         ),
 

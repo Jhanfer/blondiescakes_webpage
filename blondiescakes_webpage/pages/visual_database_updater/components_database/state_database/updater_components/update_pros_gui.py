@@ -18,9 +18,9 @@ def update_pros_gui(*,button_text:str, pros_list_1:list[Purposes], pros_list_2:l
                         rx.text("Titulo item 1"),
                         rx.input(
                             placeholder="titulo",
-                            on_blur=ProsUpdater.set_title_1,
                             on_change=ProsUpdater.set_title_1,
                             on_focus=ProsUpdater.set_title_1,
+                            #on_blur=ProsUpdater.set_title_1,
                             value=pros_list_1[0].title
                         ),
                         width="100%",

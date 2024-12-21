@@ -1,6 +1,13 @@
 import reflex as rx
 from blondiescakes_webpage.components.wrapping_react.framer_motion import motion
 from blondiescakes_webpage.styles import styles as st
+from blondiescakes_webpage.styles import constants as ct
+
+class SendMessage(rx.State):
+    def send_message(self, title):
+        return rx.redirect(f"https://wa.me/{ct.CONTACT_NUMBER}?text=Hola,+buenas.+Vi+\"{title}\"+en+su+pagina!")
+
+
 
 def dialog(title:str,image:str,item_descirption:str,price:str,switch:bool) -> rx.Component:
     return  motion(
@@ -119,7 +126,7 @@ def dialog(title:str,image:str,item_descirption:str,price:str,switch:bool) -> rx
                                     radius="small",
                                     width="50%",
                                     justify="center",
-                                    on_click=rx.redirect("nosotros/#contacto")
+                                    on_click=SendMessage.send_message(title)
                                 ),
 
                                 justify="center",

@@ -17,6 +17,6 @@ class CookieState(rx.State):
 
     def logout(self):
         self.show=False
-        return [rx.remove_cookie("sesion_token"),rx.toast.success("Sesión cerrada")]
+        return [rx.remove_cookie("sesion_token")]
     
 

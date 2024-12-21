@@ -25,31 +25,35 @@ class InMemoryRateLimiter:
         self.attempts[key].append(current)
         return len(self.attempts[key]) > self.max_attempts
 
-
+memory = InMemoryRateLimiter()
 
 class LoginState(rx.State):
     password:str
     username:str
     token:dict
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.rate_limiter = InMemoryRateLimiter()
-
     def auth_user(self):
         
-        if not self.rate_limiter.is_rate_limited(self.username):
-            
-            # Buscar usuario en la base de datos
-            user = mongo_client.test.users.find_one({"username": self.username})
-            if not user:
+        # Buscar usuario en la base de datos
+        user = mongo_client.test.users.find_one({"username": self.username})
+        match user:
+            case None:
+                out_of_rate_limit_username = memory.is_rate_limited(self.username)
+                match out_of_rate_limit_username:
+                    case True:
+                        return rx.toast.error("Demasiados intentos. Por favor, intente más tarde.")
                 return rx.toast.error("Usuario o contraseña incorrectos")
 
-            # Verificar contraseña
-            if not bcrypt.verify(self.password, user["password"]):
+        # Verificar contraseña
+        verifyed = bcrypt.verify(self.password, user["password"])
+        match verifyed:
+            case False:
+                out_of_rate_limit_username = memory.is_rate_limited(self.username)
+                match out_of_rate_limit_username:
+                    case True:
+                        return rx.toast.error("Demasiados intentos. Por favor, intente más tarde.")
                 return rx.toast.error("Usuario o contraseña incorrectos")
-        else:
-            return rx.toast.error("Demasiados intentos. Por favor, intente más tarde.")
+        
         
         # Generar token
         page_id = str(uuid4())

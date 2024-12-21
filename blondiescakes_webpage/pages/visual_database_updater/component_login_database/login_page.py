@@ -5,7 +5,7 @@ from blondiescakes_webpage.pages.visual_database_updater.component_login_databas
 @rx.page(
     route="/backend_login",
     title="LOGIN",
-    #on_load=CookieState.logout
+    on_load=CookieState.logout
 )
 
 def login_page() -> rx.Component:
